@@ -87,26 +87,26 @@ class IdController extends \BaseController
 	 */
 	public function getSignIn()
 	{
-		print_r(Session::all());
 		return View::make('id.login');
 	}
 	public function postSignIn()
 	{
 
-		if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'))))
+		// if (Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password'))))
+		if (Auth::attempt(Input::only('email','password')))
 		{
-			return Redirect::to('/')->with('success', array('login' => 'Você logou no sistema.'));
+			return Redirect::to('/')->with('success', array(1 => 'Você logou no sistema.'));
 		}
 		else
 		{
-			return Redirect::to('/')->with('danger', array('login' => 'Dados inválidos.'));
+			return Redirect::to('/')->with('danger', array(1 => 'Dados inválidos.'));
 		}
 	}
 
 	public function getSignOut()
 	{
 		Auth::logout();
-		return Redirect::to('/')->with('success', array('logout' => 'Você se deslogou do sistema.'));
+		return Redirect::to('/')->with('success', array(1 => 'Você se deslogou do sistema.'));
 	}
 
 }

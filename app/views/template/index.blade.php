@@ -24,14 +24,32 @@
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
                     <li class="xn" style="background-color:#e34724;">
-                        <a href="index.html">Painel de Controle</a>
+                        <a href="{{URL::to("/")}}">Painel de Controle</a>
                         <a href="#" class="x-navigation-control"></a>
                     </li>                                                  
                     <li class="xn-title">Menu</li>
                     <li>
-                        <a href="index.html"><span class="fa fa-desktop"></span> <span class="xn-text">Dashboard</span></a>
-                    </li>                                        
+                        <a href="{{URL::to("/")}}"><span class="fa fa-desktop"></span> <span class="xn-text">Página Inicial</span></a>
+                    </li>
+                    <li>
+                        <a href="index.html"><span class="glyphicon glyphicon-th"></span> <span class="xn-text">Meus Produtos</span></a>
+                    </li>
+                    <li>
+                        <a href="index.html"><span class="glyphicon glyphicon-tag"></span> <span class="xn-text">Solicitar Categoria</span></a>
+                    </li>
+                    <li class="xn-openable">
+                    <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">Admin</span></a>
+                    <ul>
+                        <li><a href="{{URL::to("categorias")}}"><span class="glyphicon glyphicon-tasks"></span> Categorias</a></li>
+                        <li><a href="pages-gallery.html"><span class="glyphicon glyphicon-tags"></span> Categorias Solicitadas</a></li>
+                        <li><a href="{{URL::to("usuario")}}"><span class="fa fa-group"></span> Usuários</a></li>
+                    </ul>
+                    <li>
+                        <a href="{{URL::to("id/sign-out")}}"><span class="fa fa-sign-out"></span> <span class="xn-text">Logout</span></a>
+                    </li>
+                </li>
                 </ul>
+
                 <!-- END X-NAVIGATION -->
             </div>
             <!-- END PAGE SIDEBAR -->
