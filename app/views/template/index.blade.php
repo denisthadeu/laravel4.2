@@ -11,8 +11,9 @@
         <!-- END META SECTION -->
         
         <!-- CSS INCLUDE -->        
-        <link rel="stylesheet" type="text/css" id="theme" href="css/bootstrap/bootstrap.min.css"/>
-        <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
+        <link rel="stylesheet" type="text/css" id="theme" href="/css/bootstrap/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" id="theme" href="/css/theme-default.css"/>
+        
         <!-- EOF CSS INCLUDE -->
     </head>
     <body>
@@ -42,6 +43,8 @@
                     <ul>
                         <li><a href="{{URL::to("categorias")}}"><span class="glyphicon glyphicon-tasks"></span> Categorias</a></li>
                         <li><a href="pages-gallery.html"><span class="glyphicon glyphicon-tags"></span> Categorias Solicitadas</a></li>
+                        <li><a href="{{URL::to("centro")}}"><span class="fa fa-road"></span> Centros/Ruas</a></li>
+                        <li><a href="{{URL::to("pacotes")}}"><span class="fa fa-th-large"></span> Pacotes</a></li>
                         <li><a href="{{URL::to("usuario")}}"><span class="fa fa-group"></span> Usuários</a></li>
                     </ul>
                     <li>
@@ -65,6 +68,71 @@
                     </li>
                     <!-- END TOGGLE NAVIGATION -->                    
                 </ul>
+                @if (Session::get('success'))
+                    <?php
+                    $successes = Session::get('success');
+                    ?>
+                    <div class="alert alert-success">
+                        <a class="close" data-dismiss="alert">×</a>
+                        <h4 class="alert-heading"> Sucesso! </h4>
+                        <ul>
+                            @foreach($successes as $sucesso)
+                                <li>{{$sucesso}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    @if (Session::get('info'))
+                    <?php
+                    $infos = Session::get('info');
+                    ?>
+                    <div class="alert alert-info">
+                        <a class="close" data-dismiss="alert">×</a>
+                        <h4 class="alert-heading"> Informações: </h4>
+                        <ul>
+                            @foreach($infos as $info)
+                                <li>{{$info}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    @if (Session::get('warning'))
+                    <?php
+                    $warnings = Session::get('warning');
+                    ?>
+                    <div class="alert alert-warning">
+                        <a class="close" data-dismiss="alert">×</a>
+                        <h4 class="alert-heading"> Atenção! </h4>
+                        <ul>
+                            @foreach($warnings as $warning)
+                                <li>{{$warning}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                    @if (Session::get('danger'))
+                    <?php
+                    $dangers = Session::get('danger');
+                    ?>
+                    <div class="alert alert-danger">
+                        <a class="close" data-dismiss="alert">×</a>
+                        <h4 class="alert-heading"> Os seguintes erros foram encontrados: </h4>
+                        <ul>
+                            @foreach($dangers as $danger)
+                                @if (is_array($danger))
+                                    
+                                        @foreach ($danger as $msg)              
+                                            <li>{{$msg}}</li>
+                                        @endforeach
+                                    
+                                @else
+                                    <li>{{$danger}}</li>
+                                @endif
+                                
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <!-- END X-NAVIGATION VERTICAL -->                     
                 @section('content')
 
@@ -96,15 +164,16 @@
         <!-- END MESSAGE BOX-->
 
         <!-- START PRELOADS -->
-        <audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
-        <audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio>
+        <audio id="audio-alert" src="/audio/alert.mp3" preload="auto"></audio>
+        <audio id="audio-fail" src="/audio/fail.mp3" preload="auto"></audio>
         <!-- END PRELOADS -->                 
         
     <!-- START SCRIPTS -->
         <!-- START PLUGINS -->
-        <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>        
+        <script type="text/javascript" src="/js/plugins/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/js/plugins/jquery/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="/js/plugins/bootstrap/bootstrap.min.js"></script> 
+
         <!-- END PLUGINS -->
 
         <!-- THIS PAGE PLUGINS -->
@@ -112,8 +181,19 @@
         <!-- END PAGE PLUGINS -->         
 
         <!-- START TEMPLATE -->
-        <script type="text/javascript" src="js/plugins.js"></script>        
-        <script type="text/javascript" src="js/actions.js"></script>        
+        <script type="text/javascript" src="/js/plugins.js"></script>        
+        <script type="text/javascript" src="/js/actions.js"></script>        
+
+        <!-- Include Jquery -->
+        <script type="text/javascript" src="/js/jquery.maskMoney.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('.numbersOnly').keyup(function () { 
+                    this.value = this.value.replace(/[^0-9\.]/g,'');
+                });
+                $(".money").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true});
+            });
+        </script>
         <!-- END TEMPLATE -->
     <!-- END SCRIPTS -->         
     </body>

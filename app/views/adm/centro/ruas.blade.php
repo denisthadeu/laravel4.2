@@ -4,7 +4,8 @@
 <!-- START BREADCRUMB -->
 <ul class="breadcrumb">
     <li><a href="#">Painel De Controle</a></li>
-    <li class="active">Categorias</li>
+    <li><a href="{{URL::to("centro")}}">Centros Comerciais</a></li>
+    <li class="active">Ruas de {{$centro->nome}}</li>
 </ul>
 <!-- END BREADCRUMB -->                
 
@@ -18,11 +19,7 @@
     <div class="panel-heading">
         <div class="row">
             <div class="col-md-10">
-                @if(empty($parent_id))
-                    <h3 class="panel-title">Categorias Cadastradas</h3>
-                @else
-                    <h3 class="panel-title">Sub-Categorias Cadastradas para a categoria: {{$category->nome}}</h3>
-                @endif
+                <h3 class="panel-title">Ruas Cadastradas de {{$centro->nome}}</h3>
             </div>
             <div class="col-md-1 col-md-offset-1"><button type="button" id="create-category" class="btn btn-primary btn-lg active" data-toggle="modal" data-target="#myModal">Novo</button></div>
         </div>
@@ -32,38 +29,20 @@
             <thead>
                 <tr>
                     <th>
-                        @if(empty($parent_id))
-                            Nome Categoria
-                        @else
-                            Nome SubCategorias
-                        @endif
-                        
+                        Nome Rua
                     </th>
-                    <th>Total de Sub Categorias</th>
-                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                @if(isset($categories) && !$categories->isEmpty())
-                    @foreach($categories AS $category)
+                @if(isset($ruas) && !$ruas->isEmpty())
+                    @foreach($ruas AS $rua)
                         <tr>
-                            <td>{{$category->nome}}</td>
-                            <td>{{$category->totSubCategories()}}</td>
-                            <td>
-                                <a href="{{URL::to("categorias/subcategorias/$category->id")}}">
-                                    <button type="button" class="btn btn-warning btn-lg active">listar sub-categorias</button>
-                                </a>
-                                <a href="{{URL::to("categorias/delete/$category->id")}}">
-                                    <button type="button" class="btn btn-danger btn-lg active">excluir</button>
-                                </a>
-                            </td>
+                            <td>{{$rua->nome}}</td>
                         </tr>
                     @endforeach
                 @else
                     <tr>
-                        <td>Nenhuma Categoria Cadastrada no sistema</td>
-                        <td></td>
-                        <td></td>
+                        <td>Nenhuma Rua Cadastrada no sistema</td>
                     </tr>
                 @endif
             </tbody>
@@ -78,15 +57,11 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form action="{{URL::to("categorias/save")}}" method="post" >
+            <form action="{{URL::to("centro/ruas")}}" method="post" >
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">
-                        @if(empty($parent_id))
-                            Criar Categoria
-                        @else
-                            Criar Sub-Categoria
-                        @endif
+                        Cadastrar Rua - {{$centro->nome}}
                     </h4>
                 </div>
                 <div class="modal-body">
@@ -96,7 +71,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="hidden" name="parent_id" value="{{$parent_id}}" />
+                    <input type="hidden" name="centro_id" value="{{$centro->id}}" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Criar</button>
                 </div>

@@ -4,7 +4,7 @@ class CategoriasController extends BaseController {
 
 	public function getIndex()
 	{
-		$categories = Categories::all();
+		$categories = Categories::where('parent_id','=',0)->orderBy('nome')->get();
 		$parent_id = 0;
 		return View::make('adm.categoria.index', compact('categories','parent_id'));
 	}
@@ -25,7 +25,7 @@ class CategoriasController extends BaseController {
 		if($category->parent_id == 0){
 			return Redirect::to('categorias')->with('success', array(1 => 'Categoria Cadastrada com sucesso!'));
 		} else {
-			return Redirect::to('categorias/'.$category->parent_id)->with('success', array(1 => 'Sub-Categoria Cadastrada com sucesso!'));
+			return Redirect::to('categorias/subcategorias/'.$category->parent_id)->with('success', array(1 => 'Sub-Categoria Cadastrada com sucesso!'));
 		}
 	}
 
@@ -35,6 +35,18 @@ class CategoriasController extends BaseController {
 		$categories = $category->subcategories;
 		$parent_id = $category->id;
 		return View::make('adm.categoria.index', compact('categories','parent_id','category'));
+	}
+
+	public function getDelete($id)
+	{
+		$category = Categories::find($id);
+		$parent_id = $category->parent_id;
+		$category->delete();
+		if($parent_id == 0){
+			return Redirect::to('categorias')->with('success', array(1 => 'Categoria Deletada com sucesso!'));
+		} else {
+			return Redirect::to('categorias/subcategorias/'.$parent_id)->with('success', array(1 => 'Sub-Categoria Deletada com sucesso!'));
+		}	
 	}
 
 }
