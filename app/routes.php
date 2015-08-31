@@ -27,4 +27,6 @@ Route::controller('home','HomeController');
 Route::controller('id', 'IdController');
 Route::controller('usuario', 'UsuarioController');
 Route::controller('categorias', 'CategoriasController');
-Route::get('categorias/{id}', 'CategoriasController@getsubcategorias');
+Route::controller('centro', 'CentroController');
+Route::controller('pacotes', 'PacotesController');
+Route::controller('meusdados', 'MeusdadosController');

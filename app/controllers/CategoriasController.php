@@ -49,4 +49,49 @@ class CategoriasController extends BaseController {
 		}	
 	}
 
+	public function getSolicitarCategoria()
+	{
+		return View::make('adm.categoria.solicitar_categoria');
+	}
+
+	public function postSolicitarCategoria()
+	{
+		extract(Input::all());
+
+		$solicitarcategoria = new solicitarcategoria();
+		$solicitarcategoria->nome_categoria = $nome_categoria;
+		$solicitarcategoria->observacao = $observacao;
+		$solicitarcategoria->status = 0;
+		$solicitarcategoria->created_at = date('Y-m-d H:i:s');
+		$solicitarcategoria->updated_at = date('Y-m-d H:i:s');
+		$solicitarcategoria->save();
+
+		return Redirect::to('categorias/solicitar-categoria')->with('success', array(1 => 'Mensagem enviada para o administrador do sistema!'));
+	}
+
+	public function getCategoriasSolicitadas()
+	{
+		$categoriasSolicitadas = solicitarcategoria::orderBy('created_at','DESC')->get();
+		return View::make('adm.categoria.categorias_solicitadas',compact('categoriasSolicitadas'));
+	}
+
+	public function postCategoriasSolicitadas()
+	{
+		extract(Input::all());
+		
+		if(isset($categoriasSolicitadas) && !empty($categoriasSolicitadas)){
+			foreach ($categoriasSolicitadas as $id) {
+				$solicitarcategoria = solicitarcategoria::find($id);
+				$solicitarcategoria->status = $status;
+				$solicitarcategoria->updated_at = date('Y-m-d H:i:s');
+				$solicitarcategoria->save();
+			}
+			return Redirect::to('categorias/categorias-solicitadas')->with('success', array(1 => 'Solicitações atualizadas!'));
+		} else {
+			return Redirect::to('categorias/categorias-solicitadas')->with('danger', array(1 => 'Você deve selecionar ao menos uma solicitação para atualizar!'));
+		}
+
+		
+	}
+
 }

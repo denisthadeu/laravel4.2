@@ -2,7 +2,7 @@
 <html lang="en">
     <head>        
         <!-- META SECTION -->
-        <title>Sistema</title>            
+        <title>Ponto da Informação</title>            
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,7 +25,7 @@
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
                     <li class="xn" style="background-color:#e34724;">
-                        <a href="{{URL::to("/")}}">Painel de Controle</a>
+                        <a href="{{URL::to("/")}}">Ponto da Informação</a>
                         <a href="#" class="x-navigation-control"></a>
                     </li>                                                  
                     <li class="xn-title">Menu</li>
@@ -33,16 +33,19 @@
                         <a href="{{URL::to("/")}}"><span class="fa fa-desktop"></span> <span class="xn-text">Página Inicial</span></a>
                     </li>
                     <li>
+                        <a href="{{URL::to("meusdados")}}"><span class="glyphicon glyphicon-user"></span> <span class="xn-text">Meus Dados</span></a>
+                    </li>
+                    <li>
                         <a href="index.html"><span class="glyphicon glyphicon-th"></span> <span class="xn-text">Meus Produtos</span></a>
                     </li>
                     <li>
-                        <a href="index.html"><span class="glyphicon glyphicon-tag"></span> <span class="xn-text">Solicitar Categoria</span></a>
+                        <a href="{{URL::to("categorias/solicitar-categoria")}}"><span class="glyphicon glyphicon-tag"></span> <span class="xn-text">Solicitar Categoria</span></a>
                     </li>
                     <li class="xn-openable">
                     <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">Admin</span></a>
                     <ul>
                         <li><a href="{{URL::to("categorias")}}"><span class="glyphicon glyphicon-tasks"></span> Categorias</a></li>
-                        <li><a href="pages-gallery.html"><span class="glyphicon glyphicon-tags"></span> Categorias Solicitadas</a></li>
+                        <li><a href="{{URL::to("categorias/categorias-solicitadas")}}"><span class="glyphicon glyphicon-tags"></span> Categorias Solicitadas</a></li>
                         <li><a href="{{URL::to("centro")}}"><span class="fa fa-road"></span> Centros/Ruas</a></li>
                         <li><a href="{{URL::to("pacotes")}}"><span class="fa fa-th-large"></span> Pacotes</a></li>
                         <li><a href="{{URL::to("usuario")}}"><span class="fa fa-group"></span> Usuários</a></li>
