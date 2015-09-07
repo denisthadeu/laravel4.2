@@ -114,4 +114,13 @@
 	    }
 	    return $maskared;
 	  } 
+
+	  public static function dateDbToString($data) 
+	  {
+	    $data = explode(' ', $data);
+	    $data = $data[0];
+	    $data = explode('-', $data);
+	    $data = $data[2]."/".$data[1]."/".$data[0];
+	    return $data;
+	  }
 	}

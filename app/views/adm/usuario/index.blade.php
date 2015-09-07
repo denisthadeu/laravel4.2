@@ -32,10 +32,13 @@
                 <tr>
                     <th>Nome</th>
                     <th>Sobrenome</th>
-                    <th>E-mail</th>
-                    <th>Quantidade de produtos</th>
+                    <th>Empresa</th>
+                    <th>Qtd. de produtos</th>
                     <th>Data Cadastro</th>
+                    <th>Pacote</th>
+                    <th>Data Vencimento</th>
                     <th>Ativo</th>
+                    <th>Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,10 +47,21 @@
                         <tr>
                             <td>{{$usuario->nome}}</td>
                             <td>{{$usuario->sobrenome}}</td>
-                            <td>{{$usuario->email}}</td>
+                            <td>{{$usuario->company_name}}</td>
                             <td>61</td>
                             <td>{{Formatter::getDataHoraFormatada($usuario->created_at)}}</td>
+                            <td>
+                                @if(!empty($usuario->pacote_id))
+                                    {{$usuario->pacote->nome}}
+                                @endif
+                            </td>
+                            <td>{{Formatter::dateDbToString($usuario->data_vencimento)}}</td>
                             <td>{{Formatter::getStatusSimNao($usuario->status)}}</td>
+                            <td>
+                                <a href="{{URL::to("meusdados/$usuario->id")}}">
+                                    <button type="button" id="create-category" class="btn btn-warning btn-lg active"><span class="fa fa-pencil"></span></button>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                 @else

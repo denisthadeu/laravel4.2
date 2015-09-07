@@ -39,4 +39,13 @@ class CentroController extends BaseController {
 		$rua->save();
 		return Redirect::to('centro/ruas/'.$rua->centro_id)->with('success', array(1 => 'Rua Cadastrada com sucesso!'));
 	}
+
+	public function getOptionRuas($id){
+		$option = '';
+		$ruas = Ruas::where('centro_id','=',$id)->orderBy('nome')->get();
+		foreach ($ruas as $rua) {
+			$option .= '<option value="'.$rua->id.'">'.$rua->nome.'</option>';
+		}
+		return $option;
+	}
 }

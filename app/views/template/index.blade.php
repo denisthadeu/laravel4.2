@@ -176,6 +176,8 @@
         <script type="text/javascript" src="/js/plugins/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="/js/plugins/jquery/jquery-ui.min.js"></script>
         <script type="text/javascript" src="/js/plugins/bootstrap/bootstrap.min.js"></script> 
+        
+
 
         <!-- END PLUGINS -->
 
@@ -189,12 +191,39 @@
 
         <!-- Include Jquery -->
         <script type="text/javascript" src="/js/jquery.maskMoney.js"></script>
+        <script type="text/javascript" src="/js/maskedinput.min.js"></script> 
+        <script type="text/javascript" src="/js/plugins/moment.min.js"></script>
+        <script type="text/javascript" src="/js/plugins/daterangepicker/daterangepicker.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 $('.numbersOnly').keyup(function () { 
                     this.value = this.value.replace(/[^0-9\.]/g,'');
                 });
                 $(".money").maskMoney({symbol:'R$ ', showSymbol:true, thousands:'.', decimal:',', symbolStay: true});
+                $("#cpf").mask("999.999.999-99");
+                $(".telefone").mask("(99) 9999-9999");
+                $(".celular").mask("(99) 9999-9999?9");
+                $('#centro').change(function(){
+                    var centro_id = $(this).val();
+                    if(centro_id > 0){
+                        $.ajax({
+                            url: "/centro/option-ruas/"+centro_id,
+                            // data: { prova_id : provaId, tipo : "m" },
+                            cache: false,
+                            success: function(html){
+                                $('#rua').html(html);
+                            }
+                        });
+                    }
+                });
+                var d = new Date();
+                $('.singleDate').daterangepicker({
+                    "singleDatePicker": true,
+                    "autoApply": true,
+                    "startDate": d.getDate()+"/"+(d.getMonth()+1)+"/"+d.getFullYear()
+                }, function(start, end, label) {
+                  console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+                });
             });
         </script>
         <!-- END TEMPLATE -->
