@@ -31,4 +31,6 @@ Route::controller('centro', 'CentroController');
 Route::controller('pacotes', 'PacotesController');
 Route::get('meusdados/{id}', 'MeusDadosController@getIndex');
 Route::resource('meusdados/alterar-pacote', 'MeusdadosController@getAlterarPacote');
+Route::resource('meusdados/solicitar-pacote', 'MeusdadosController@getSolicitarPacote');
 Route::controller('meusdados', 'MeusdadosController');
+Route::controller('produto', 'ProdutoController');

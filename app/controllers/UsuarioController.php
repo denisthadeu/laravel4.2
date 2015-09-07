@@ -26,4 +26,26 @@ class UsuarioController extends BaseController {
 		return View::make('adm.usuario.index', compact('numUsersTot','usuarios'));
 	}
 
+	public function getSolicitacaoCliente()
+	{
+		$solicitacoes = Solicitarplano::OrderBy('created_at','desc')->get();
+		return View::make('adm.usuario.solicitacaocliente', compact('solicitacoes'));
+	}
+
+	public function postSolicitacaoCliente()
+	{
+		extract(Input::all());
+
+		if(isset($solicitacoes) && !empty($solicitacoes)){
+			foreach ($solicitacoes as $id) {
+				$Solicitarplano = Solicitarplano::find($id);
+				$Solicitarplano->status = $status;
+				$Solicitarplano->updated_at = date('Y-m-d H:i:s');
+				$Solicitarplano->save();
+			}
+			return Redirect::to('usuario/solicitacao-cliente')->with('success', array(1 => 'Solicitações atualizadas!'));
+		} else {
+			return Redirect::to('usuario/solicitacao-cliente')->with('danger', array(1 => 'Você deve selecionar ao menos uma solicitação para atualizar!'));
+		}
+	}
 }

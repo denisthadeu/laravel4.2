@@ -120,6 +120,8 @@
                                     <div class="col-md-4">
                                         @if($user->perfil == 1)
                                             <button type="button" id="create-category" class="btn btn-warning btn-lg active" data-toggle="modal" data-target="#myModal">Alterar Pacote</button>
+                                        @elseif($user->perfil == 2 && $user->data_vencimento<=$hojeDB)
+                                            <button type="button" id="create-category" class="btn btn-warning btn-lg active" data-toggle="modal" data-target="#myModal">Solicitar Plano</button>
                                         @endif
                                     </div>
                                 </div>
@@ -292,6 +294,34 @@
                     <input type="hidden" name="id" value="{{$id}}" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Alterar Pacote</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@elseif($user->perfil == 2)
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="{{URL::to("meusdados/solicitar-pacote")}}" method="post" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Solicitar Plano
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="padding-top:10px;">
+                        <div class="col-md-3">Mensagem</div>
+                        <div class="col-md-9">
+                            <textarea rows="5" placeholder="Mande sua mensagem com seus dados de contato para selecionar-mos o plano que mais se adequa a sua empresa.(Os dados da empresa precisam estar preenchidos!)" name="mensagem" id="mensagem" class="form-control" required></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id" value="{{$id}}" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Solicitar Pacote</button>
                 </div>
             </form>
         </div>

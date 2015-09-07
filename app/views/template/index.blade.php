@@ -36,7 +36,7 @@
                         <a href="{{URL::to("meusdados")}}"><span class="glyphicon glyphicon-user"></span> <span class="xn-text">Meus Dados</span></a>
                     </li>
                     <li>
-                        <a href="index.html"><span class="glyphicon glyphicon-th"></span> <span class="xn-text">Meus Produtos</span></a>
+                        <a href="{{URL::to("produto")}}"><span class="glyphicon glyphicon-th"></span> <span class="xn-text">Meus Produtos</span></a>
                     </li>
                     <li>
                         <a href="{{URL::to("categorias/solicitar-categoria")}}"><span class="glyphicon glyphicon-tag"></span> <span class="xn-text">Solicitar Categoria</span></a>
@@ -48,6 +48,7 @@
                         <li><a href="{{URL::to("categorias/categorias-solicitadas")}}"><span class="glyphicon glyphicon-tags"></span> Categorias Solicitadas</a></li>
                         <li><a href="{{URL::to("centro")}}"><span class="fa fa-road"></span> Centros/Ruas</a></li>
                         <li><a href="{{URL::to("pacotes")}}"><span class="fa fa-th-large"></span> Pacotes</a></li>
+                        <li><a href="{{URL::to("usuario/solicitacao-cliente")}}"><span class="fa fa-user"></span> Solicitação de clientes</a></li>
                         <li><a href="{{URL::to("usuario")}}"><span class="fa fa-group"></span> Usuários</a></li>
                     </ul>
                     <li>

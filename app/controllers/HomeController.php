@@ -22,7 +22,12 @@ class HomeController extends BaseController {
 
 	public function getIndex()
 	{
-		return View::make('home.index');
+		$categoriasSolicitadas = count(solicitarcategoria::where('status','=',0)->get());
+		$solicitacoes = count(Solicitarplano::where('status','=',0)->get());
+		$produtosAtivos = count(Produtos::where('status','=',1)->get());
+		$clientes = count(User::all());
+		$meusProdutos = count(Produtos::where('user_id','=',Auth::User()->id)->get());
+		return View::make('home.index',compact('categoriasSolicitadas','solicitacoes','produtosAtivos','clientes','meusProdutos'));
 	}
 
 }

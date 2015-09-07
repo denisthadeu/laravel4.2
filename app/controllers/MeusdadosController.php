@@ -14,7 +14,8 @@ class MeusdadosController extends BaseController {
 		}
 		$pacotes = Pacotes::OrderBy('nome')->get();
 		$hoje = date('d/m/Y');
-		return View::make('meusdados.index', compact('user','centros','ruas','id','pacotes','hoje'));
+		$hojeDB = date('Y-m-d');
+		return View::make('meusdados.index', compact('user','centros','ruas','id','pacotes','hoje','hojeDB'));
 	}
 
 	public function postSave()
@@ -57,6 +58,21 @@ class MeusdadosController extends BaseController {
 		$user->save();
 
 		return Redirect::to('meusdados/'.$id)->with('success', array(1 => 'Pacote Atualizado!'));
+	}
+
+	public function getSolicitarPacote()
+	{
+		extract(Input::all());
+		
+		$Solicitarplano = new Solicitarplano;
+		$Solicitarplano->user_id = Auth::User()->id;
+		$Solicitarplano->mensagem = $mensagem;
+		$Solicitarplano->status = 0;
+		$Solicitarplano->created_at = date('Y-m-d H:i:s');
+		$Solicitarplano->updated_at = date('Y-m-d H:i:s');
+		$Solicitarplano->save();
+
+		return Redirect::to('meusdados/'.Auth::User()->id)->with('success', array(1 => 'Plano Solicitado. Entraremos em contato assim que puder!'));
 	}
 
 }
