@@ -4,7 +4,7 @@ class PacotesController extends BaseController {
 
 	public function getIndex()
 	{
-		$pacotes = pacotes::orderBy('nome')->get();
+		$pacotes = Pacotes::orderBy('nome')->get();
 		return View::make('adm.pacote.index', compact('pacotes'));
 	}
 
@@ -12,7 +12,7 @@ class PacotesController extends BaseController {
 	{	
 		extract(Input::all());
 
-		$pacotes = new pacotes();
+		$pacotes = new Pacotes();
 		$pacotes->nome = $nome;
 		$pacotes->valor = $valor;
 		$pacotes->vezes = $vezes;

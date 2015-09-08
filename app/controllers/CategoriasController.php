@@ -58,7 +58,7 @@ class CategoriasController extends BaseController {
 	{
 		extract(Input::all());
 
-		$solicitarcategoria = new solicitarcategoria();
+		$solicitarcategoria = new Solicitarcategoria();
 		$solicitarcategoria->nome_categoria = $nome_categoria;
 		$solicitarcategoria->observacao = $observacao;
 		$solicitarcategoria->status = 0;
