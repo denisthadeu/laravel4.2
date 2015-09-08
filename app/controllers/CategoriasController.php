@@ -71,7 +71,7 @@ class CategoriasController extends BaseController {
 
 	public function getCategoriasSolicitadas()
 	{
-		$categoriasSolicitadas = solicitarcategoria::orderBy('created_at','DESC')->get();
+		$categoriasSolicitadas = Solicitarcategoria::orderBy('created_at','DESC')->get();
 		return View::make('adm.categoria.categorias_solicitadas',compact('categoriasSolicitadas'));
 	}
 
@@ -81,7 +81,7 @@ class CategoriasController extends BaseController {
 		
 		if(isset($categoriasSolicitadas) && !empty($categoriasSolicitadas)){
 			foreach ($categoriasSolicitadas as $id) {
-				$solicitarcategoria = solicitarcategoria::find($id);
+				$solicitarcategoria = Solicitarcategoria::find($id);
 				$solicitarcategoria->status = $status;
 				$solicitarcategoria->updated_at = date('Y-m-d H:i:s');
 				$solicitarcategoria->save();

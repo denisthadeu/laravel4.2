@@ -22,7 +22,7 @@ class HomeController extends BaseController {
 
 	public function getIndex()
 	{
-		$categoriasSolicitadas = count(solicitarcategoria::where('status','=',0)->get());
+		$categoriasSolicitadas = count(Solicitarcategoria::where('status','=',0)->get());
 		$solicitacoes = count(Solicitarplano::where('status','=',0)->get());
 		$produtosAtivos = count(Produtos::where('status','=',1)->get());
 		$clientes = count(User::all());
