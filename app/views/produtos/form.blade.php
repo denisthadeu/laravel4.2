@@ -163,16 +163,27 @@ function categoryRecursive($category, $titulo, $arrNeedle){
                                     </div>
                                 </div>
                             </p>
-                            <p>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        Imagens*
+                            @if(!isset($produto))
+                                <p>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            Imagens
+                                        </div>
+                                        <div class="col-md-9">
+                                            Só poderá colocar imagens depois de cadastrar este produto!
+                                        </div>
                                     </div>
-                                    <div class="col-md-9">
-                                        imagem
+                                </p>
+                            @else
+                                <h2>Imagens Cadastradas</h2>
+                                <p>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <button type="button" id="create-category" class="btn btn-primary btn-lg active" data-toggle="modal" data-target="#myModal">Nova Imagem</button>
+                                        </div>
                                     </div>
-                                </div>
-                            </p>
+                                </p>
+                            @endif
                         </div> 
                     </div>
                 </div>
@@ -194,4 +205,50 @@ function categoryRecursive($category, $titulo, $arrNeedle){
     </div>            
     <!-- END PAGE CONTENT -->
 </form>
+
+
+@if(isset($produto))
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="{{URL::to("produto/upload")}}" method="post" enctype="multipart/form-data" >
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            Nova Imagem
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Imagem
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="file" class="form-control" name="file" accept="image/*">
+                                </div>
+                            </div>
+                        </p>
+                        <p>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    Ordem
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control numbersOnly" name="order">
+                                </div>
+                            </div>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="id" value="{{$produto->id}}" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Fazer Upload</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endif
 @stop
