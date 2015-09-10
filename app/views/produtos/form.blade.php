@@ -226,7 +226,7 @@ function categoryRecursive($category, $titulo, $arrNeedle){
                                     Imagem
                                 </div>
                                 <div class="col-md-9">
-                                    <input type="file" class="form-control" name="file" accept="image/*">
+                                    <input type="file" class="form-control" name="file" accept="image/*" REQUIRED>
                                 </div>
                             </div>
                         </p>
@@ -236,7 +236,8 @@ function categoryRecursive($category, $titulo, $arrNeedle){
                                     Ordem
                                 </div>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control numbersOnly" name="order">
+                                    <input type="text" class="form-control numbersOnly" name="order" REQUIRED>
+                                    <small>Ordem serve para ordernar as imagens. A imagem de número 1 será a capa do seu produto.</small>
                                 </div>
                             </div>
                         </p>
