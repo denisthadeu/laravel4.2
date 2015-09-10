@@ -9,14 +9,18 @@
 </ul>
 <!-- END BREADCRUMB -->    
 <?php 
-function categoryRecursive($category, $titulo){
+function categoryRecursive($category, $titulo, $arrNeedle){
     $option = '';
     if($category->totSubCategories() > 0){
         $subCategory = $category->subcategories;
         foreach($subCategory as $sub){
             $newTitlo = $titulo.' -> '.$sub->nome;
-            $option .= '<option value="'.$sub->id.'">'.$newTitlo.'</option>';
-            $option .= categoryRecursive($sub,$newTitlo);
+            $selected = '';
+            if(isset($arrNeedle) && !empty($arrNeedle) && in_array($sub->id,$arrNeedle)){
+                $selected = "SELECTED";
+            }
+            $option .= '<option value="'.$sub->id.'" '.$selected.'>'.$newTitlo.'</option>';
+            $option .= categoryRecursive($sub,$newTitlo,$arrNeedle);
         }
     }
     return $option;
@@ -57,7 +61,7 @@ function categoryRecursive($category, $titulo){
                                         Descrição*
                                     </div>
                                     <div class="col-md-9">
-                                        <textarea rows="5" name="descricao" id="descricao" placeholder="Descrição do produto" class="form-control">{{$produto->descricao or ''}}</textarea>
+                                        <textarea rows="5" name="descricao" id="descricao" placeholder="Descrição do produto" maxlength="355" class="form-control">{{$produto->descricao or ''}}</textarea>
                                     </div>
                                 </div>
                             </p>
@@ -67,7 +71,7 @@ function categoryRecursive($category, $titulo){
                                         Preço*
                                     </div>
                                     <div class="col-md-9">
-                                        <input name="preco" placeholder="Preço" class="form-control" value="{{$produto->preco or ''}}" />
+                                        <input name="preco" placeholder="Preço" class="form-control money" value="{{$produto->preco or ''}}" />
                                     </div>
                                 </div>
                             </p>
@@ -77,7 +81,7 @@ function categoryRecursive($category, $titulo){
                                         Quantidade*
                                     </div>
                                     <div class="col-md-9">
-                                        <input name="quantidade" placeholder="Quantidade" id="quantidade" class="form-control" value="{{$produto->quantidade or ''}}" />
+                                        <input name="quantidade" placeholder="Quantidade" id="quantidade" class="form-control numbersOnly" value="{{$produto->quantidade or ''}}" />
                                     </div>
                                 </div>
                             </p>
@@ -148,11 +152,11 @@ function categoryRecursive($category, $titulo){
                                         Categorias*
                                     </div>
                                     <div class="col-md-9"> 
-                                        <select multiple="multiple" name="categorias[]" id="categorias" class="form-control">
+                                        <select multiple="multiple" name="categories_id[]" id="categorias" class="form-control">
                                             @if(isset($categorias) && !$categorias->isEmpty())
                                                 @foreach($categorias as $categoria)
-                                                    <option value="{{$categoria->id}}">{{$categoria->nome}}</option>
-                                                    {{categoryRecursive($categoria,$categoria->nome)}}
+                                                    <option value="{{$categoria->id}}" @if(isset($categoriasArray) && !empty($categoriasArray) && in_array($categoria->id,$categoriasArray)) SELECTED @endif >{{$categoria->nome}}</option>
+                                                    {{categoryRecursive($categoria,$categoria->nome,$categoriasArray)}}
                                                 @endforeach
                                             @endif
                                         </select>
@@ -165,7 +169,7 @@ function categoryRecursive($category, $titulo){
                                         Imagens*
                                     </div>
                                     <div class="col-md-9">
-                                        <input name="email_company" placeholder="E-mail Comercial" class="form-control" value="{{$usuario->company_email or ''}}" />
+                                        imagem
                                     </div>
                                 </div>
                             </p>
@@ -175,10 +179,10 @@ function categoryRecursive($category, $titulo){
             </div>
             <div class="row">
                 <div class="col-md-12" style="position: relative;">
-                    @if(isset($id))
-                        <input type="hidden" name="id" value="{{$id}}">
+                    @if(isset($produto))
+                        <input type="hidden" name="id" value="{{$produto->id}}">
                     @endif
-                    <input type="Submit" id="create-category" class="btn btn-primary btn-lg active" value="Cadastrar Produto" />
+                    <input type="Submit" id="create-category" class="btn btn-primary btn-lg active" value="@if(isset($produto)) Atualizar Produto @else Cadastrar Produto @endif" />
                 </div>
             </div>
             <div class="col-md-3" style="position: relative;">

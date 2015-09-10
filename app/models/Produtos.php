@@ -1,4 +1,4 @@
-<?php
+'<?php
 
 class Produtos extends Eloquent {
 
@@ -8,4 +8,9 @@ class Produtos extends Eloquent {
 	{
 		return $this->belongsTo('User');
 	}
+
+	public function producttocategory()
+    {
+        return $this->hasMany('Productocategory');
+    }
 }

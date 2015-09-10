@@ -40,13 +40,13 @@
                     @foreach($produtos AS $produto)
                         <tr>
                             <td>{{$produto->nome}}</td>
-                            <td>{{$produto->descricao}}</td>
+                            <td>{{substr($produto->descricao, 0, 25)}}</td>
                             <td>{{$produto->quantidade}}</td>
                             <td>{{$produto->preco}}</td>
                             <td>{{Formatter::dateDbToString($produto->updated_at)}}</td>
                             <td>{{Formatter::getStatusSimNao($produto->status)}}</td>
                             <td>
-                                <a href="{{URL::to("produto/editar/produto->id")}}">
+                                <a href="{{URL::to("produto/editar/$produto->id")}}">
                                     <button type="button" id="create-category" class="btn btn-warning btn-lg active"><span class="fa fa-pencil"></span></button>
                                 </a>
                             </td>

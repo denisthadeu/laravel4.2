@@ -17,7 +17,8 @@ class ProdutoController extends BaseController {
 	{
 		$usuario = User::find(Auth::User()->id);
 		$categorias = Categories::with('subcategories','subcategories.subcategories','subcategories.subcategories.subcategories')->where('parent_id','=',0)->whereNull('deleted_at')->orderBy('nome')->get();
-		return View::make('produtos.form', compact('usuario','categorias'));
+		$categoriasArray = array();
+		return View::make('produtos.form', compact('usuario','categorias','categoriasArray'));
 	}
 
 	public function getEditar($id)
@@ -25,16 +26,44 @@ class ProdutoController extends BaseController {
 		$usuario = User::find(Auth::User()->id);
 		$categorias = Categories::with('subcategories','subcategories.subcategories','subcategories.subcategories.subcategories')->where('parent_id','=',0)->whereNull('deleted_at')->orderBy('nome')->get();
 		$produto = Produtos::find($id);
-
-		return View::make('produtos.form', compact('usuario','produto','categorias'));
+		// echo "<pre>";print_r($produto->producttocategory->toarray());exit;
+		$categoriasArray = array();
+		foreach($produto->producttocategory->toarray() as $categoriasProduto){
+			$categoriasArray[] = $categoriasProduto["categories_id"];
+		}
+		// print_r($categoriasArray);exit;
+		return View::make('produtos.form', compact('usuario','produto','categorias','categoriasArray'));
 	}
 
 	public function postSave()
 	{
 		extract(Input::all());
 
-		print_r(Input::all());exit;
+		if(isset($id) && !empty($id)){
+			$produto = Produtos::find($id);
+		} else {
+			$produto = new Produtos;
+			$produto->user_id = Auth::User()->id;
+		}
+		$produto->nome = $nome;
+		$produto->descricao = $descricao;
+		$produto->preco = $preco;
+		$produto->quantidade = $quantidade;
+		$produto->cor = $cor;
+		$produto->modelo = $modelo;
+		$produto->peso = $peso;
+		$produto->garantia = $garantia;
+		$produto->status = $status;
+		$produto->save();
 
-		return Redirect::to('produto/'.$id)->with('success', array(1 => 'Produto Atualizado!'));
+		$producttocategory = Productocategory::where('produtos_id','=',$produto->id)->delete();
+		foreach($categories_id as $id){
+			$producttocategory = new Productocategory;
+			$producttocategory->produtos_id = $produto->id;
+			$producttocategory->categories_id = $id;
+			$producttocategory->save();
+		}
+
+		return Redirect::to('produto/editar/'.$produto->id)->with('success', array(1 => 'Produto Atualizado!'));
 	}
 }
