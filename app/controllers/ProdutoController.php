@@ -4,9 +4,13 @@ class ProdutoController extends BaseController {
 
 	public function getIndex($id = null)
 	{
+		$hojeDB = date('Y-m-d');
 		if(empty($id))
 			$id = Auth::User()->id;
 		$usuario = User::find($id);
+		if(empty($usuario->data_vencimento) || $usuario->data_vencimento <= $hojeDB){
+			return Redirect::to('meusdados')->with('danger', array(1 => 'Antes de atualizar a sua lista de produtos, você deve preencher todos os seus dados pessoais e solicitar para o admin um plano de pacote para utilizar o sistema!'));
+		}
 		$numProdutosTot = count(Produtos::where('user_id','=',$id)->get());
 		$produtos = Produtos::where('user_id','=',$id)->paginate(10);
 		
