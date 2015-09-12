@@ -30,4 +30,9 @@ class HomeController extends BaseController {
 		return View::make('home.index',compact('categoriasSolicitadas','solicitacoes','produtosAtivos','clientes','meusProdutos'));
 	}
 
+	public function getHome()
+	{
+		return View::make('home.home');
+	}
+
 }
