@@ -118,9 +118,9 @@
                                         @endif
                                     </div>
                                     <div class="col-md-4">
-                                        @if($user->perfil == 1)
+                                        @if(Auth::user()->perfil == 1)
                                             <button type="button" id="create-category" class="btn btn-warning btn-lg active" data-toggle="modal" data-target="#myModal">Alterar Pacote</button>
-                                        @elseif($user->perfil == 2 && $user->data_vencimento<=$hojeDB)
+                                        @elseif(Auth::user()->perfil == 2 && $user->data_vencimento<=$hojeDB)
                                             <button type="button" id="create-category" class="btn btn-warning btn-lg active" data-toggle="modal" data-target="#myModal">Solicitar Plano</button>
                                         @endif
                                     </div>
@@ -261,7 +261,7 @@
 
 
 <!-- Modal -->
-@if($user->perfil == 1)
+@if(Auth::user()->perfil == 1)
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -299,7 +299,7 @@
         </div>
     </div>
 </div>
-@elseif($user->perfil == 2)
+@elseif(Auth::user()->perfil == 2)
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
