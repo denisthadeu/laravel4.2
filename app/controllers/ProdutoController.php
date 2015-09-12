@@ -70,4 +70,42 @@ class ProdutoController extends BaseController {
 
 		return Redirect::to('produto/editar/'.$produto->id)->with('success', array(1 => 'Produto Atualizado!'));
 	}
+
+	public function postUpload()
+	{
+		extract(Input::All());
+
+		if(Input::hasFile('file')){
+			$img = Input::file('file');
+
+			$imginfo = $this->uploadImage($img, 'produto/'.$id);
+			if($imginfo){
+				$imagem = new ProdutoImagem;
+		        $imagem->produtos_id  = $id;
+		        $imagem->ordem  = $order;
+		        $imagem->caminho = $imginfo['destinationPath'];
+		        $imagem->nome    = $imginfo['filename'];
+		        $imagem->caminho_completo = $imginfo['destinationPath'].$imginfo['filename'];
+		        $imagem->created_at = date('Y-m-d H:i:s');
+		        $imagem->updated_at = date('Y-m-d H:i:s');
+		        $imagem->save();
+
+		        return Redirect::to('produto/editar/'.$id)->with('success', array(1 => 'Upload feito com sucesso!'));
+
+			}
+
+		}
+
+		return Redirect::to('produto/editar/'.$id)->with('danger', array(1 => 'Ocorreu algum erro ao fazer upload de arquivo, por favor, tente mais tarde!'));
+
+	}
+
+	public function getDeleteUpload($id)
+	{
+		$imagem = ProdutoImagem::find($id);
+		$idProduto = $imagem->produtos_id;
+		File::delete($imagem->caminho_completo);
+		$imagem->delete();
+		return Redirect::to('produto/editar/'.$idProduto)->with('success', array(1 => 'Imagem deletada com sucesso'));
+	}
 }

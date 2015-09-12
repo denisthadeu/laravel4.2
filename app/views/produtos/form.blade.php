@@ -183,6 +183,24 @@ function categoryRecursive($category, $titulo, $arrNeedle){
                                         </div>
                                     </div>
                                 </p>
+                                <p>
+                                    <div class="row">
+                                        @foreach($produto->imagens AS $imagem)
+                                            <div class="col-md-4">
+                                                <a class="gallery-item" href="/{{$imagem->caminho_completo}}" title="{{$imagem->nome}}" data-gallery="">
+                                                <div class="image">
+                                                    <img src="/{{$imagem->caminho_completo}}" alt="{{$imagem->nome}}" class="col-md-10">
+                                                </div>
+                                                <div class="meta">
+                                                    <strong><a href="{{URL::to("produto/delete-upload/$imagem->id")}}">Remover</a></strong><br/>
+                                                    <span>Nome: {{$imagem->nome}}</span><br/>
+                                                    <span>Ordem: {{$imagem->ordem}}</span>
+                                                </div>
+                                            </a>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </p>
                             @endif
                         </div> 
                     </div>

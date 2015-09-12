@@ -13,4 +13,8 @@ class Produtos extends Eloquent {
     {
         return $this->hasMany('Productocategory');
     }
+    public function imagens()
+    {
+        return $this->hasMany('ProdutoImagem')->orderBy('ordem');
+    }
 }
