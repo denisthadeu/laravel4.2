@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <!-- META SECTION -->
-        <title>Atlant - Front-End Template</title>
+        <title>Ponto da Informação</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,12 +35,12 @@
                     
                     <!-- navigation -->
                     <ul class="navigation">
-                        <li><a href="../html/index.html">Página Inicial</a></li>
-                        <li><a href="../html/index.html">Anuncie seu estabelecimento</a></li>
-                        <li><a href="../html/index.html">Quem Somos</a></li>
-                        <li><a href="../html/index.html">Termos de uso</a></li>
-                        <li><a href="../html/index.html">Fale Conosco</a></li>
-                        <li><a href="../html/index.html">Login</a></li>
+                        <li><a href="{{URL::to("home/home")}}">Página Inicial</a></li>
+                        <li><a href="{{URL::to("id/sign-up")}}">Anuncie seu estabelecimento</a></li>
+                        <li><a href="{{URL::to("home/quem-somos")}}">Quem Somos</a></li>
+                        <li><a href="{{URL::to("home/termos-uso")}}">Termos de uso</a></li>
+                        <li><a href="{{URL::to("home/fale-conosco")}}">Fale Conosco</a></li>
+                        <li><a href="{{URL::to("id/sign-in")}}">Login</a></li>
                     </ul>
                     <!-- ./navigation -->                        
 
@@ -66,7 +66,7 @@
                             <form action="" method="get" id="form-search">
                                 <div class="col-md-9" style="padding-top:1.4%;">
                                     <div class="input-group">
-                                        <input type="text" name="search" id="search" class="form-control" placeholder="O que você está procurando?" />
+                                        <input type="text" name="search" id="search" class="form-control" value="{{Input::get('search')}}" placeholder="O que você está procurando?" />
                                         <span class="input-group-addon" style="cursor:pointer" id="span-search"><span class="fa fa-search"></span></span>
                                     </div>
                                 </div>
@@ -137,6 +137,13 @@
         <script type="text/javascript" src="/front-end/js/plugins/appear/jquery.appear.js"></script>
         
         <script type="text/javascript" src="/front-end/js/actions.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#span-search").click(function(){
+                    $("#form-search").submit();
+                });
+            });
+        </script>
         <!-- ./page scripts -->
     </body>
 </html>

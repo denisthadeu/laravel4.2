@@ -32,7 +32,55 @@ class HomeController extends BaseController {
 
 	public function getHome()
 	{
-		return View::make('home.home');
+		$hojeDB = date('Y-m-d');
+		$categorias = Categories::with('subcategories','subcategories.subcategories','subcategories.subcategories.subcategories')->where('parent_id','=',0)->whereNull('deleted_at')->orderBy('nome')->get();
+		$produtos = Produtos::Where('status','=',1);
+
+		$produtos = $produtos->whereHas('user',function($query) use($hojeDB){
+			$query->where('data_vencimento', '>=', $hojeDB);
+		});
+		$category = 0;
+		if(Input::has('category')){
+			$category = Input::get('category');
+			$produtos = $produtos->whereHas('producttocategory',function($query) use($category){
+				$query->where('categories_id', '=', $category);
+			});
+		}
+
+		if(Input::has('search')){
+			$search = Input::get('search');
+			$produtos = $produtos->where('nome','like','%'.$search.'%')->orWhere('descricao','like','%'.$search.'%')->Where('status','=',1);
+
+			if(!empty($category)){
+				$produtos = $produtos->whereHas('producttocategory',function($query) use($category){
+					$query->where('categories_id', '=', $category);
+				});
+			}
+			$produtos = $produtos->whereHas('user',function($query) use($hojeDB){
+				$query->where('data_vencimento', '>=', $hojeDB);
+			});
+		}
+
+		$produtos = $produtos->paginate(20);
+		// $queries = DB::getQueryLog();
+		// $last_query = end($queries);
+		// echo '<pre>';print_r($last_query) ;exit;
+		return View::make('home.home',compact('categorias','produtos'));
+	}
+
+	public function getQuemSomos()
+	{
+		return View::make('home.quem_somos');
+	}
+
+	public function getFaleConosco()
+	{
+		echo "tela Fale Conosco";exit;
+	}
+
+	public function getTermosUso()
+	{
+		return View::make('home.termos_uso');
 	}
 
 }

@@ -1,172 +1,79 @@
 @extends('template.home')
 
 @section('content')
-
-
-        
-<div class="block-heading this-animate" data-animate="fadeInLeft">
-    <h2>Blog Category Name</h2>
-    <div class="block-heading-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus placerat maximus odio non porttitor. Aliquam erat volutpat. Nulla egestas quam a ipsum tincidunt, eget vulputate lectus scelerisque.
-    </div>
-</div>  
+<?php 
+function categoryRecursive($category, $titulo){
+    $option = '';
+    if($category->totSubCategories() > 0){
+        $subCategory = $category->subcategories;
+        foreach($subCategory as $sub){
+            // $newTitlo = $titulo.' -> '.$sub->nome;
+            $newTitlo = $titulo.$sub->nome;
+            $option .= '<a href="'.URL::to("home/home").'?search='.Input::get('search').'&category='.$sub->id.'">'.$newTitlo.'</a>';
+            $option .= categoryRecursive($sub,$titulo.'&nbsp;&nbsp;&nbsp;');
+        }
+    }
+    return $option;
+}
+?>
 
 <div class="row">
     <div class="col-md-3">
         
         <div class="text-column this-animate" data-animate="fadeInRight">                                    
             <h4>Categorias</h4>
-            <div class="list-links">                                        
-                <a href="#">Cras ut neque metu</a>
-                <a href="#">Vestibulum eu gravida</a>
-                <a href="#">Aliquam aliquam magna</a>
-                <a href="#">Cras ut neque metu</a>
-                <a href="#">Etiam augue orci</a>                                                                                                                                
-            </div>
-        </div>
-        
-        <div class="text-column this-animate" data-animate="fadeInRight">                                    
-            <h4>Local</h4>
-            <div class="list-links">                                        
-                <a href="#">April 2014</a>
-                <a href="#">October 2013</a>
-                <a href="#">March 2013</a>
-                <a href="#">December 2012</a>
-                <a href="#">January 2012</a>
-                <a href="#">March 2011</a>
-                <a href="#">February 2011</a>
-                <a href="#">January 2011</a>
-                <a href="#">December 2010</a>                                                                                                                             
+            <div class="list-links">
+                @if(isset($categorias) && !$categorias->isEmpty())
+                    @foreach($categorias as $categoria)
+                        <a href="{{URL::to("home/home")}}?search={{Input::get('search')}}&category={{$categoria->id}}">{{$categoria->nome}}</a>
+                        {{categoryRecursive($categoria,'&nbsp;&nbsp;&nbsp;')}}
+                    @endforeach
+                @endif
             </div>
         </div>
         
     </div>
 
     <div class="col-md-9">
-        
         <div class="row">
-            <div class="col-md-6">
-                
-                <div class="blog-item this-animate" data-animate="fadeInUp">
-                    <div class="blog-media">
-                        <img src="/front-end/assets/img/gallery/girls-1.jpg" class="img-responsive"/>
-                    </div>
-                    <div class="blog-data">
-                        <h5><a href="blog-post.html">Donec sit amet elementum libero</a></h5>
-                        <span class="blog-date">October 28, 2014 / 0 Comments</span>
-                        <p>Curabitur ut lorem id tellus malesuada tincidunt et eget purus. Cras molestie, velit quis viverra ultrices, tortor erat suscipit arcu.</p>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-md-6">
-                
-                <div class="blog-item this-animate" data-animate="fadeInUp">
-                    <div class="blog-media">
-                        <img src="/front-end/assets/img/gallery/nature-1.jpg" class="img-responsive"/>
-                    </div>
-                    <div class="blog-data">
-                        <h5><a href="blog-post.html">Lorem ipsum dolor sit</a></h5>
-                        <span class="blog-date">October 28, 2014 / 0 Comments</span>
-                        <p>Curabitur ut lorem id tellus malesuada tincidunt et eget purus. Cras molestie, velit quis viverra ultrices, tortor erat suscipit arcu.</p>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-md-6">
-                
-                <div class="blog-item this-animate" data-animate="fadeInUp">
-                    <div class="blog-media">
-                        <img src="/front-end/assets/img/gallery/music-2.jpg" class="img-responsive"/>
-                    </div>
-                    <div class="blog-data">
-                        <h5><a href="blog-post.html">Donec sit amet elementum libero</a></h5>
-                        <span class="blog-date">October 28, 2014 / 0 Comments</span>
-                        <p>Curabitur ut lorem id tellus malesuada tincidunt et eget purus. Cras molestie, velit quis viverra ultrices, tortor erat suscipit arcu.</p>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-md-6">
-                
-                <div class="blog-item this-animate" data-animate="fadeInUp">
-                    <div class="blog-media">
-                        <img src="/front-end/assets/img/gallery/nature-2.jpg" class="img-responsive"/>
-                    </div>
-                    <div class="blog-data">
-                        <h5><a href="blog-post.html">Lorem ipsum dolor sit</a></h5>
-                        <span class="blog-date">October 28, 2014 / 0 Comments</span>
-                        <p>Curabitur ut lorem id tellus malesuada tincidunt et eget purus. Cras molestie, velit quis viverra ultrices, tortor erat suscipit arcu.</p>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-md-6">
-                
-                <div class="blog-item this-animate" data-animate="fadeInUp">
-                    <div class="blog-media">
-                        <img src="/front-end/assets/img/gallery/girls-2.jpg" class="img-responsive"/>
-                    </div>
-                    <div class="blog-data">
-                        <h5><a href="blog-post.html">Donec sit amet elementum libero</a></h5>
-                        <span class="blog-date">October 28, 2014 / 0 Comments</span>
-                        <p>Curabitur ut lorem id tellus malesuada tincidunt et eget purus. Cras molestie, velit quis viverra ultrices, tortor erat suscipit arcu.</p>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-md-6">
-                
-                <div class="blog-item this-animate" data-animate="fadeInUp">
-                    <div class="blog-media">
-                        <img src="/front-end/assets/img/gallery/nature-3.jpg" class="img-responsive"/>
-                    </div>
-                    <div class="blog-data">
-                        <h5><a href="blog-post.html">Lorem ipsum dolor sit</a></h5>
-                        <span class="blog-date">October 28, 2014 / 0 Comments</span>
-                        <p>Curabitur ut lorem id tellus malesuada tincidunt et eget purus. Cras molestie, velit quis viverra ultrices, tortor erat suscipit arcu.</p>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-md-6">
-                
-                <div class="blog-item this-animate" data-animate="fadeInUp">
-                    <div class="blog-media">
-                        <img src="/front-end/assets/img/gallery/music-3.jpg" class="img-responsive"/>
-                    </div>
-                    <div class="blog-data">
-                        <h5><a href="blog-post.html">Donec sit amet elementum libero</a></h5>
-                        <span class="blog-date">October 28, 2014 / 0 Comments</span>
-                        <p>Curabitur ut lorem id tellus malesuada tincidunt et eget purus. Cras molestie, velit quis viverra ultrices, tortor erat suscipit arcu.</p>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-md-6">
-                
-                <div class="blog-item">
-                    <div class="blog-item this-animate" data-animate="fadeInUp">
-                        <img src="/front-end/assets/img/gallery/nature-4.jpg" class="img-responsive"/>
-                    </div>
-                    <div class="blog-data">
-                        <h5><a href="blog-post.html">Lorem ipsum dolor sit</a></h5>
-                        <span class="blog-date">October 28, 2014 / 0 Comments</span>
-                        <p>Curabitur ut lorem id tellus malesuada tincidunt et eget purus. Cras molestie, velit quis viverra ultrices, tortor erat suscipit arcu.</p>
-                    </div>
-                </div>
-                
-            </div>
+            
+            @if(isset($produtos) && !$produtos->isEmpty())
+                @foreach($produtos as $produto)
+                    
+                    <div class="item  col-xs-4 col-lg-4">
+                        <div class="thumbnail">
+                            <div class="col-xs-12 col-md-12" style="padding-left:18%">
+                                @foreach($produto->imagens AS $imagem)
+                                    <img src="/{{$imagem->caminho_completo}}" alt="{{$imagem->nome}}" class="col-md-10">
+                                    {{--*/ break; /*--}}
+                                @endforeach
+                            </div>
+                            <div class="caption">
+                                <h5 class="group inner list-group-item-heading" style="text-align:center">{{$produto->nome}}</h5>
+                                <p class="group inner list-group-item-text" style="min-height:80px;">{{substr($produto->descricao, 0, 140)}}</p>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12" style="text-align:center">
+                                        <p class="lead">{{$produto->preco}}</p>
+                                    </div>
+                                    <div class="col-xs-12 col-md-12" style="text-align:center">
+                                        <a class="btn btn-success" href="{{URL::to("home/produto/$produto->id")}}">Mais informações</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                @endforeach
+            @else
+                <div class="item  col-xs-4 col-lg-4">
+                Nenhum produto encontrado
+                </div> 
+            @endif
+            
         </div>
-        
-        <ul class="pagination pagination-sm pull-right">
-            <li class="disabled"><a href="#">«</a></li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>                                    
-            <li><a href="#">»</a></li>
-        </ul>
+
+        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+            {{$produtos->appends(array('search' => Input::get('search'),'category'=>Input::get('category')))->links();}}
+        </div>
         
     </div>
     

@@ -94,9 +94,9 @@
                         &copy; Sistema
                     </div>
                     <div class="pull-right">
-                        <a href="#">Sobre a empresa</a> |
-                        <a href="#">Termos de uso</a> |
-                        <a href="#">Contato</a>
+                        <a href="{{URL::to("home/quem-somos")}}">Sobre a empresa</a> |
+                        <a href="{{URL::to("home/termos-uso")}}">Termos de uso</a> |
+                        <a href="{{URL::to("home/fale-conosco")}}">Contato</a>
                     </div>
                 </div>
             </div>
