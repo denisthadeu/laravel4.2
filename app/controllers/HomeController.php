@@ -68,6 +68,12 @@ class HomeController extends BaseController {
 		return View::make('home.home',compact('categorias','produtos'));
 	}
 
+	public function getProduto($id)
+	{
+		$produto = Produtos::find($id);
+		return View::make('home.produto',compact('produto'));
+	}
+
 	public function getQuemSomos()
 	{
 		return View::make('home.quem_somos');
@@ -75,7 +81,7 @@ class HomeController extends BaseController {
 
 	public function getFaleConosco()
 	{
-		echo "tela Fale Conosco";exit;
+		return View::make('home.fale_conosco');
 	}
 
 	public function getTermosUso()
@@ -83,4 +89,23 @@ class HomeController extends BaseController {
 		return View::make('home.termos_uso');
 	}
 
+	public function postFaleConosco()
+	{
+		extract(Input::All());
+
+		$messageData = array(
+	        'nome' => $nome,
+	        'email' => $email,
+	        'msg' => $mensagem,
+	        'assunto' => $assunto
+	    );
+
+	    Mail::send('email.contato', $messageData, function ($message) Use ($messageData) {
+	        $message->from("contato@pontodainformacao.com.br", "ADM");
+	        $message->bcc("contato@pontodainformacao.com.br", "ADM");
+	        $message->to('denis.baptista91@gmail.com','Ponto da Informacao')->subject($messageData["assunto"]);
+	    });
+
+	    return Redirect::to('home/fale-conosco?success=1');
+	}
 }

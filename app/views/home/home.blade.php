@@ -2,15 +2,22 @@
 
 @section('content')
 <?php 
-function categoryRecursive($category, $titulo){
+$categoriaSelecionada = Input::get('category');
+function categoryRecursive($category, $titulo, $categoriaSelected){
     $option = '';
     if($category->totSubCategories() > 0){
         $subCategory = $category->subcategories;
         foreach($subCategory as $sub){
             // $newTitlo = $titulo.' -> '.$sub->nome;
             $newTitlo = $titulo.$sub->nome;
+            if($categoriaSelected == $sub->id){
+                $option .= '<strong>';    
+            }
             $option .= '<a href="'.URL::to("home/home").'?search='.Input::get('search').'&category='.$sub->id.'">'.$newTitlo.'</a>';
-            $option .= categoryRecursive($sub,$titulo.'&nbsp;&nbsp;&nbsp;');
+            if($categoriaSelected == $sub->id){
+                $option .= '</strong>';    
+            }
+            $option .= categoryRecursive($sub,$titulo.'&nbsp;&nbsp;&nbsp;',$categoriaSelected);
         }
     }
     return $option;
@@ -25,8 +32,14 @@ function categoryRecursive($category, $titulo){
             <div class="list-links">
                 @if(isset($categorias) && !$categorias->isEmpty())
                     @foreach($categorias as $categoria)
+                        @if($categoriaSelecionada == $categoria->id)
+                            <strong>
+                        @endif
                         <a href="{{URL::to("home/home")}}?search={{Input::get('search')}}&category={{$categoria->id}}">{{$categoria->nome}}</a>
-                        {{categoryRecursive($categoria,'&nbsp;&nbsp;&nbsp;')}}
+                        @if($categoriaSelecionada == $categoria->id)
+                            </strong>
+                        @endif
+                        {{categoryRecursive($categoria,'&nbsp;&nbsp;&nbsp;',$categoriaSelecionada)}}
                     @endforeach
                 @endif
             </div>
@@ -34,7 +47,7 @@ function categoryRecursive($category, $titulo){
         
     </div>
 
-    <div class="col-md-9">
+    <div class="col-md-9 this-animate" data-animate="fadeInLeft">
         <div class="row">
             
             @if(isset($produtos) && !$produtos->isEmpty())
