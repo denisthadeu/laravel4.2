@@ -87,7 +87,7 @@
                	</div>
                	<div class="row">
                		<div class="col-md-4">
-               			company_tags
+               			Tags
                		</div>
                		<div class="col-md-8">
                			{{$produto->user->company_tags}}

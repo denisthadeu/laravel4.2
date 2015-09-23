@@ -99,14 +99,14 @@ class IdController extends \BaseController
 		}
 		else
 		{
-			return Redirect::to('/')->with('danger', array(1 => 'Dados inválidos.'));
+			return Redirect::to('id/sign-in')->with('danger', array(1 => 'Dados inválidos.'));
 		}
 	}
 
 	public function getSignOut()
 	{
 		Auth::logout();
-		return Redirect::to('/')->with('success', array(1 => 'Você se deslogou do sistema.'));
+		return Redirect::to('id/sign-in')->with('success', array(1 => 'Você se deslogou do sistema.'));
 	}
 
 }
