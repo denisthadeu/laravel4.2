@@ -9,6 +9,7 @@
         <!-- END META SECTION -->
         
         <link rel="stylesheet" type="text/css" href="/front-end/css/styles.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/front-end/css/jcarousel.basic.css" media="screen" />
         
     </head>
     <body>
@@ -137,6 +138,8 @@
         <script type="text/javascript" src="/front-end/js/plugins/appear/jquery.appear.js"></script>
         
         <script type="text/javascript" src="/front-end/js/actions.js"></script>
+        <script type="text/javascript" src="/front-end/js/jquery.jcarousel.min.js"></script>
+        <script type="text/javascript" src="/front-end/js/carousel.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 $("#span-search").click(function(){
