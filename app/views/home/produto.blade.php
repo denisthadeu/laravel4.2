@@ -96,8 +96,65 @@
 
             </div>
         </div>
+        <div class="row">
+        	<div class="col-md-12">
+        		<div class="divider"><div class="box"></div></div>
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="col-md-12">
+        		<h3>Informações do produto: {{$produto->nome}}
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="col-md-3">
+        		Descrição:
+        	</div>
+        	<div class="col-md-9">
+        		{{$produto->descricao or 'Não Informado'}}
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="col-md-3">
+        		Preço:
+        	</div>
+        	<div class="col-md-9">
+        		{{$produto->preco or 'Não Informado'}}
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="col-md-3">
+        		Quantidade:
+        	</div>
+        	<div class="col-md-9">
+        		{{$produto->quantidade or 'Não Informada'}}
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="col-md-3">
+        		Cor:
+        	</div>
+        	<div class="col-md-9">
+        		{{$produto->cor or 'Não Informada'}}
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="col-md-3">
+        		Modelo:
+        	</div>
+        	<div class="col-md-9">
+        		{{$produto->modelo or 'Não Informado'}}
+        	</div>
+        </div>
+        <div class="row">
+        	<div class="col-md-3">
+        		Peso:
+        	</div>
+        	<div class="col-md-9">
+        		{{$produto->peso or 'Não Informado'}}
+        	</div>
+        </div>
     </div>
-    
 </div>
 
 
