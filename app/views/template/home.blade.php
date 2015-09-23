@@ -64,7 +64,7 @@
                             <div class="col-md-3">
                                 <h1>Ponto da Informação</h1>
                             </div>
-                            <form action="" method="get" id="form-search">
+                            <form action="{{URL::to("home/home")}}" method="get" id="form-search">
                                 <div class="col-md-9" style="padding-top:1.4%;">
                                     <div class="input-group">
                                         <input type="text" name="search" id="search" class="form-control" value="{{Input::get('search')}}" placeholder="O que você está procurando?" />
