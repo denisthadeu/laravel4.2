@@ -9,7 +9,7 @@
 	        <div class="text-column">
 	            <h4>Fale Conosco</h4>
 	            <div class="text-column-info">
-	                Caso tenha alguma dúvida, sugestão ou reclamação a fazer, por favor, entre em contato conosco, e responderemos ao seu contato o mais rápido possível.
+	                {{ $texto->descricao }}
 	            </div>
 	        </div>
 	        @if(Input::has('success'))

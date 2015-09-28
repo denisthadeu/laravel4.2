@@ -76,17 +76,20 @@ class HomeController extends BaseController {
 
 	public function getQuemSomos()
 	{
-		return View::make('home.quem_somos');
+		$texto = Texto::where('titulo','=','quemSomos')->first();
+		return View::make('home.quem_somos',compact('texto'));
 	}
 
 	public function getFaleConosco()
 	{
-		return View::make('home.fale_conosco');
+		$texto = Texto::where('titulo','=','faleConosco')->first();
+		return View::make('home.fale_conosco',compact('texto'));
 	}
 
 	public function getTermosUso()
 	{
-		return View::make('home.termos_uso');
+		$texto = Texto::where('titulo','=','termosUso')->first();
+		return View::make('home.termos_uso',compact('texto'));
 	}
 
 	public function postFaleConosco()

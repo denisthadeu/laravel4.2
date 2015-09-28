@@ -50,6 +50,7 @@
                             <li><a href="{{URL::to("categorias/categorias-solicitadas")}}"><span class="glyphicon glyphicon-tags"></span> Categorias Solicitadas</a></li>
                             <li><a href="{{URL::to("centro")}}"><span class="fa fa-road"></span> Centros/Ruas</a></li>
                             <li><a href="{{URL::to("pacotes")}}"><span class="fa fa-th-large"></span> Pacotes</a></li>
+                            <li><a href="{{URL::to("parametros")}}"><span class="fa fa-cog"></span> Parâmetros</a></li>
                             <li><a href="{{URL::to("usuario/solicitacao-cliente")}}"><span class="fa fa-user"></span> Solicitação de clientes</a></li>
                             <li><a href="{{URL::to("usuario")}}"><span class="fa fa-group"></span> Usuários</a></li>
                         </ul>
@@ -194,6 +195,7 @@
         <script type="text/javascript" src="/js/actions.js"></script>        
 
         <!-- Include Jquery -->
+        <script type="text/javascript" src="/js/plugins/summernote/summernote.js"></script>
         <script type="text/javascript" src="/js/jquery.maskMoney.js"></script>
         <script type="text/javascript" src="/js/maskedinput.min.js"></script> 
         <script type="text/javascript" src="/js/plugins/moment.min.js"></script>
