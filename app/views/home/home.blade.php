@@ -3,6 +3,8 @@
 @section('content')
 <?php 
 $categoriaSelecionada = Input::get('category');
+$centroSelecionado = Input::get('centro');
+$ruaSelecionada = Input::get('rua');
 function categoryRecursive($category, $titulo, $categoriaSelected){
     $option = '';
     if($category->totSubCategories() > 0){
@@ -28,6 +30,32 @@ function categoryRecursive($category, $titulo, $categoriaSelected){
     <div class="col-md-3">
         
         <div class="text-column this-animate" data-animate="fadeInRight">                                    
+            <h4>Ruas</h4>
+            <div class="list-links">
+                @if(isset($centros) && !$centros->isEmpty())
+                    @foreach($centros as $centro)
+                        @if($centroSelecionado == $centro->id)
+                            <strong>
+                        @endif
+                            <a href="{{URL::to("home/home")}}?search={{Input::get('search')}}&category={{$categoriaSelecionada}}&centro={{$centro->id}}">{{$centro->nome}}</a>
+                        @if($centroSelecionado == $centro->id)
+                            </strong>
+                        @endif
+                        @if($centro->hasRuas())
+                            @foreach($centro->ruas as $rua)
+                                @if($ruaSelecionada == $rua->id)
+                                    <strong>
+                                @endif
+                                    <a href="{{URL::to("home/home")}}?search={{Input::get('search')}}&category={{$categoriaSelecionada}}&centro={{$centro->id}}&rua={{$rua->id}}">&nbsp;&nbsp;&nbsp;{{$rua->nome}}</a>
+                                @if($ruaSelecionada == $rua->id)
+                                    </strong>
+                                @endif
+                            @endforeach
+                        @endif
+
+                    @endforeach
+                @endif
+            </div>
             <h4>Categorias</h4>
             <div class="list-links">
                 @if(isset($categorias) && !$categorias->isEmpty())
@@ -35,7 +63,7 @@ function categoryRecursive($category, $titulo, $categoriaSelected){
                         @if($categoriaSelecionada == $categoria->id)
                             <strong>
                         @endif
-                        <a href="{{URL::to("home/home")}}?search={{Input::get('search')}}&category={{$categoria->id}}">{{$categoria->nome}}</a>
+                        <a href="{{URL::to("home/home")}}?search={{Input::get('search')}}&category={{$categoria->id}}&centro={{$centroSelecionado}}&rua={{$ruaSelecionada}}">{{$categoria->nome}}</a>
                         @if($categoriaSelecionada == $categoria->id)
                             </strong>
                         @endif
@@ -85,7 +113,7 @@ function categoryRecursive($category, $titulo, $categoriaSelected){
         </div>
 
         <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-            {{$produtos->appends(array('search' => Input::get('search'),'category'=>Input::get('category')))->links();}}
+            {{$produtos->appends(array('search' => Input::get('search'),'category'=>Input::get('category'),'centro'=>Input::get('centro'),'rua'=>Input::get('rua')))->links();}}
         </div>
         
     </div>

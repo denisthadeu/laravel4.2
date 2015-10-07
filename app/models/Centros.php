@@ -12,7 +12,7 @@ class Centros extends Eloquent {
 
 	public function ruas()
 	{
-		return $this->hasMany('Ruas', 'centro_id', 'id');
+		return $this->hasMany('Ruas', 'centro_id', 'id')->orderBy('nome');
 	}
 
 	public function hasSubCompanies()

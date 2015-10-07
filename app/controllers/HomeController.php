@@ -36,6 +36,8 @@ class HomeController extends BaseController {
 		$categorias = Categories::with('subcategories','subcategories.subcategories','subcategories.subcategories.subcategories')->where('parent_id','=',0)->whereNull('deleted_at')->orderBy('nome')->get();
 		$produtos = Produtos::Where('status','=',1);
 
+		$centros = Centros::with('ruas')->orderBy('nome')->get();
+
 		$produtos = $produtos->whereHas('user',function($query) use($hojeDB){
 			$query->where('data_vencimento', '>=', $hojeDB);
 		});
@@ -65,7 +67,7 @@ class HomeController extends BaseController {
 		// $queries = DB::getQueryLog();
 		// $last_query = end($queries);
 		// echo '<pre>';print_r($last_query) ;exit;
-		return View::make('home.home',compact('categorias','produtos'));
+		return View::make('home.home',compact('categorias','produtos','centros'));
 	}
 
 	public function getProduto($id)
