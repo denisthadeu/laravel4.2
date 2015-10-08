@@ -30,13 +30,14 @@
         <table class="table table-hover">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Nome</th>
                     <th>Sobrenome</th>
                     <th>Empresa</th>
-                    <th>Qtd. de produtos</th>
+                    <th>Qtd. produtos</th>
                     <th>Data Cadastro</th>
                     <th>Pacote</th>
-                    <th>Data Vencimento</th>
+                    <th>Dt. Venc. Pacote</th>
                     <th>Ativo</th>
                     <th>Ação</th>
                 </tr>
@@ -45,6 +46,16 @@
                 @if(isset($usuarios) && !$usuarios->isEmpty())
                     @foreach($usuarios AS $usuario)
                         <tr>
+                            <td>
+                                @if(!empty($usuario->data_vencimento))
+                                    @if($usuario->data_vencimento >= date('Y-m-d H:i:s'))
+                                        <span class="text-success fa fa-circle"></span>
+                                    @else
+                                        <span class="text-warning fa fa-circle"></span>
+                                    @endif
+
+                                @endif
+                            </td>
                             <td>{{$usuario->nome}}</td>
                             <td>{{$usuario->sobrenome}}</td>
                             <td>{{$usuario->company_name}}</td>
@@ -66,7 +77,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td>Nenhum Usuário Cadastrado no sistema</td>
+                        <td colspan="10">Nenhum Usuário Cadastrado no sistema</td>
                     </tr>
                 @endif
             </tbody>
