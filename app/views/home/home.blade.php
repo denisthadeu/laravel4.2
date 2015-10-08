@@ -5,7 +5,7 @@
 $categoriaSelecionada = Input::get('category');
 $centroSelecionado = Input::get('centro');
 $ruaSelecionada = Input::get('rua');
-function categoryRecursive($category, $titulo, $categoriaSelected){
+function categoryRecursive($category, $titulo, $categoriaSelected,$centroSelected,$ruaSelected){
     $option = '';
     if($category->totSubCategories() > 0){
         $subCategory = $category->subcategories;
@@ -15,11 +15,11 @@ function categoryRecursive($category, $titulo, $categoriaSelected){
             if($categoriaSelected == $sub->id){
                 $option .= '<strong>';    
             }
-            $option .= '<a href="'.URL::to("home/home").'?search='.Input::get('search').'&category='.$sub->id.'">'.$newTitlo.'</a>';
+            $option .= '<a href="'.URL::to("home/home").'?search='.Input::get('search').'&category='.$sub->id.'&centro='.$centroSelected.'&rua='.$ruaSelected.'">'.$newTitlo.'</a>';
             if($categoriaSelected == $sub->id){
                 $option .= '</strong>';    
             }
-            $option .= categoryRecursive($sub,$titulo.'&nbsp;&nbsp;&nbsp;',$categoriaSelected);
+            $option .= categoryRecursive($sub,$titulo.'&nbsp;&nbsp;&nbsp;',$categoriaSelected,$centroSelected,$ruaSelected);
         }
     }
     return $option;
@@ -67,7 +67,7 @@ function categoryRecursive($category, $titulo, $categoriaSelected){
                         @if($categoriaSelecionada == $categoria->id)
                             </strong>
                         @endif
-                        {{categoryRecursive($categoria,'&nbsp;&nbsp;&nbsp;',$categoriaSelecionada)}}
+                        {{categoryRecursive($categoria,'&nbsp;&nbsp;&nbsp;',$categoriaSelecionada,$centroSelecionado,$ruaSelecionada)}}
                     @endforeach
                 @endif
             </div>
