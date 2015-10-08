@@ -37,9 +37,17 @@ class HomeController extends BaseController {
 		$produtos = Produtos::Where('status','=',1);
 
 		$centros = Centros::with('ruas')->orderBy('nome')->get();
+		$centro = (Input::has('centro')) ? Input::get('centro') : 0;
+		$rua = (Input::has('rua')) ? Input::get('rua') : 0;
 
-		$produtos = $produtos->whereHas('user',function($query) use($hojeDB){
+		$produtos = $produtos->whereHas('user',function($query) use($hojeDB,$centro,$rua){
 			$query->where('data_vencimento', '>=', $hojeDB);
+			if(!empty($centro)){
+				$query->where('centro_id', '=', $centro);
+			}
+			if(!empty($rua)){
+				$query->where('rua_id', '=', $rua);
+			}
 		});
 		$category = 0;
 		if(Input::has('category')){
@@ -58,8 +66,14 @@ class HomeController extends BaseController {
 					$query->where('categories_id', '=', $category);
 				});
 			}
-			$produtos = $produtos->whereHas('user',function($query) use($hojeDB){
+			$produtos = $produtos->whereHas('user',function($query) use($hojeDB,$centro,$rua){
 				$query->where('data_vencimento', '>=', $hojeDB);
+				if(!empty($centro)){
+					$query->where('centro_id', '=', $centro);
+				}
+				if(!empty($rua)){
+					$query->where('rua_id', '=', $rua);
+				}
 			});
 		}
 
