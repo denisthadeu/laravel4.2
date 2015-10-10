@@ -4,9 +4,9 @@
 
 <div class="page-content-holder padding-v-30">
                         
-    <div class="col-md-12 this-animate animated fadeInLeft this-animated" data-animate="fadeInLeft">
+    <div class="col-md-12 this-animate animated fadeInLeft this-animated" data-animate="fadeInLeft" style="color:white;">
         <div class="text-column">
-            <h3>{{$produto->nome}}</h3>
+            <strong><h3 style="color:white;">{{$produto->nome}}</h3></strong>
         </div>
         
         <div class="row">
@@ -29,7 +29,7 @@
                			
                		</div>
                		<div class="col-md-8">
-               			<h4>{{$produto->user->company_name}}</h4>
+               			<strong><h4 style="color:white;">{{$produto->user->company_name}}</h4></strong>
                		</div>
                	</div>
                	<div class="row">
@@ -103,7 +103,7 @@
         </div>
         <div class="row">
         	<div class="col-md-12">
-        		<h3>Informações do produto: {{$produto->nome}}
+        		<strong><h3 style="color:white;">Informações do produto: {{$produto->nome}}</h3></strong>
         	</div>
         </div>
         <div class="row">

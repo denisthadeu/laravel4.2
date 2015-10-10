@@ -5,8 +5,8 @@
 <div class="page-content-holder padding-v-30">
                         
     <div class="block-heading this-animate animated fadeInLeft this-animated" data-animate="fadeInLeft">
-        <h2>Quem Somos</h2>
-        <div class="block-heading-text">
+        <strong><h2 style="color:white;">Quem Somos</h2></strong>
+        <div class="block-heading-text" style="color:white;">
             {{ $texto->descricao }}
         </div>
     </div>  

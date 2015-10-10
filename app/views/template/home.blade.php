@@ -12,20 +12,20 @@
         <link rel="stylesheet" type="text/css" href="/front-end/css/jcarousel.basic.css" media="screen" />
         
     </head>
-    <body>
+    <body style="background-color:#FFB90F">
         <!-- page container -->
-        <div class="page-container">
+        <div class="page-container" style="background-color:#FFB90F">
             
             <!-- page header -->
-            <div class="page-header">
+            <div class="page-header" style="background-color:#FFB90F">
                 
                 <!-- page header holder -->
-                <div class="page-header-holder">
+                <div class="page-header-holder" >
                     
                     <!-- page logo -->
-                    <!-- <div class="logo">
-                        <a href="index.html">Ponto da Informação</a>
-                    </div> -->
+                    <div class="logo">
+                        <a href="{{URL::to("home/home")}}">Ponto da Informação</a>
+                    </div>
                     <!-- ./page logo -->
 
                     <!-- nav mobile bars -->
@@ -36,12 +36,12 @@
                     
                     <!-- navigation -->
                     <ul class="navigation">
-                        <li><a href="{{URL::to("home/home")}}">Página Inicial</a></li>
-                        <li><a href="{{URL::to("id/sign-up")}}">Anuncie seu estabelecimento</a></li>
-                        <li><a href="{{URL::to("home/quem-somos")}}">Quem Somos</a></li>
-                        <li><a href="{{URL::to("home/termos-uso")}}">Termos de uso</a></li>
-                        <li><a href="{{URL::to("home/fale-conosco")}}">Fale Conosco</a></li>
-                        <li><a href="{{URL::to("id/sign-in")}}">Login</a></li>
+                        <li><a href="{{URL::to("home/home")}}" style="color:white;">Página Inicial</a></li>
+                        <li><a href="{{URL::to("id/sign-up")}}"  style="color:white;">Anuncie seu estabelecimento</a></li>
+                        <li><a href="{{URL::to("home/quem-somos")}}"  style="color:white;">Quem Somos</a></li>
+                        <li><a href="{{URL::to("home/termos-uso")}}"  style="color:white;">Termos de uso</a></li>
+                        <li><a href="{{URL::to("home/fale-conosco")}}" style="color:white;">Fale Conosco</a></li>
+                        <li><a href="{{URL::to("id/sign-in")}}" style="color:white;">Login</a></li>
                     </ul>
                     <!-- ./navigation -->                        
 
@@ -56,13 +56,13 @@
             <div class="page-content">
                 
                 <!-- page content wrapper -->
-                <div class="page-content-wrap bg-light">
+                <div class="page-content-wrap bg-light" style="background-color:#FFB90F; border:0px;">
                     <!-- page content holder -->
                     <div class="page-content-holder no-padding">
                         <!-- page title -->
                         <div class="page-title">
                             <div class="col-md-3">
-                                <h1>Ponto da Informação</h1>
+                                <strong><h1  style="color:white;">Ponto da Informação</h1></strong>
                             </div>
                             <form action="{{URL::to("home/home")}}" method="get" id="form-search">
                                 <div class="col-md-9" style="padding-top:1.4%;">
@@ -79,7 +79,7 @@
                 </div>
                 <!-- ./page content wrapper -->
                 <!-- page content wrapper -->
-                <div class="page-content-wrap">                    
+                <div class="page-content-wrap" style="background-color:#FFB90F">                    
                     <!-- page content holder -->
                     <div class="page-content-holder padding-v-30">
                         @section('content')
@@ -90,7 +90,7 @@
                 </div>
             
             <!-- page footer -->
-            <div class="page-footer">
+            <div class="page-footer" style="border:0px;">
                 
                 <!-- page footer wrap -->
                 <div class="page-footer-wrap bg-dark-gray">

@@ -18,41 +18,41 @@
     </head>
     <body>
         <!-- START PAGE CONTAINER -->
-        <div class="page-container">
+        <div class="page-container"  style="background-color:#FFB90F;">
             
             <!-- START PAGE SIDEBAR -->
             <div class="page-sidebar">
                 <!-- START X-NAVIGATION -->
-                <ul class="x-navigation">
-                    <li class="xn" style="background-color:#e34724;">
-                        <a href="{{URL::to("/")}}">Ponto da Informação</a>
+                <ul class="x-navigation" style="background-color:#FFB90F;">
+                    <li class="xn-logo" style="background-color:#e34724;">
+                        <a href="{{URL::to("/")}}" style="background-color:#FFB90F;">Ponto da Informação</a>
                         <a href="#" class="x-navigation-control"></a>
                     </li>                                                  
-                    <li class="xn-title">Menu</li>
+                    <li class="xn-title" style="color:white;border-color:#FFB90F">Menu</li>
                     <li>
-                        <a href="{{URL::to("/")}}"><span class="fa fa-desktop"></span> <span class="xn-text">Página Inicial</span></a>
+                        <a href="{{URL::to("/")}}" style="border:0px;"><span class="fa fa-desktop"></span> <span class="xn-text">Página Inicial</span></a>
+                    </li>
+                    <li style="border:0px;">
+                        <a href="{{URL::to("meusdados")}}"  style="border:0px;"><span class="glyphicon glyphicon-user"></span> <span class="xn-text">Meus Dados</span></a>
                     </li>
                     <li>
-                        <a href="{{URL::to("meusdados")}}"><span class="glyphicon glyphicon-user"></span> <span class="xn-text">Meus Dados</span></a>
+                        <a href="{{URL::to("produto")}}"  style="border:0px;"><span class="glyphicon glyphicon-th"></span> <span class="xn-text">Meus Produtos</span></a>
                     </li>
                     <li>
-                        <a href="{{URL::to("produto")}}"><span class="glyphicon glyphicon-th"></span> <span class="xn-text">Meus Produtos</span></a>
-                    </li>
-                    <li>
-                        <a href="{{URL::to("categorias/solicitar-categoria")}}"><span class="glyphicon glyphicon-tag"></span> <span class="xn-text">Solicitar Categoria</span></a>
+                        <a href="{{URL::to("categorias/solicitar-categoria")}}"  style="border:0px;"><span class="glyphicon glyphicon-tag"></span> <span class="xn-text">Solicitar Categoria</span></a>
                     </li>
 
-                    <li class="xn-openable">
+                    <li class="xn-openable" >
                     @if(Auth::User()->perfil == 1)
-                        <a href="#"><span class="fa fa-cogs"></span> <span class="xn-text">Admin</span></a>
-                        <ul>
-                            <li><a href="{{URL::to("categorias")}}"><span class="glyphicon glyphicon-tasks"></span> Categorias</a></li>
-                            <li><a href="{{URL::to("categorias/categorias-solicitadas")}}"><span class="glyphicon glyphicon-tags"></span> Categorias Solicitadas</a></li>
-                            <li><a href="{{URL::to("centro")}}"><span class="fa fa-road"></span> Centros/Ruas</a></li>
-                            <li><a href="{{URL::to("pacotes")}}"><span class="fa fa-th-large"></span> Pacotes</a></li>
-                            <li><a href="{{URL::to("parametros")}}"><span class="fa fa-cog"></span> Parâmetros</a></li>
-                            <li><a href="{{URL::to("usuario/solicitacao-cliente")}}"><span class="fa fa-user"></span> Solicitação de clientes</a></li>
-                            <li><a href="{{URL::to("usuario")}}"><span class="fa fa-group"></span> Usuários</a></li>
+                        <a href="#" style="border:0px;"><span class="fa fa-cogs"></span> <span class="xn-text">Admin</span></a>
+                        <ul style="background-color:#FFB90F; ">
+                            <li><a href="{{URL::to("categorias")}}" style="color:white;border:0px;"><span class="glyphicon glyphicon-tasks"></span> Categorias</a></li>
+                            <li><a href="{{URL::to("categorias/categorias-solicitadas")}}" style="color:white;border:0px;"><span class="glyphicon glyphicon-tags"></span> Categorias Solicitadas</a></li>
+                            <li><a href="{{URL::to("centro")}}" style="color:white;border:0px;"><span class="fa fa-road"></span> Centros/Ruas</a></li>
+                            <li><a href="{{URL::to("pacotes")}}" style="color:white;border:0px;"><span class="fa fa-th-large"></span> Pacotes</a></li>
+                            <li><a href="{{URL::to("parametros")}}" style="color:white;border:0px;"><span class="fa fa-cog"></span> Parâmetros</a></li>
+                            <li><a href="{{URL::to("usuario/solicitacao-cliente")}}" style="color:white;border:0px;"><span class="fa fa-user"></span> Solicitação de clientes</a></li>
+                            <li><a href="{{URL::to("usuario")}}" style="color:white;border:0px;"><span class="fa fa-group"></span> Usuários</a></li>
                         </ul>
                     @endif
                     <li>
@@ -69,7 +69,7 @@
             <div class="page-content">
                 
                 <!-- START X-NAVIGATION VERTICAL -->
-                <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+                <ul class="x-navigation x-navigation-horizontal x-navigation-panel" style="background-color:#FFB90F">
                     <!-- TOGGLE NAVIGATION -->
                     <li class="xn-icon-button">
                         <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>

@@ -2,12 +2,12 @@
 
 @section('content')
 
-<div class="page-content-holder padding-v-30">
+<div class="page-content-holder padding-v-30" style="color:white;">
                         
     <div class="col-md-7 this-animate animated fadeInLeft this-animated" data-animate="fadeInLeft">
     	<form method="post">
 	        <div class="text-column">
-	            <h4>Fale Conosco</h4>
+	            <strong><h4 style="color:white;">Fale Conosco</h4></strong>
 	            <div class="text-column-info">
 	                {{ $texto->descricao }}
 	            </div>
