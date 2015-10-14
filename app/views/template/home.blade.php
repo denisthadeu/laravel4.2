@@ -36,12 +36,54 @@
                     
                     <!-- navigation -->
                     <ul class="navigation">
-                        <li><a href="{{URL::to("home/home")}}" style="color:white;">Página Inicial</a></li>
-                        <li><a href="{{URL::to("id/sign-up")}}"  style="color:white;">Anuncie seu estabelecimento</a></li>
-                        <li><a href="{{URL::to("home/quem-somos")}}"  style="color:white;">Quem Somos</a></li>
-                        <li><a href="{{URL::to("home/termos-uso")}}"  style="color:white;">Termos de uso</a></li>
-                        <li><a href="{{URL::to("home/fale-conosco")}}" style="color:white;">Fale Conosco</a></li>
-                        <li><a href="{{URL::to("id/sign-in")}}" style="color:white;">Login</a></li>
+                        <li>
+                            <a href="{{URL::to("home/home")}}">
+                                <span style="color:white;" class="visible-lg">Página Inicial</span>
+                                <span class="visible-md">Página Inicial</span>
+                                <span class="visible-sm">Página Inicial</span>
+                                <span class="visible-xs">Página Inicial</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{URL::to("id/sign-up")}}" >
+                                <span style="color:white;" class="visible-lg">Anuncie seu estabelecimento</span>
+                                <span class="visible-md">Anuncie seu estabelecimento</span>
+                                <span class="visible-sm">Anuncie seu estabelecimento</span>
+                                <span class="visible-xs">Anuncie seu estabelecimento</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{URL::to("home/quem-somos")}}" >
+                                <span style="color:white;" class="visible-lg">Quem Somos</span>
+                                <span class="visible-md">Quem Somos</span>
+                                <span class="visible-sm">Quem Somos</span>
+                                <span class="visible-xs">Quem Somos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{URL::to("home/termos-uso")}}" >
+                                <span style="color:white;" class="visible-lg">Termos de uso</span>
+                                <span class="visible-md">Termos de uso</span>
+                                <span class="visible-sm">Termos de uso</span>
+                                <span class="visible-xs">Termos de uso</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{URL::to("home/fale-conosco")}}">
+                                <span style="color:white;" class="visible-lg">Fale Conosco</span>
+                                <span class="visible-md">Fale Conosco</span>
+                                <span class="visible-sm">Fale Conosco</span>
+                                <span class="visible-xs">Fale Conosco</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{URL::to("id/sign-in")}}">
+                                <span style="color:white;" class="visible-lg">Login</span>
+                                <span class="visible-md">Login</span>
+                                <span class="visible-sm">Login</span>
+                                <span class="visible-xs">Login</span>
+                            </a>
+                        </li>
                     </ul>
                     <!-- ./navigation -->                        
 

@@ -15,7 +15,10 @@
 	                <div class="jcarousel">
 	                    <ul>
 	                    	@foreach($produto->imagens AS $imagem)
-	                        <li><img src="/{{$imagem->caminho_completo}}" width="514" height="400" alt=""></li>
+	                        <li>
+                            <img src="/{{$imagem->caminho_completo}}" class="hidden-xs" width="514" height="400" alt="">
+                            <img src="/{{$imagem->caminho_completo}}" class="visible-xs" width="80%" height="40%" alt="">
+                          </li>
 	                        @endforeach
 	                    </ul>
 	                </div>

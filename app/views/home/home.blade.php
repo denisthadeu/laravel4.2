@@ -81,28 +81,55 @@ function categoryRecursive($category, $titulo, $categoriaSelected,$centroSelecte
             @if(isset($produtos) && !$produtos->isEmpty())
                 @foreach($produtos as $produto)
                     
-                    <div class="item  col-xs-4 col-lg-4" >
-                        <div class="thumbnail">
-                            <div class="col-xs-12 col-md-12" style="padding-left:18%">
-                                @foreach($produto->imagens AS $imagem)
-                                    <img src="/{{$imagem->caminho_completo}}" alt="{{$imagem->nome}}" class="col-md-10">
-                                    {{--*/ break; /*--}}
-                                @endforeach
-                            </div>
-                            <div class="caption">
-                                <h5 class="group inner list-group-item-heading" style="text-align:center;" >{{$produto->nome}}</h5>
-                                <p class="group inner list-group-item-text" style="min-height:80px;">{{substr($produto->descricao, 0, 140)}}</p>
-                                <div class="row">
-                                    <div class="col-xs-12 col-md-12" style="text-align:center">
-                                        <p class="lead">{{$produto->preco}}</p>
-                                    </div>
-                                    <div class="col-xs-12 col-md-12" style="text-align:center">
-                                        <a class="btn btn-success" href="{{URL::to("home/produto/$produto->id")}}">Mais informações</a>
+                    <div class="item  col-xs-4 col-lg-4 hidden-xs" >
+                        <a href="{{URL::to("home/produto/$produto->id")}}">
+                            <div class="thumbnail">
+                                <div class="col-xs-12 col-md-12" style="padding-left:18%">
+                                    @foreach($produto->imagens AS $imagem)
+                                        <img src="/{{$imagem->caminho_completo}}" alt="{{$imagem->nome}}" style="width:80%">
+                                        {{--*/ break; /*--}}
+                                    @endforeach
+                                </div>
+                                <div class="caption">
+                                    <h5 class="group inner list-group-item-heading" style="text-align:center;" >{{$produto->nome}}</h5>
+                                    <p class="group inner list-group-item-text " style="min-height:80px;">{{substr($produto->descricao, 0, 140)}}</p>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12" style="text-align:center">
+                                            <p class="lead">{{$produto->preco}}</p>
+                                        </div>
+                                        <div class="col-xs-12 col-md-12 hidden-xs" style="text-align:center">
+                                            <a class="btn btn-success" href="{{URL::to("home/produto/$produto->id")}}">Mais informações</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>     
+                        </a>
+                    </div>
+
+                    <div class="item  col-xs-12 col-lg-12 visible-xs" >
+                        <a href="{{URL::to("home/produto/$produto->id")}}">
+                            <div class="thumbnail">
+                                <div class="col-xs-12 col-md-12" style="padding-left:32%">
+                                    @foreach($produto->imagens AS $imagem)
+                                        <img src="/{{$imagem->caminho_completo}}" alt="{{$imagem->nome}}" style="width:60%">
+                                        {{--*/ break; /*--}}
+                                    @endforeach
+                                </div>
+                                <div class="caption">
+                                    <h5 class="group inner list-group-item-heading" style="text-align:center;" >{{$produto->nome}}</h5>
+                                    <p class="group inner list-group-item-text " style="min-height:80px;">{{substr($produto->descricao, 0, 140)}}</p>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12" style="text-align:center">
+                                            <p class="lead">{{$produto->preco}}</p>
+                                        </div>
+                                        <div class="col-xs-12 col-md-12 hidden-xs" style="text-align:center">
+                                            <a class="btn btn-success" href="{{URL::to("home/produto/$produto->id")}}">Mais informações</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 @endforeach
             @else
                 <div class="item  col-xs-4 col-lg-4">
