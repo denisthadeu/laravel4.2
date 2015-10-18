@@ -1638,6 +1638,65 @@ blockquote p {
   width: 100%;
   position: relative;
 }
+
+/*overwrite*/
+.login-container {
+  background-color:#FFB90F;
+}
+
+.login-container-box {
+  width: 610px;
+  margin: 0px auto;
+  padding-top: 100px;
+}
+
+.login-container-box-footer a, .login-container-box-footer {
+  color: #FFF;
+  padding: 4px 0;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.btn-link:hover, .btn-link:focus {
+    color: #FFF;
+    text-decoration: underline;
+    background-color: transparent;
+}
+
+.login-container .login-box {
+  width: 300px;
+  padding-top: 0;
+}
+
+.login-box-register {
+  width: 610px!important;
+}
+  
+.login-container .login-box .login-body {
+  background: rgba(0, 0, 255, 0.1);
+}
+
+.login-body-left {
+  background-color: #000!important;
+  height: 227px;
+}
+
+.login-container .login-box .login-body .form-control {
+  color: #FFF;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (min-width: 768px) {
+  .login-box-left {
+    float: left;
+  }
+
+  .login-box-right {
+    float: right;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   [class^='col-xs-'],
   [class^='col-sm-'],
