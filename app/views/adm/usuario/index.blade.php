@@ -7,7 +7,6 @@
     <li class="active">Usuários</li>
 </ul>
 <!-- END BREADCRUMB -->                
-
 <!-- START DEFAULT DATATABLE -->
 <div class="panel panel-default">
     <div class="panel-heading">                                
@@ -47,13 +46,18 @@
                     @foreach($usuarios AS $usuario)
                         <tr>
                             <td>
-                                @if(!empty($usuario->data_vencimento))
-                                    @if($usuario->data_vencimento >= date('Y-m-d H:i:s'))
-                                        <span class="text-success fa fa-circle"></span>
-                                    @else
+                                @if($usuario->status == 0)
+                                    <span class="text-danger fa fa-circle"></span>
+                                @elseif(!empty($usuario->data_vencimento))
+                                    @if($usuario->data_vencimento < date('Y-m-d H:i:s'))
+                                        <span class="text-default fa fa-circle"></span>
+                                    @elseif($usuario->data_vencimento <= date( "Y-m-d H:i:s", strtotime( "+3 day" )) && $usuario->data_vencimento > date("Y-m-d H:i:s"))
                                         <span class="text-warning fa fa-circle"></span>
+                                    @elseif($usuario->data_vencimento > date( "Y-m-d H:i:s", strtotime( "+3 day" )))
+                                        <span class="text-success fa fa-circle"></span>
                                     @endif
-
+                                @else
+                                    <span class="text-default fa fa-circle"></span>
                                 @endif
                             </td>
                             <td>{{$usuario->nome}}</td>
@@ -72,6 +76,11 @@
                                 <a href="{{URL::to("meusdados/$usuario->id")}}">
                                     <button type="button" id="create-category" class="btn btn-warning btn-lg active"><span class="fa fa-pencil"></span></button>
                                 </a>
+                                @if($usuario->perfil == 2)
+                                    <a href="{{URL::to("usuario/categories-user/$usuario->id")}}">
+                                        <button type="button" id="associate-category" class="btn btn-info btn-lg active"><span class="fa fa-list"></span></button>
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -90,5 +99,28 @@
     </div>
 </div>
 <!-- END DEFAULT DATATABLE -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="{{URL::to("usuario/save-category")}}" method="post" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Criar Centro Comercial
+                    </h4>
+                </div>
+                <div class="modal-body" id="categoriasUser">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Criar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 @stop

@@ -53,21 +53,6 @@
                             </a>
                         </div>
                         <div class="col-md-4">
-                            <a href="{{URL::to("produto")}}">
-                                <div class="widget widget-default widget-item-icon">
-                                    <div class="widget-item-left">
-                                        <span class="glyphicon glyphicon-th"></span>
-                                    </div>                             
-                                    <div class="widget-data">
-                                        <div class="widget-int num-count">{{$produtosAtivos}}</div>
-                                        <div class="widget-title">Produtos Ativos</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
                             <a href="{{URL::to("usuario")}}">
                                 <div class="widget widget-default widget-item-icon">
                                     <div class="widget-item-left">
@@ -80,7 +65,22 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-md-4">
+                    </div>
+                    <div class="row">
+                        <!--<div class="col-md-4">
+                            <a href="{{URL::to("produto")}}">
+                                <div class="widget widget-default widget-item-icon">
+                                    <div class="widget-item-left">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>                             
+                                    <div class="widget-data">
+                                        <div class="widget-int num-count">{{$produtosAtivos}}</div>
+                                        <div class="widget-title">Produtos Ativos</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>-->
+                        <!--<div class="col-md-4">
                             <a href="{{URL::to("produto")}}">
                                 <div class="widget widget-default widget-item-icon">
                                     <div class="widget-item-left">
@@ -92,7 +92,7 @@
                                     </div>
                                 </div>
                             </a>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-'<?php
+<?php
 
 class Produtos extends Eloquent {
 

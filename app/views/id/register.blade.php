@@ -37,7 +37,7 @@
                 &nbsp;
             </div>
             <div class="col-md-6">
-                <button class="btn btn-info btn-block">Log In</button>
+                <button class="btn btn-info btn-block">Cadastrar</button>
             </div>
         </div>
         </form>

@@ -8,11 +8,6 @@
 </ul>
 <!-- END BREADCRUMB -->                
 
-<script type="text/javascript">
-    $(function() {
-        $('#myModal').modal();
-    });
-</script>
 <!-- START DEFAULT DATATABLE -->
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -39,7 +34,7 @@
                         @endif
                         
                     </th>
-                    <th>Total de Sub Categorias</th>
+                    <!--<th>Total de Sub Categorias</th>-->
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -48,14 +43,19 @@
                     @foreach($categories AS $category)
                         <tr>
                             <td>{{$category->nome}}</td>
-                            <td>{{$category->totSubCategories()}}</td>
+                            <!--<td>{{$category->totSubCategories()}}</td>-->
                             <td>
-                                <a href="{{URL::to("categorias/subcategorias/$category->id")}}">
+                                <!--<a href="{{URL::to("categorias/subcategorias/$category->id")}}">
                                     <button type="button" class="btn btn-warning btn-lg active">listar sub-categorias</button>
-                                </a>
+                                </a>-->
                                 <a href="{{URL::to("categorias/delete/$category->id")}}">
                                     <button type="button" class="btn btn-danger btn-lg active">excluir</button>
                                 </a>
+                                @if(empty($category->caminho_completo))
+                                <button type="button" id="add-category" class="btn btn-primary btn-lg active" data-id="{{$category->id}}" data-toggle="modal" data-target="#myModal2">Nova Imagem</button>
+                                @else
+                                <button type="button" id="ver-imagem" class="btn btn-info btn-lg active" data-id="{{$category->id_imagem}}" data-caminho="{{$category->caminho_completo}}" data-toggle="modal" data-target="#myModal3">Ver Imagem</button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -104,4 +104,54 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="{{URL::to("categorias/upload")}}" method="post" enctype="multipart/form-data" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Nova Imagem
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <div class="row">
+                            <label class="col-md-3 control-label">
+                                Imagem
+                            </label>
+                            <div class="col-md-9">
+                                <input type="file" class="form-control" name="file" accept="image/*" REQUIRED>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id" id="id_categoria">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Fazer Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Ver Imagem
+                    </h4>
+                </div>
+                <div class="modal-body text-center" id="modal-image"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <a href="#" id="deletar-imagem" class="btn btn-danger">Deletar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @stop

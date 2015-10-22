@@ -24,7 +24,7 @@
                 $successes = Session::get('success');
                 ?>
                 <div class="alert alert-success">
-                    <a class="close" data-dismiss="alert">×</a>
+                    <!--<a class="close" data-dismiss="alert">×</a>-->
                     <h4 class="alert-heading"> Sucesso! </h4>
                     <ul>
                         @foreach($successes as $sucesso)
@@ -38,7 +38,7 @@
                 $infos = Session::get('info');
                 ?>
                 <div class="alert alert-info">
-                    <a class="close" data-dismiss="alert">×</a>
+                    <!--<a class="close" data-dismiss="alert">×</a>-->
                     <h4 class="alert-heading"> Informações: </h4>
                     <ul>
                         @foreach($infos as $info)
@@ -52,7 +52,7 @@
                 $warnings = Session::get('warning');
                 ?>
                 <div class="alert alert-warning">
-                    <a class="close" data-dismiss="alert">×</a>
+                    <!--<a class="close" data-dismiss="alert">×</a>-->
                     <h4 class="alert-heading"> Atenção! </h4>
                     <ul>
                         @foreach($warnings as $warning)
@@ -66,7 +66,7 @@
                 $dangers = Session::get('danger');
                 ?>
                 <div class="alert alert-danger">
-                    <a class="close" data-dismiss="alert">×</a>
+                    <!--<a class="close" data-dismiss="alert">×</a>-->
                     <h4 class="alert-heading"> Os seguintes erros foram encontrados: </h4>
                     <ul>
                         @foreach($dangers as $danger)
@@ -88,8 +88,8 @@
 
                 @show
                 <div class="login-container-box-footer">
-                     <div class="pull-left">
-                        &copy; Sistema
+                     <div class="pull-left btn" style="padding-left: 0; cursor: default;">
+                        &copy; 2015 Ponto da Informação - All Rights Reserved
                     </div>
                     <div class="pull-right">
                         <a class="btn btn-link" href="{{URL::to("home/quem-somos")}}">Sobre a empresa</a> |

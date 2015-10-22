@@ -35,9 +35,9 @@
                     <li style="border:0px;">
                         <a href="{{URL::to("meusdados")}}"  style="border:0px;"><span class="glyphicon glyphicon-user"></span> <span class="xn-text">Meus Dados</span></a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="{{URL::to("produto")}}"  style="border:0px;"><span class="glyphicon glyphicon-th"></span> <span class="xn-text">Meus Produtos</span></a>
-                    </li>
+                    </li>-->
                     <li>
                         <a href="{{URL::to("categorias/solicitar-categoria")}}"  style="border:0px;"><span class="glyphicon glyphicon-tag"></span> <span class="xn-text">Solicitar Categoria</span></a>
                     </li>
@@ -230,15 +230,21 @@
                 }, function(start, end, label) {
                   console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
                 });
+
+                $("body").on('click','#add-category',function(){
+                    $("#id_categoria").val($(this).data('id'));
+                });
+
+                $("body").on('click','#ver-imagem',function(){
+                    console.log($(this).data('caminho'));
+                    $("#modal-image").append(
+                        $('<img>', {src: '/'+$(this).data('caminho')})
+                    );
+                    $('#deletar-imagem').prop('href','{{URL::to("categorias/delete-upload")}}'+'/'+$(this).data('id'));
+                });
             });
         </script>
         <!-- END TEMPLATE -->
     <!-- END SCRIPTS -->         
     </body>
 </html>
-
-
-
-
-
-

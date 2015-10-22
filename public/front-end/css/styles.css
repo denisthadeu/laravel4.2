@@ -1209,6 +1209,9 @@ a:hover {
 .page-container .push-down-40 {
   margin-bottom: 40px;
 }
+.page-container .padding-v-5 {
+  padding: 5px 0px !important;
+}
 .page-container .padding-v-10 {
   padding: 10px 0px !important;
 }
