@@ -22,6 +22,10 @@ class HomeController extends BaseController {
 
 	public function getIndex()
 	{
+		if(Auth::User()->perfil == 2){
+			return Redirect::to('meusdados');
+		}
+
 		$categoriasSolicitadas = count(Solicitarcategoria::where('status','=',0)->get());
 		$solicitacoes = count(Solicitarplano::where('status','=',0)->get());
 		$produtosAtivos = count(Produtos::where('status','=',1)->get());
@@ -44,49 +48,7 @@ class HomeController extends BaseController {
 		}
 
 		$centro = (Input::has('centro')) ? Input::get('centro') : 0;
-		//$rua = (Input::has('rua')) ? Input::get('rua') : 0;
 
-		//$produtos = $produtos->whereHas('user',function($query) use($hojeDB,$centro,$rua){
-		//	$query->where('data_vencimento', '>=', $hojeDB);
-		//	if(!empty($centro)){
-		//		$query->where('centro_id', '=', $centro);
-		//	}
-		//	if(!empty($rua)){
-		//		$query->where('rua_id', '=', $rua);
-		//	}
-		//});
-		//$category = 0;
-		//if(Input::has('category')){
-		//	$category = Input::get('category');
-		//	$produtos = $produtos->whereHas('producttocategory',function($query) use($category){
-		//		$query->where('categories_id', '=', $category);
-		//	});
-		//}
-
-		//if(Input::has('search')){
-		//	$search = Input::get('search');
-		//	$produtos = $produtos->where('nome','like','%'.$search.'%')->orWhere('descricao','like','%'.$search.'%')->Where('status','=',1);
-
-		//	if(!empty($category)){
-		//		$produtos = $produtos->whereHas('producttocategory',function($query) use($category){
-		//			$query->where('categories_id', '=', $category);
-		//		});
-		//	}
-		//	$produtos = $produtos->whereHas('user',function($query) use($hojeDB,$centro,$rua){
-		//		$query->where('data_vencimento', '>=', $hojeDB);
-		//		if(!empty($centro)){
-		//			$query->where('centro_id', '=', $centro);
-		//		}
-		//		if(!empty($rua)){
-		//			$query->where('rua_id', '=', $rua);
-		//		}
-		//	});
-		//}
-
-		//$produtos = $produtos->paginate(20);
-		// $queries = DB::getQueryLog();
-		// $last_query = end($queries);
-		// echo '<pre>';print_r($last_query) ;exit;
 		return View::make('home.home',compact('categorias','produtos','centros'));
 	}
 
@@ -103,37 +65,31 @@ class HomeController extends BaseController {
 						->orderBy('categories.nome')
 						->get();
 
-		if($category){
+		$imagem = null;
+		if($category || !empty(Input::get('search'))){
 			$imagem = CategoriasImagem::where('categoria_id', '=', $category)->first();
 			$estabelecimentos = User::select('user.id', 'user.company_name', 'user.company_numero', 'user.company_loja', 'user.company_andar', 'ruas.nome as rua')
-								->join('user_categorias', 'user.id', '=', 'user_categorias.user_id')
-								->join('ruas', 'user.rua_id', '=', 'ruas.id')
-								->where('user.status','=',1)
-								->where('user.centro_id','=',$id)
-								->where('user.perfil','=',2)
-								->where('user.company_name','like','%'.Input::get('search').'%')
-								->where('user_categorias.categories_id','=',$category)
-								->orderBy('user.company_name')
-								->get();
-			//$queries = DB::getQueryLog();
-			//$last_query = end($queries);
-			//echo '<pre>';print_r($last_query) ;exit;
-		} else {
-			$imagem = null;
-			$estabelecimentos = User::select('user.id', 'user.company_name', 'user.company_numero', 'user.company_loja', 'user.company_andar', 'ruas.nome as rua')
-								->join('ruas', 'user.rua_id', '=', 'ruas.id')
-								->where('user.status','=',1)
-								->where('user.centro_id','=',$id)
-								->where('user.perfil','=',2)
-								->where('user.company_name','like','%'.Input::get('search').'%')
-								->orderBy('user.company_name')
-								->get();
+							->join('ruas', 'user.rua_id', '=', 'ruas.id')
+							->join('user_categorias', 'user.id', '=', 'user_categorias.user_id')
+							->where('user.status','=',1)
+							->where('user.perfil','=',2)
+							->where('user.centro_id','=',$id)
+							->groupBy('user.id')
+							->orderBy('ruas.nome', 'user.company_numero', 'user.company_name');
+			if(!empty(Input::get('search'))){
+				$estabelecimentos = $estabelecimentos->where('user.company_tags','like','%'.Input::get('search').'%');
+			}
+			if($category){
+				$estabelecimentos = $estabelecimentos->where('user_categorias.categories_id','=',$category);
+			}
+			$estabelecimentos = $estabelecimentos->get();
 		}
 		
+		// echo '<pre>';print_r(DB::getQueryLog()) ;exit;
 		$categorySel = Categories::find($category);
 		//echo '<pre>'; print_r($categorySel); echo '</pre>';
 		
-		return View::make('home.estabelecimento',compact('id','categorias','estabelecimentos', 'categorySel', 'imagem'));
+		return View::make('home.estabelecimento',compact('id','categorias','estabelecimentos','categorySel', 'imagem'));
 	}
 
 	public function getProduto($id)

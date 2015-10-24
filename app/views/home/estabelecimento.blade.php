@@ -2,7 +2,8 @@
 
 @section('content')
 <?php 
-//echo '<pre>'; print_r($categorySel); echo '</pre>'; 
+$count=0;
+$auxRua='';
 ?>
 <div class="col-xs-12 push-down-20">
     @if(isset($categorias) && !$categorias->isEmpty())
@@ -22,25 +23,29 @@
             </div>
         </div>
         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-            <div class="col-lg-12 padding-v-5">
-                <div class="panel panel-warning">
-                    
-                    <div class="panel-heading text-center">
-                        @if(count($categorySel) > 0)
-                        <strong style="font-size: 20px;">{{$categorySel->nome}}</strong>
-                        @endif
-                        <button class="btn btn-default pull-right" id="btn-print"><i class="fa fa-print"></i> Imprimir</button>
-                        <div style="clear: both;"></div>
-                    </div>
-                    <div class="panel-body" id="div-print">
-                        <div style="margin: 0 auto; width: 70%">
-                            <div class="col-md-4 col-xs-12">
-                                <img style="width: 150px; height: 150px;" src="/{{ (!empty($imagem)) ? $imagem->caminho_completo : 'uploads/categorias/sem_foto.gif' }}">
-                            </div>
-                            <div class="col-md-8 col-xs-12">
-                                @if(isset($estabelecimentos) && !$estabelecimentos->isEmpty())
-                                    @foreach($estabelecimentos as $estabelecimento)
-                                        <div class="col-xs-12 push-up-10">
+            @if(isset($estabelecimentos) && !$estabelecimentos->isEmpty())
+                <div class="col-lg-12 padding-v-5">
+                    <div class="panel panel-warning">
+                        
+                        <div class="panel-heading text-center">
+                            @if(count($categorySel) > 0)
+                            <strong style="font-size: 20px;">{{$categorySel->nome}}</strong>
+                            @endif
+                            <button class="btn btn-default pull-right" id="btn-print"><i class="fa fa-print"></i> Imprimir</button>
+                            <div style="clear: both;"></div>
+                        </div>
+                        <div class="panel-body" id="div-print">
+                            <div style="margin: 0 auto; width: 70%">
+                                <div class="col-md-4 col-xs-12">
+                                    <img style="width: 150px; height: 150px;" src="/{{ (!empty($imagem)) ? $imagem->caminho_completo : 'uploads/categorias/sem_foto.gif' }}">
+                                </div>
+                                <div class="col-md-8 col-xs-12">
+                                    @foreach($estabelecimentos as $estabelecimento) <?php $count++; ?>
+                                        @if($estabelecimento->rua != $auxRua)
+                                            <legend class="push-up-20 push-down-0" >{{ $estabelecimento->rua }}</legend>
+                                            <?php $auxRua = $estabelecimento->rua ?>
+                                        @endif
+                                        <div class="col-xs-12 push-up-10 {{($count % 2 == 0) ? 'bg-warning' : ''}}">
                                             <p><strong>{{$estabelecimento->company_name}}</strong></p>
                                             <p style="color: #000;"><strong>
                                                 {{ $estabelecimento->rua }}
@@ -52,13 +57,13 @@
                                         </div>
                                     @endforeach
                                     <div style="clear: both;"></div>
-                                @endif
+                                </div>
+                                <div style="clear: both;"></div>
                             </div>
-                            <div style="clear: both;"></div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
         @else
         <div class="alert alert-warning">Nenhum estabelecimento cadastrado neste centro!</div>

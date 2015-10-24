@@ -5,26 +5,6 @@
 $categoriaSelecionada = Input::get('category');
 $centroSelecionado = Input::get('centro');
 $ruaSelecionada = Input::get('rua');
-//echo '<pre>'; print_r($centros); echo '</pre>'; 
-/*function categoryRecursive($category, $titulo, $categoriaSelected,$centroSelected,$ruaSelected){
-    $option = '';
-    if($category->totSubCategories() > 0){
-        $subCategory = $category->subcategories;
-        foreach($subCategory as $sub){
-            // $newTitlo = $titulo.' -> '.$sub->nome;
-            $newTitlo = $titulo.$sub->nome;
-            if($categoriaSelected == $sub->id){
-                $option .= '<strong>';    
-            }
-            $option .= '<a href="'.URL::to("home/home").'?search='.Input::get('search').'&category='.$sub->id.'&centro='.$centroSelected.'&rua='.$ruaSelected.'" style="color:white;">'.$newTitlo.'</a>';
-            if($categoriaSelected == $sub->id){
-                $option .= '</strong>';    
-            }
-            $option .= categoryRecursive($sub,$titulo.'&nbsp;&nbsp;&nbsp;',$categoriaSelected,$centroSelected,$ruaSelected);
-        }
-    }
-    return $option;
-}*/
 ?>
 <div class="login-container">
     <div class="col-lg-offset-1 col-lg-10 col-md-12 col-sm-12 col-xs-12">
@@ -51,6 +31,8 @@ $ruaSelecionada = Input::get('rua');
                                 @endif
                             -->
                             @endforeach
+                        @else
+                            <div class="alert alert-warning">Nenhum Centro Encontrado!</div>
                         @endif
                     </div>
                 </div>

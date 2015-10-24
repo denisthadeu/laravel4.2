@@ -26,12 +26,14 @@
                 <ul class="x-navigation" style="background-color:#FFB90F;">
                     <li class="xn-logo" style="background-color:#e34724;">
                         <a href="{{URL::to("/")}}" style="background-color:#FFB90F;">Ponto da Informação</a>
-                        <a href="#" class="x-navigation-control"></a>
+                        
                     </li>                                                  
                     <li class="xn-title" style="color:white;border-color:#FFB90F">Menu</li>
+                    @if(Auth::User()->perfil == 1)
                     <li>
                         <a href="{{URL::to("/")}}" style="border:0px;"><span class="fa fa-desktop"></span> <span class="xn-text">Página Inicial</span></a>
                     </li>
+                    @endif
                     <li style="border:0px;">
                         <a href="{{URL::to("meusdados")}}"  style="border:0px;"><span class="glyphicon glyphicon-user"></span> <span class="xn-text">Meus Dados</span></a>
                     </li>

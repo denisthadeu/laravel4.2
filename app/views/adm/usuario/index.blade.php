@@ -21,10 +21,23 @@
                         <option value="25" @if(Input::has('pagination') && Input::get('pagination') == 25) selected="selected" @endif>25</option>
                         <option value="50" @if(Input::has('pagination') && Input::get('pagination') == 50) selected="selected" @endif>50</option>
                         <option value="100" @if(Input::has('pagination') && Input::get('pagination') == 100) selected="selected" @endif>100</option>
-                    </select> usuários
+                    </select>
                 </label>
             </div>
-            <div id="DataTables_Table_0_filter" class="dataTables_filter"><label>Pesquisar:<input type="search" name="nome" class="form-control " placeholder="Nome ou sobrenome ou email" aria-controls="DataTables_Table_0" value="{{Input::get('nome')}}">&nbsp;&nbsp;<button type="submit" class="btn btn-primary">Pesquisar</button></label></div>
+            <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                <label style="height: 30px;">
+                    Pacote:
+                    <select name="pacote" aria-controls="DataTables_Table_0" class="form-control" style="width: 100px; display: inline; height: 30px;">
+                        <option value="">selecione</option>
+                        @foreach($pacotes as $pacote)
+                            <option value="{{$pacote->id}}" @if(Input::has('pacote') && Input::get('pacote') == $pacote->id) selected="selected" @endif >{{$pacote->nome}}</option>
+                        @endforeach
+                    </select>&nbsp;&nbsp;
+                    Pesquisar:
+                    <input type="search" name="nome" class="form-control" style="width: 250px;" placeholder="Nome ou sobrenome ou email ou rua" aria-controls="DataTables_Table_0" value="{{Input::get('nome')}}">&nbsp;&nbsp;
+                    <button type="submit" class="btn btn-primary">Pesquisar</button>
+                </label>
+            </div>
         </form>
         <table class="table table-hover">
             <thead>
@@ -33,7 +46,7 @@
                     <th>Nome</th>
                     <th>Sobrenome</th>
                     <th>Empresa</th>
-                    <th>Qtd. produtos</th>
+                    <th>Rua</th>
                     <th>Data Cadastro</th>
                     <th>Pacote</th>
                     <th>Dt. Venc. Pacote</th>
@@ -63,7 +76,7 @@
                             <td>{{$usuario->nome}}</td>
                             <td>{{$usuario->sobrenome}}</td>
                             <td>{{$usuario->company_name}}</td>
-                            <td>{{$usuario->totProdutos()}}</td>
+                            <td>{{$usuario->rua}}</td>
                             <td>{{Formatter::getDataHoraFormatada($usuario->created_at)}}</td>
                             <td>
                                 @if(!empty($usuario->pacote_id))

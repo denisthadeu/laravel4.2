@@ -19,11 +19,20 @@ class UsuarioController extends BaseController {
 	{
 		$usuarios    = User::all();
 		$numUsersTot = count($usuarios);
+		$pacotes = Pacotes::all();
 		$pagination  = (Input::has('pagination')) ? Input::get('pagination') : 10;
-		$nome  = (Input::has('nome')) ? Input::get('nome') : '';
-		$usuarios 	 = User::where('nome','like','%'.$nome.'%')->orwhere('sobrenome','like','%'.$nome.'%')->orwhere('email','like','%'.$nome.'%')->paginate($pagination);
+		$usuarios = User::select('user.*', 'ruas.nome as rua')->leftJoin('ruas', 'ruas.id', '=', 'user.rua_id');
+		
+		if(Input::has('nome') && !empty(Input::get('nome'))){
+			$usuarios = $usuarios->where('user.nome','like','%'.Input::get('nome').'%')->orwhere('user.sobrenome','like','%'.Input::get('nome').'%')->orwhere('user.email','like','%'.Input::get('nome').'%')->orwhere('ruas.nome','like','%'.Input::get('nome').'%');
+		}
+		
+		if(Input::has('pacote') && !empty(Input::get('pacote'))){
+			$usuarios = $usuarios->where('user.pacote_id','=',Input::get('pacote'));
+		}
+		$usuarios = $usuarios->paginate($pagination);
 
-		return View::make('adm.usuario.index', compact('numUsersTot','usuarios'));
+		return View::make('adm.usuario.index', compact('numUsersTot','usuarios','pacotes'));
 	}
 
 	public function getSolicitacaoCliente()
