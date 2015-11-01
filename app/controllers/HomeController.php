@@ -54,6 +54,7 @@ class HomeController extends BaseController {
 
 	public function getEstabelecimento($id, $category = null)
 	{
+		$hoje = date('Y-m-d');
 		$categorias = Categories::select('categories.*')
 						->join('user_categorias', 'categories.id', '=', 'user_categorias.categories_id')
 						->join('user', 'user.id', '=', 'user_categorias.user_id')
@@ -74,6 +75,7 @@ class HomeController extends BaseController {
 							->where('user.status','=',1)
 							->where('user.perfil','=',2)
 							->where('user.centro_id','=',$id)
+							->where('user.data_vencimento','>=',$hoje)
 							->groupBy('user.id')
 							->orderBy('ruas.nome', 'user.company_numero', 'user.company_name');
 			if(!empty(Input::get('search'))){
