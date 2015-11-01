@@ -67,6 +67,7 @@ class HomeController extends BaseController {
 						->get();
 
 		$imagem = null;
+		$topEstabelecimentos = null;
 		if($category || !empty(Input::get('search'))){
 			$imagem = CategoriasImagem::where('categoria_id', '=', $category)->first();
 			$estabelecimentos = User::select('user.id', 'user.company_name', 'user.company_numero', 'user.company_loja', 'user.company_andar', 'ruas.nome as rua')
@@ -90,14 +91,17 @@ class HomeController extends BaseController {
 					$imagem = CategoriasImagem::where('categoria_id', '=', $category->id)->first();
 				}
 			}
+			$topEstabelecimentos = $estabelecimentos->with(array('pacote' => function($query){
+                $query->orderBy('valor','desc');
+            }))->take(5);
+
+            $topEstabelecimentos = $topEstabelecimentos->get();
 			$estabelecimentos = $estabelecimentos->get();
 		}
 		
-		// echo '<pre>';print_r(DB::getQueryLog()) ;exit;
 		$categorySel = Categories::find($category);
-		//echo '<pre>'; print_r($categorySel); echo '</pre>';
 		
-		return View::make('home.estabelecimento',compact('id','categorias','estabelecimentos','categorySel', 'imagem'));
+		return View::make('home.estabelecimento',compact('id','categorias','estabelecimentos','categorySel', 'imagem','topEstabelecimentos'));
 	}
 
 	public function getProduto($id)
