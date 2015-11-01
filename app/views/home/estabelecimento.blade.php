@@ -14,7 +14,7 @@ $auxRua='';
                     @if(isset($categorias) && !$categorias->isEmpty())
                         @foreach($categorias as $categoria)
                             <div class="col-xs-12 padding-v-5">
-                                <a class="col-xs-12 btn btn-sm btn-{{{ count($categorySel) > 0 && $categoria->id == $categorySel->id ? 'default' : 'success' }}}" href="http://laravel.dev/home/estabelecimento/{{$id}}/{{$categoria->id}}"><strong>{{$categoria->nome}}</strong></a>
+                                <a class="col-xs-12 btn btn-sm btn-{{{ count($categorySel) > 0 && $categoria->id == $categorySel->id ? 'default' : 'success' }}}" href="{{URL::to("home/estabelecimento")}}/{{$id}}/{{$categoria->id}}"><strong>{{$categoria->nome}}</strong></a>
                             </div>
                         @endforeach
                     @endif

@@ -15,7 +15,7 @@ $ruaSelecionada = Input::get('rua');
                         @if(isset($centros) && !$centros->isEmpty())
                             @foreach($centros as $centro)
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 push-down-10">
-                                    <a class="btn btn-success" style="color:white;" href="http://laravel.dev/home/estabelecimento/{{$centro->id}}">{{$centro->nome}}</a>
+                                    <a class="btn btn-success" style="color:white;" href="{{URL::to("home/estabelecimento")}}/{{$centro->id}}">{{$centro->nome}}</a>
                                 </div>
                             <!--
                                 @if($centro->hasRuas())
