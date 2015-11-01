@@ -82,6 +82,12 @@ class HomeController extends BaseController {
 			if($category){
 				$estabelecimentos = $estabelecimentos->where('user_categorias.categories_id','=',$category);
 			}
+			if(empty($imagem)){
+				$category = Categories::where('nome','like','%'.Input::get('search').'%' )->first();
+				if(!empty($category)){
+					$imagem = CategoriasImagem::where('categoria_id', '=', $category->id)->first();
+				}
+			}
 			$estabelecimentos = $estabelecimentos->get();
 		}
 		

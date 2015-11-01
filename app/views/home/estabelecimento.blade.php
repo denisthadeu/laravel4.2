@@ -40,6 +40,11 @@ $auxRua='';
                                     <img style="width: 150px; height: 150px;" src="/{{ (!empty($imagem)) ? $imagem->caminho_completo : 'uploads/categorias/sem_foto.gif' }}">
                                 </div>
                                 <div class="col-md-8 col-xs-12">
+                                    @if(INPUT::has('search'))
+                                        <h3>"{{INPUT::get('search')}}"</h3>
+                                    @endif
+                                </div>
+                                <div class="col-md-8 col-xs-12">
                                     @foreach($estabelecimentos as $estabelecimento) <?php $count++; ?>
                                         @if($estabelecimento->rua != $auxRua)
                                             <legend class="push-up-20 push-down-0" >{{ $estabelecimento->rua }}</legend>
