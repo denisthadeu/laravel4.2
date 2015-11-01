@@ -51,9 +51,8 @@
                                 <a href="{{URL::to("categorias/delete/$category->id")}}">
                                     <button type="button" class="btn btn-danger btn-lg active">excluir</button>
                                 </a>
-                                @if(empty($category->caminho_completo))
                                 <button type="button" id="add-category" class="btn btn-primary btn-lg active" data-id="{{$category->id}}" data-toggle="modal" data-target="#myModal2">Nova Imagem</button>
-                                @else
+                                @if(!empty($category->caminho_completo))
                                 <button type="button" id="ver-imagem" class="btn btn-info btn-lg active" data-id="{{$category->id_imagem}}" data-caminho="{{$category->caminho_completo}}" data-toggle="modal" data-target="#myModal3">Ver Imagem</button>
                                 @endif
                             </td>
