@@ -11,9 +11,9 @@
         <!-- END META SECTION -->
         
         <!-- CSS INCLUDE -->        
-        <link rel="stylesheet" type="text/css" id="theme" href="../css/theme-default.css"/>
-        <link rel="stylesheet" type="text/css" id="theme" href="../css/bootstrap/bootstrap.min.css"/>
-        <link rel="stylesheet" type="text/css" id="theme" href="../front-end/css/styles.css"/>
+        <link rel="stylesheet" type="text/css" id="theme" href="/css/theme-default.css"/>
+        <link rel="stylesheet" type="text/css" id="theme" href="/css/bootstrap/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" id="theme" href="/front-end/css/styles.css"/>
         <!-- EOF CSS INCLUDE -->                                    
     </head>
     <body>
@@ -27,9 +27,13 @@
                     <!--<a class="close" data-dismiss="alert">×</a>-->
                     <h4 class="alert-heading"> Sucesso! </h4>
                     <ul>
-                        @foreach($successes as $sucesso)
-                            <li>{{$sucesso}}</li>
-                        @endforeach
+                        @if(is_array($successes))
+                            @foreach($successes as $sucesso)
+                                <li>{{$sucesso}}</li>
+                            @endforeach
+                        @else
+                            <li>{{$successes}}</li>
+                        @endif
                     </ul>
                 </div>
                 @endif
@@ -41,9 +45,13 @@
                     <!--<a class="close" data-dismiss="alert">×</a>-->
                     <h4 class="alert-heading"> Informações: </h4>
                     <ul>
-                        @foreach($infos as $info)
-                            <li>{{$info}}</li>
-                        @endforeach
+                        @if(is_array($infos))
+                            @foreach($infos as $info)
+                                <li>{{$info}}</li>
+                            @endforeach
+                        @else
+                            <li>{{$infos}}</li>
+                        @endif
                     </ul>
                 </div>
                 @endif
@@ -55,9 +63,13 @@
                     <!--<a class="close" data-dismiss="alert">×</a>-->
                     <h4 class="alert-heading"> Atenção! </h4>
                     <ul>
-                        @foreach($warnings as $warning)
-                            <li>{{$warning}}</li>
-                        @endforeach
+                        @if(is_array($warnings))
+                            @foreach($warnings as $warning)
+                                <li>{{$warning}}</li>
+                            @endforeach
+                        @else
+                            <li>{{$warnings}}</li>
+                        @endif
                     </ul>
                 </div>
                 @endif
@@ -69,18 +81,19 @@
                     <!--<a class="close" data-dismiss="alert">×</a>-->
                     <h4 class="alert-heading"> Os seguintes erros foram encontrados: </h4>
                     <ul>
-                        @foreach($dangers as $danger)
-                            @if (is_array($danger))
-                                
+                        @if(is_array($dangers))
+                            @foreach($dangers as $danger)
+                                @if (is_array($danger))
                                     @foreach ($danger as $msg)              
                                         <li>{{$msg}}</li>
                                     @endforeach
-                                
-                            @else
-                                <li>{{$danger}}</li>
-                            @endif
-                            
-                        @endforeach
+                                @else
+                                    <li>{{$danger}}</li>
+                                @endif
+                            @endforeach
+                        @else
+                            <li>{{$dangers}}</li>
+                        @endif
                     </ul>
                 </div>
                 @endif

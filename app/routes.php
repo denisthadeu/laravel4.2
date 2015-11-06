@@ -35,3 +35,5 @@ Route::resource('meusdados/alterar-pacote', 'MeusdadosController@getAlterarPacot
 Route::resource('meusdados/solicitar-pacote', 'MeusdadosController@getSolicitarPacote');
 Route::controller('meusdados', 'MeusdadosController');
 Route::controller('produto', 'ProdutoController');
+Route::controller('password', 'RemindersController');
+
