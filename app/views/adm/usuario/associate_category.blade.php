@@ -12,7 +12,8 @@
 <form action="{{URL::to("usuario/save-categories-user")}}" method="post" class="form-horizontal">
 	<div class="panel panel-default">
 	    <div class="panel-heading">                                
-	        <h3 class="panel-title">Associação Categoria</h3>
+	        <h2 class="panel-title">{{$usuario->company_name}} </h2>
+	        <h3 class="panel-title">(Associação Categoria)</h3>
 	    </div>
 	    <div class="panel-body">
 			<div class="col-xs-12">

@@ -51,7 +51,10 @@ class CategoriasController extends BaseController {
 
 	public function getSolicitarCategoria()
 	{
-		return View::make('adm.categoria.solicitar_categoria');
+		$menu = 0;
+		$centro = Centros::where('id','=',Auth::User()->centro_id)->get();
+		//print_r($centro);exit;
+		return View::make('adm.categoria.solicitar_categoria',compact('menu','centro'));
 	}
 
 	public function postSolicitarCategoria()
@@ -69,10 +72,12 @@ class CategoriasController extends BaseController {
 		return Redirect::to('categorias/solicitar-categoria')->with('success', array(1 => 'Mensagem enviada para o administrador do sistema!'));
 	}
 
-	public function getCategoriasSolicitadas()
+	public function getCategoriasSolicitadas($centro_id)
 	{
+		$menu = 2;
+		$centro = Centros::where('id','=',$centro_id)->get();
 		$categoriasSolicitadas = Solicitarcategoria::orderBy('created_at','DESC')->get();
-		return View::make('adm.categoria.categorias_solicitadas',compact('categoriasSolicitadas'));
+		return View::make('adm.categoria.categorias_solicitadas',compact('categoriasSolicitadas','menu','centro'));
 	}
 
 	public function postCategoriasSolicitadas()

@@ -4,6 +4,7 @@ class MeusdadosController extends BaseController {
 
 	public function getIndex($id = null)
 	{
+		$menu = 1;
 		if(empty($id))
 			$id = Auth::User()->id;
 		$user = User::find($id);
@@ -15,7 +16,7 @@ class MeusdadosController extends BaseController {
 		$pacotes = Pacotes::OrderBy('nome')->get();
 		$hoje = date('d/m/Y');
 		$hojeDB = date('Y-m-d');
-		return View::make('meusdados.index', compact('user','centros','ruas','id','pacotes','hoje','hojeDB'));
+		return View::make('meusdados.index', compact('user','centros','ruas','id','pacotes','hoje','hojeDB','menu'));
 	}
 
 	public function postSave()

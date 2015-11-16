@@ -16,11 +16,12 @@ class PacotesController extends BaseController {
 		$pacotes->nome = $nome;
 		$pacotes->valor = $valor;
 		$pacotes->vezes = $vezes;
+		$pacotes->centro_id = $centro_id;
 		$pacotes->valido_por = $valido_por;
 		$pacotes->created_at = date('Y-m-d H:i:s');
 		$pacotes->updated_at = date('Y-m-d H:i:s');
 		$pacotes->save();
-		return Redirect::to('pacotes')->with('success', array(1 => 'Pacote Cadastrado com sucesso!'));
+		return Redirect::to('centro/cadastro-geral/'.$pacotes->centro_id)->with('success', array(1 => 'Pacote Cadastrado com sucesso!'));
 	}
 
 }

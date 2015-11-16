@@ -15,9 +15,12 @@ class UsuarioController extends BaseController {
 	|
 	*/
 
-	public function getIndex()
+	public function getIndex($id_centro)
 	{
-		$usuarios    = User::all();
+		$menu = 2;
+		$centro = Centros::find($id_centro);
+
+		$usuarios    = User::where('centro_id','=',$id_centro);
 		$numUsersTot = count($usuarios);
 		$pacotes = Pacotes::all();
 		$pagination  = (Input::has('pagination')) ? Input::get('pagination') : 10;
@@ -30,15 +33,19 @@ class UsuarioController extends BaseController {
 		if(Input::has('pacote') && !empty(Input::get('pacote'))){
 			$usuarios = $usuarios->where('user.pacote_id','=',Input::get('pacote'));
 		}
-		$usuarios = $usuarios->paginate($pagination);
 
-		return View::make('adm.usuario.index', compact('numUsersTot','usuarios','pacotes'));
+		$usuarios = $usuarios->where('user.centro_id','=',$id_centro);
+		$usuarios = $usuarios->paginate($pagination);
+		return View::make('adm.usuario.index', compact('numUsersTot','usuarios','pacotes','menu','centro'));
 	}
 
-	public function getSolicitacaoCliente()
+	public function getSolicitacaoCliente($id_centro)
 	{
+		$menu = 2;
+		$centro = Centros::find($id_centro);
+
 		$solicitacoes = Solicitarplano::OrderBy('created_at','desc')->get();
-		return View::make('adm.usuario.solicitacaocliente', compact('solicitacoes'));
+		return View::make('adm.usuario.solicitacaocliente', compact('solicitacoes','menu','centro'));
 	}
 
 	public function postSolicitacaoCliente()
@@ -70,11 +77,15 @@ class UsuarioController extends BaseController {
 						->whereNull('categories.deleted_at')
 						->orderBy('categories.nome')
 						->get();
+
 						//$queries = DB::getQueryLog();
 						//$last_query = end($queries);
 						//echo '<pre>';print_r($last_query) ;exit;
+		$menu = 2;
+		$centro = Centros::find($usuario->centro_id);
 
-		return View::make('adm.usuario.associate_category', compact('categorias', 'usuario'));
+
+		return View::make('adm.usuario.associate_category', compact('categorias', 'usuario', 'menu', 'centro'));
 	}
 
 	public function postSaveCategoriesUser()
@@ -90,6 +101,6 @@ class UsuarioController extends BaseController {
 			}
 		}
 
-		return Redirect::to('usuario/categories-user/'.$id_user);
+		return Redirect::to('meusdados/'.$id_user);
 	}
 }

@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="panel-body">
-        <table class="table table-hover">
+        <!--<table class="table table-hover">
             <thead>
                 <tr>
                     <th>
@@ -55,7 +55,20 @@
                     </tr>
                 @endif
             </tbody>
-        </table>
+        </table>-->
+        <div class="row">
+             @if(isset($centros) && !$centros->isEmpty())
+                @foreach($centros AS $centro)
+                    <div class="col-sm-3">
+                        <a href="{{URL::to("usuario/index/$centro->id")}}">
+                            <button type="button" class="col-sm-12 btn btn-default btn-lg active" style="height: 80px;">{{$centro->nome}}</button>
+                        </a>
+                    </div>
+                @endforeach
+            @else
+                <div class="alert alert-info text-bold"><h3>Nenhum Centro Comercial Cadastrado no sistema!</h3></div>
+            @endif
+        </div>
     </div>
 </div>
 <!-- END DEFAULT DATATABLE -->
@@ -69,9 +82,7 @@
             <form action="{{URL::to("centro/save")}}" method="post" >
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        Criar Centro Comercial
-                    </h4>
+                    <h4 class="modal-title" id="myModalLabel">Criar Centro Comercial</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">

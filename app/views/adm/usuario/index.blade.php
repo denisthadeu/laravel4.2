@@ -90,9 +90,11 @@
                                     <button type="button" id="create-category" class="btn btn-warning btn-lg active"><span class="fa fa-pencil"></span></button>
                                 </a>
                                 @if($usuario->perfil == 2)
+                                <!--
                                     <a href="{{URL::to("usuario/categories-user/$usuario->id")}}">
                                         <button type="button" id="associate-category" class="btn btn-info btn-lg active"><span class="fa fa-list"></span></button>
                                     </a>
+                                -->
                                 @endif
                             </td>
                         </tr>

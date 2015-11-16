@@ -230,6 +230,15 @@
                                     </div>
                                 </div>
                             </p>
+                            @if(Auth::user()->perfil == 2)
+                            <p>
+                                <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <a href="{{URL::to("usuario/categories-user/$user->id")}}" type="button" class="btn btn-info btn-lg active">Alterar Categorias</a>
+                                    </div>
+                                </div>
+                            </p>
+                           @endif
                             <p>
                                 <div class="row">
                                     <div class="col-md-12">
