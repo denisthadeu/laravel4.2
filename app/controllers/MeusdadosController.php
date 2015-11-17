@@ -4,9 +4,11 @@ class MeusdadosController extends BaseController {
 
 	public function getIndex($id = null)
 	{
-		$menu = 1;
+		$menu = 3;
 		if(empty($id))
+			$menu = 1;
 			$id = Auth::User()->id;
+
 		$user = User::find($id);
 		$centros = Centros::OrderBy('nome')->get();
 		$ruas = '';

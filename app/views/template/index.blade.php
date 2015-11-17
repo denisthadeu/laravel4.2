@@ -25,24 +25,25 @@
                 <ul class="x-navigation" style="background-color:#FFB90F;">
                     <li class="xn-logo" style="background-color:#e34724;"><a href="{{URL::to("/")}}" style="background-color:#FFB90F;">Ponto da Informação</a></li>
                     <li class="xn-title" style="color:white;border-color:#FFB90F;">Menu</li>
-                    <li><a href="{{URL::to("/")}}" style="border:0px;"><span class="fa fa-desktop"></span> <span class="xn-text">Página Inicial</span></a></li>
-                    @if(Auth::user()->perfil == 1)
+                    @if(Auth::User()->perfil == 1)
                         @if($menu == 1)
+                            <li><a href="{{URL::to("/")}}" style="border:0px;"><span class="fa fa-desktop"></span> <span class="xn-text">Página Inicial</span></a></li>
                             <li><a href="{{URL::to("centro")}}" style="color:white;border:0px;"><span class="fa fa-road"></span> Centros</a></li>
                         @elseif($menu == 2)
                         <li class="xn-title"></li>
                         <li><a class="active" href="javascript:void(0)" style="border:0px; background-color: #333;"> <span class="xn-text">{{{$centro->nome}}}</span></a></li>
                         <li><a href="{{URL::to("/")}}" style="border:0px;"><span class="fa fa-desktop"></span> <span class="xn-text">Página Inicial</span></a></li>
+                        <li><a href="{{URL::to("centro")}}" style="color:white;border:0px;"><span class="fa fa-road"></span> Centros</a></li>
                         <li><a href="{{URL::to("usuario/solicitacao-cliente")}}/{{{$centro->id}}}" style="color:white;border:0px;"><span class="fa fa-user"></span> Solicitação de clientes</a></li>
                         <li><a href="{{URL::to("usuario/index")}}/{{{$centro->id}}}" style="color:white;border:0px;"><span class="fa fa-group"></span> Clientes</a></li>
                         <li><a href="{{URL::to("centro/cadastro-geral")}}/{{{$centro->id}}}" style="color:white;border:0px;"><span class="fa fa-group"></span> Cadastro Geral</a></li>
                         @elseif($menu == 3)
                         <li class="xn-title"></li>
                         <li><a class="active" href="javascript:void(0)" style="border:0px; background-color: #333;"> <span class="xn-text">{{{$centro->nome}}}</span></a></li>
-                        <li><a href="{{URL::to("usuario/solicitacao-cliente")}}/{{{$centro->id}}}" style="color:white;border:0px;"><span class="fa fa-user"></span> Solicitação de clientes</a></li>
                         <li><a href="{{URL::to("usuario/index")}}/{{{$centro->id}}}" style="color:white;border:0px;"><span class="fa fa-group"></span> Clientes</a></li>
                         @endif
                     @else
+                    <li><a href="{{URL::to("/")}}" style="border:0px;"><span class="fa fa-desktop"></span> <span class="xn-text">Página Inicial</span></a></li>
                     <li><a href="{{URL::to("categorias/solicitar-categoria")}}" style="color:white;border:0px;"><span class="fa fa-user"></span> Solicitar Categoria</a></li>
                     @endif
                     <li><a href="{{URL::to("id/sign-out")}}"><span class="fa fa-sign-out"></span> <span class="xn-text">Logout</span></a></li>

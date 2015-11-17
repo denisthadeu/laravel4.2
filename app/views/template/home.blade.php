@@ -8,8 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <!-- END META SECTION -->
         
-        <link rel="stylesheet" type="text/css" href="/front-end/css/styles.css" media="screen" />
-        <link rel="stylesheet" type="text/css" href="/front-end/css/jcarousel.basic.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="/front-end/css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="/front-end/css/jcarousel.basic.css" media="all" />
         <style>
         * { margin:0; padding:0; }
         html, body {height:100%;}
