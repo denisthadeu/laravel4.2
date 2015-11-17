@@ -47,6 +47,26 @@ $auxRua='';
                                         <h3>"{{INPUT::get('search')}}"</h3>
                                     @endif
                                 </div>
+                                @if(isset($topEstabelecimentos) && !$topEstabelecimentos->isEmpty())
+                                    <div class="col-md-8 col-xs-12 hidden-print" style="border: 1px; border: #FFB90F 5px solid;border-radius: 10px; padding:10px;">
+                                        @foreach($topEstabelecimentos as $topEstabelecimento)
+                                            {{ $topEstabelecimento->company_name }} <br/>
+                                            <font color="black"><strong>{{ $topEstabelecimento->rua }}
+                                            {{ isset($topEstabelecimento->company_numero) ? ', nº ' . $topEstabelecimento->company_numero : '' }}
+                                            {{ isset($topEstabelecimento->company_loja) ? ', lj ' . $topEstabelecimento->company_loja : '' }}
+                                            {{ isset($topEstabelecimento->company_andar) ? ', ' . $topEstabelecimento->company_andar. 'º Andar' : '' }}</strong></font>  <br/>
+                                        @endforeach
+                                    </div>
+                                    <div class="col-md-8 col-xs-12 visible-print-block">
+                                        @foreach($topEstabelecimentos as $topEstabelecimento)
+                                            {{ $topEstabelecimento->company_name }} <br/>
+                                            <font color="black"><strong>{{ $topEstabelecimento->rua }}
+                                            {{ isset($topEstabelecimento->company_numero) ? ', nº ' . $topEstabelecimento->company_numero : '' }}
+                                            {{ isset($topEstabelecimento->company_loja) ? ', lj ' . $topEstabelecimento->company_loja : '' }}
+                                            {{ isset($topEstabelecimento->company_andar) ? ', ' . $topEstabelecimento->company_andar. 'º Andar' : '' }}</strong></font>  <br/>
+                                        @endforeach
+                                    </div>
+                                @endif
                                 <div class="col-md-8 col-xs-12">
                                     @foreach($estabelecimentos as $estabelecimento) <?php $count++; ?>
                                         @if($estabelecimento->rua != $auxRua)

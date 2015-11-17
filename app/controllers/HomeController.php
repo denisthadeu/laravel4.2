@@ -79,8 +79,7 @@ class HomeController extends BaseController {
 							->where('user.perfil','=',2)
 							->where('user.centro_id','=',$id)
 							->where('user.data_vencimento','>=',$hoje)
-							->groupBy('user.id')
-							->orderBy('ruas.nome', 'user.company_numero', 'user.company_name');
+							->groupBy('user.id');
 			if(!empty(Input::get('search'))){
 				$estabelecimentos = $estabelecimentos->where('user.company_tags','like','%'.Input::get('search').'%');
 			}
@@ -98,7 +97,7 @@ class HomeController extends BaseController {
             }))->take(5);
 
             $topEstabelecimentos = $topEstabelecimentos->get();
-			$estabelecimentos = $estabelecimentos->get();
+			$estabelecimentos = $estabelecimentos->orderBy('ruas.nome', 'user.company_numero', 'user.company_name')->get();
 		}
 		
 		$categorySel = Categories::find($category);
