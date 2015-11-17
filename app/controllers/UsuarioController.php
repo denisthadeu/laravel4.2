@@ -20,7 +20,7 @@ class UsuarioController extends BaseController {
 		$menu = 2;
 		$centro = Centros::find($id_centro);
 
-		$usuarios    = User::where('centro_id','=',$id_centro);
+		$usuarios    = User::where('centro_id','=',$id_centro)->get();
 		$numUsersTot = count($usuarios);
 		$pacotes = Pacotes::all();
 		$pagination  = (Input::has('pagination')) ? Input::get('pagination') : 10;
