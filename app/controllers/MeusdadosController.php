@@ -15,7 +15,7 @@ class MeusdadosController extends BaseController {
 		if(!empty($user->centro_id)){
 			$ruas = Ruas::where('centro_id','=',$user->centro_id)->OrderBy('nome')->get();
 		}
-		$pacotes = Pacotes::OrderBy('nome')->get();
+		$pacotes = Pacotes::where('centro_id','=',$user->centro_id)->OrderBy('nome')->get();
 		$hoje = date('d/m/Y');
 		$hojeDB = date('Y-m-d');
 		return View::make('meusdados.index', compact('user','centros','ruas','id','pacotes','hoje','hojeDB','menu'));

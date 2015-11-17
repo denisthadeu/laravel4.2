@@ -282,27 +282,35 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-3">Pacote</div>
-                        <div class="col-md-9">
-                            <select class="form-control" id="pacote" name="pacote" REQUIRED>
-                                @foreach($pacotes as $pacote)
-                                    <option value="{{$pacote->id}}" @if($pacote->id == $user->pacote_id) SELECTED @endif >{{$pacote->nome}}</option>
-                                @endforeach
-                            </select>
+                    @if($pacotes == null)
+                        <div class="row">
+                            <div class="col-md-3">Pacote</div>
+                            <div class="col-md-9">
+                                <select class="form-control" id="pacote" name="pacote" REQUIRED>
+                                    @foreach($pacotes as $pacote)
+                                        <option value="{{$pacote->id}}" @if($pacote->id == $user->pacote_id) SELECTED @endif >{{$pacote->nome}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row" style="padding-top:10px;">
-                        <div class="col-md-3">Data de Vencimento</div>
-                        <div class="col-md-9">
-                            <input type="text" name="data_vencimento" id="data_vencimento" class="form-control singleDate" value="{{$hoje}}">
+                        <div class="row" style="padding-top:10px;">
+                            <div class="col-md-3">Data de Vencimento</div>
+                            <div class="col-md-9">
+                                <input type="text" name="data_vencimento" id="data_vencimento" class="form-control singleDate" value="{{$hoje}}">
+                            </div>
                         </div>
-                    </div>
+                    @else
+                        <div class="row">
+                            <div class="col-md-12">Nenhum pacote cadastrado</div>
+                        </div>
+                    @endif
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" name="id" value="{{$id}}" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Alterar Pacote</button>
+                    @if($pacotes == null)
+                        <button type="submit" class="btn btn-primary">Alterar Pacote</button>
+                    @endif
                 </div>
             </form>
         </div>
