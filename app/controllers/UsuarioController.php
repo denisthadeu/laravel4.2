@@ -44,7 +44,10 @@ class UsuarioController extends BaseController {
 		$menu = 2;
 		$centro = Centros::find($id_centro);
 
-		$solicitacoes = Solicitarplano::OrderBy('created_at','desc')->get();
+		$solicitacoes = Solicitarplano::whereHas('user', function($query) use($id_centro)
+		{
+			$query->where('centro_id','=', $id_centro);
+		})->OrderBy('created_at','desc')->get();
 		return View::make('adm.usuario.solicitacaocliente', compact('solicitacoes','menu','centro'));
 	}
 
