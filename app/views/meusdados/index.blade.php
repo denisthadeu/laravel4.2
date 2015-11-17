@@ -230,7 +230,7 @@
                                     </div>
                                 </div>
                             </p>
-                            @if(Auth::user()->perfil == 2)
+                            
                             <p>
                                 <div class="row">
                                     <div class="col-md-12 text-right">
@@ -238,7 +238,7 @@
                                     </div>
                                 </div>
                             </p>
-                           @endif
+                            
                             <p>
                                 <div class="row">
                                     <div class="col-md-12">
