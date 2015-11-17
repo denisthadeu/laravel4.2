@@ -120,7 +120,7 @@
                                     <div class="col-md-4">
                                         @if(Auth::user()->perfil == 1)
                                             <button type="button" id="create-category" class="btn btn-warning btn-lg active" data-toggle="modal" data-target="#myModal">Alterar Pacote</button>
-                                        @elseif(Auth::user()->perfil == 2 && $user->data_vencimento<=$hojeDB)
+                                        @elseif(Auth::user()->perfil == 2 && ($user->data_vencimento <= date( "Y-m-d H:i:s", strtotime( "+3 day" )) || $user->data_vencimento > date("Y-m-d H:i:s")))
                                             <button type="button" id="create-category" class="btn btn-warning btn-lg active" data-toggle="modal" data-target="#myModal">Solicitar Plano</button>
                                         @endif
                                     </div>
