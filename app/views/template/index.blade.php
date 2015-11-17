@@ -36,7 +36,7 @@
                         <li><a href="{{URL::to("centro")}}" style="color:white;border:0px;"><span class="fa fa-road"></span> Centros</a></li>
                         <li><a href="{{URL::to("usuario/solicitacao-cliente")}}/{{{$centro->id}}}" style="color:white;border:0px;"><span class="fa fa-user"></span> Solicitação de clientes</a></li>
                         <li><a href="{{URL::to("usuario/index")}}/{{{$centro->id}}}" style="color:white;border:0px;"><span class="fa fa-group"></span> Clientes</a></li>
-                        <li><a href="{{URL::to("centro/cadastro-geral")}}/{{{$centro->id}}}" style="color:white;border:0px;"><span class="fa fa-group"></span> Cadastro Geral</a></li>
+                        <li><a href="{{URL::to("centro/cadastro-geral")}}/{{{$centro->id}}}" style="color:white;border:0px;"><span class="fa fa-bars"></span> Cadastro Geral</a></li>
                         @elseif($menu == 3)
                         <li class="xn-title"></li>
                         <li><a class="active" href="javascript:void(0)" style="border:0px; background-color: #333;"> <span class="xn-text">{{{$centro->nome}}}</span></a></li>
