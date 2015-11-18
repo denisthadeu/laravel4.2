@@ -32,7 +32,6 @@
                         @else
                             Nome SubCategorias
                         @endif
-                        
                     </th>
                     <!--<th>Total de Sub Categorias</th>-->
                     <th>Ações</th>

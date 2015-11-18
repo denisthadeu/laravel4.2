@@ -18,22 +18,28 @@
 	    <div class="panel-body">
 			<div class="col-xs-12">
 				<div class="form-group">
-					@foreach($categorias as $categoria)
-					<div class="col-xs-3 push-down-10">
-						<div class="input-group">
-							<div class="input-group-addon">
-								<input id="{{$categoria->id}}" type="checkbox" name="categorias[]" value="{{$categoria->id}}" {{ !empty($categoria->categories_id) ? 'checked' : '' }}/>
+					@if(is_array($categorias))
+						@foreach($categorias as $categoria)
+						<div class="col-xs-3 push-down-10">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<input id="{{$categoria->id}}" type="checkbox" name="categorias[]" value="{{$categoria->id}}" {{ !empty($categoria->categories_id) ? 'checked' : '' }}/>
+								</div>
+								<label class="btn btn-default col-xs-12" style="text-align: left;" for="{{$categoria->id}}">{{$categoria->nome}}</label>
 							</div>
-							<label class="btn btn-default col-xs-12" style="text-align: left;" for="{{$categoria->id}}">{{$categoria->nome}}</label>
 						</div>
-					</div>
-					@endforeach
+						@endforeach
+					@else
+						<div class="alert alert-warning">Nenhuma categoria cadastrada para este centro!</div>
+					@endif
 				</div>
 			</div>
 		</div>
 		<div class="panel-footer text-right">
 			<input type="hidden" name="id_user" value="{{$usuario->id}}" />
+			@if(is_array($categorias))
 			<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
+			@endif
 		</div>
 	</div>
 </form>

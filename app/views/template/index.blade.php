@@ -218,13 +218,14 @@
                   console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
                 });
 
-                $("body").on('click','#add-category',function(){
+                $("body").on('click','.add-category',function(){
+
                     $("#id_categoria").val($(this).data('id'));
                 });
 
-                $("body").on('click','#ver-imagem',function(){
-                    console.log($(this).data('caminho'));
-                    $("#modal-image").append(
+                $("body").on('click','.ver-imagem',function(){
+                    console.log($(this).data('id'));
+                    $("#modal-image").html(
                         $('<img>', {src: '/'+$(this).data('caminho')})
                     );
                     $('#deletar-imagem').prop('href','{{URL::to("categorias/delete-upload")}}'+'/'+$(this).data('id'));

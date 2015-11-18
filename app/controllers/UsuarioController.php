@@ -71,23 +71,14 @@ class UsuarioController extends BaseController {
 	public function getCategoriesUser($id)
 	{
 		$usuario = User::find($id);
-		$categorias = Categories::select('categories.*', 'user_categorias.categories_id')
-						->leftJoin('user_categorias', function($join) use($id)
-				        {
-				            $join->on('categories.id', '=', 'user_categorias.categories_id')->where('user_categorias.user_id', '=', $id);
-				        })
-						->where('parent_id','=',0)
-						->whereNull('categories.deleted_at')
-						->orderBy('categories.nome')
-						->get();
-
-						//$queries = DB::getQueryLog();
-						//$last_query = end($queries);
-						//echo '<pre>';print_r($last_query) ;exit;
 		$menu = 2;
 		$centro = Centros::find($usuario->centro_id);
+		$categorias = Categories::where('centro_id','=',$usuario->centro_id)->whereNull('deleted_at')->orderBy('nome')->get();
 
-
+		//$queries = DB::getQueryLog();
+		//$last_query = end($queries);
+		//echo '<pre>';print_r($last_query) ;exit;
+		
 		return View::make('adm.usuario.associate_category', compact('categorias', 'usuario', 'menu', 'centro'));
 	}
 

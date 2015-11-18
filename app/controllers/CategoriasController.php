@@ -17,16 +17,17 @@ class CategoriasController extends BaseController {
 		}
 
 		$category = new Categories();
-		$category->parent_id = $parent_id;
+		//$category->parent_id = $parent_id;
 		$category->nome = $nome;
+		$category->centro_id = $centro_id;
 		$category->created_at = date('Y-m-d H:i:s');
 		$category->updated_at = date('Y-m-d H:i:s');
 		$category->save();
-		if($category->parent_id == 0){
-			return Redirect::to('categorias')->with('success', array(1 => 'Categoria Cadastrada com sucesso!'));
-		} else {
-			return Redirect::to('categorias/subcategorias/'.$category->parent_id)->with('success', array(1 => 'Sub-Categoria Cadastrada com sucesso!'));
-		}
+		//if($category->parent_id == 0){
+			return Redirect::to('centro/cadastro-geral/'.$centro_id)->with('success', array(1 => 'Categoria Cadastrada com sucesso!'));
+		//} else {
+		//	return Redirect::to('categorias/subcategorias/'.$category->parent_id)->with('success', array(1 => 'Sub-Categoria Cadastrada com sucesso!'));
+		//}
 	}
 
 	public function getSubcategorias($id)
@@ -116,7 +117,7 @@ class CategoriasController extends BaseController {
 		        $imagem->updated_at = date('Y-m-d H:i:s');
 		        $imagem->save();
 
-		        return Redirect::to('categorias');
+		        return Redirect::to('centro/cadastro-geral/'.$centro_id);
 
 			}
 
@@ -128,8 +129,11 @@ class CategoriasController extends BaseController {
 	public function getDeleteUpload($id)
 	{
 		$imagem = CategoriasImagem::find($id);
+		// print_r($imagem);exit;
+		$categoria = Categories::find($imagem->categoria_id);
+		// print_r($categoria);exit;
 		File::delete($imagem->caminho_completo);
 		$imagem->delete();
-		return Redirect::to('categorias');
+		return Redirect::to('centro/cadastro-geral/'.$categoria->centro_id);
 	}
 }

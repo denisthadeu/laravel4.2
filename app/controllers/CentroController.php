@@ -23,16 +23,7 @@ class CentroController extends BaseController {
 
 		$pacotes = Pacotes::where('centro_id','=',$id)->get();
 		$ruas = Ruas::where('centro_id','=',$id)->get();
-		$categorias = Categories::select('categories.*')
-						->join('user_categorias', 'categories.id', '=', 'user_categorias.categories_id')
-						->join('user', 'user.id', '=', 'user_categorias.user_id')
-						->where('parent_id','=',0)
-						->where('user.centro_id','=',$id)
-						->where('user.status','=',1)
-						->whereNull('categories.deleted_at')
-						->groupBy('categories.id')
-						->orderBy('categories.nome')
-						->get();
+		$categorias = Categories::select('categories.id', 'categories.nome', 'categorias_imagem.caminho_completo', 'categorias_imagem.id as id_imagem')->leftjoin('categorias_imagem', 'categorias_imagem.categoria_id','=', 'categories.id')->where('categories.centro_id','=',$id)->whereNull('categories.deleted_at')->orderBy('categories.nome')->get();
 
 		return View::make('adm.centro.cadastros', compact('pacotes', 'ruas', 'categorias', 'centro', 'menu'));
 	}

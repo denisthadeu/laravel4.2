@@ -45,6 +45,9 @@
                         @foreach($pacotes as $pacote)
                         <tr>
                             <td>{{$pacote->nome}}</td>
+                            <td>{{$pacote->valor}}</td>
+                            <td>{{$pacote->vezes}}x</td>
+                            <td>{{$pacote->valido_por}} dias</td>
                         </tr>
                         @endforeach
                     </table>
@@ -56,18 +59,25 @@
         </div>
         <div class="col-sm-4">
             <div class="panel panel-default">
-                <div class="panel-heading">Categorias <button class="pull-right btn btn-sm btn-primary">Novo</button></div>
+                <div class="panel-heading">Categorias <button class="pull-right btn btn-sm btn-primary" data-toggle="modal" data-target="#myModalCategoria">Novo</button></div>
                 <div class=" panel-body">
                     @if(count($categorias) > 0)
                     <table class="table table-hover">
                         @foreach($categorias as $categoria)
                         <tr>
                             <td>{{$categoria->nome}}</td>
+                            <td>
+                                @if(!empty($categoria->caminho_completo))
+                                <button type="button" class="btn btn-info btn-xs active ver-imagem" data-id="{{$categoria->id_imagem}}" data-caminho="{{$categoria->caminho_completo}}" data-toggle="modal" data-target="#myModalCategoriaImgVer">Ver Imagem</button>
+                                @else
+                                <button type="button" class="btn btn-primary btn-xs active add-category" data-id="{{$categoria->id}}" data-toggle="modal" data-target="#myModalCategoriaImgUp">Nova Imagem</button>
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                     </table>
                     @else
-                    <div class="alert alert-warning">Nenhuma Categorias Cadastrado!</div>
+                    <div class="alert alert-warning">Nenhuma Categoria Cadastrado!</div>
                     @endif
                 </div>
             </div>    
@@ -134,6 +144,83 @@
                     <input type="hidden" name="centro_id" value="{{$centro->id}}" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Criar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--myModalCategoria-->
+<div class="modal fade" id="myModalCategoria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="{{URL::to("categorias/save")}}" method="post" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Criar Categoria
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3">Nome</div>
+                        <div class="col-md-9"><input type="text" class="form-control" id="nome" name="nome" placeholder="nome" REQUIRED></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="centro_id" value="{{$centro->id}}" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Criar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModalCategoriaImgUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="{{URL::to("categorias/upload")}}" method="post" enctype="multipart/form-data" >
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Nova Imagem
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <div class="row">
+                            <label class="col-md-3 control-label">
+                                Imagem
+                            </label>
+                            <div class="col-md-9">
+                                <input type="file" class="form-control" name="file" accept="image/*" REQUIRED>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id" id="id_categoria">
+                    <input type="hidden" name="centro_id" value="{{$centro->id}}" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Fazer Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModalCategoriaImgVer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Ver Imagem
+                    </h4>
+                </div>
+                <div class="modal-body text-center" id="modal-image"></div>
+                <div class="modal-footer">
+                    <input type="hidden" name="centro_id" value="{{$centro->id}}" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <a href="#" id="deletar-imagem" class="btn btn-danger">Deletar</a>
                 </div>
             </form>
         </div>
