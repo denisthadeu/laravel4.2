@@ -24,6 +24,7 @@ $auxRua='';
         </div>
         <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
             @if(isset($estabelecimentos) && !$estabelecimentos->isEmpty())
+
                 <div class="col-lg-12 padding-v-5">
                     <div class="panel panel-warning">
                         
@@ -47,7 +48,7 @@ $auxRua='';
                                         <h3>"{{INPUT::get('search')}}"</h3>
                                     @endif
                                 </div>
-                                @if(is_array($estabelecimentos))
+                                @if(!$estabelecimentos->isEmpty())
                                     @if(isset($topEstabelecimentos) && !$topEstabelecimentos->isEmpty())
                                         <div class="col-md-8 col-xs-12 hidden-print" style="border: 1px; border: #FFB90F 5px solid;border-radius: 10px; padding:10px;">
                                             @foreach($topEstabelecimentos as $topEstabelecimento)
@@ -95,6 +96,8 @@ $auxRua='';
                         </div>
                     </div>
                 </div>
+            @else
+            <div class="alert alert-warning teste-center">Nenhum estabelecimento encontrado para esses filtros!</div>
             @endif
         </div>
     @else

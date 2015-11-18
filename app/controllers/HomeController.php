@@ -60,7 +60,9 @@ class HomeController extends BaseController {
 		$categorias = Categories::where('centro_id','=',$id)/*->where('status','=',1)*/->whereNull('deleted_at')->orderBy('nome')->get();
 
 		$imagem = null;
-		$topEstabelecimentos = null;
+		$categorySel = $topEstabelecimentos = $estabelecimentos = null;
+		$categorySel = Categories::find($category);
+		
 		if($category || !empty(Input::get('search'))){
 			$imagem = CategoriasImagem::where('categoria_id', '=', $category)->first();
 			$estabelecimentos = User::select('user.id', 'user.company_name', 'user.company_numero', 'user.company_loja', 'user.company_andar', 'ruas.nome as rua')
@@ -93,9 +95,8 @@ class HomeController extends BaseController {
 			// $queries = DB::getQueryLog();
 			// $last_query = end($queries);
 			// echo '<pre>';print_r($last_query) ;exit;
+			
 		}
-		
-		$categorySel = Categories::find($category);
 		
 		return View::make('home.estabelecimento',compact('id','categorias','estabelecimentos','categorySel', 'imagem','topEstabelecimentos'));
 	}

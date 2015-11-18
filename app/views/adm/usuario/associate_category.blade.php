@@ -18,7 +18,7 @@
 	    <div class="panel-body">
 			<div class="col-xs-12">
 				<div class="form-group">
-					@if(is_array($categorias))
+					@if(!$categorias->isEmpty())
 						@foreach($categorias as $categoria)
 						<div class="col-xs-3 push-down-10">
 							<div class="input-group">
@@ -37,7 +37,7 @@
 		</div>
 		<div class="panel-footer text-right">
 			<input type="hidden" name="id_user" value="{{$usuario->id}}" />
-			@if(is_array($categorias))
+			@if(!$categorias->isEmpty())
 			<button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Salvar</button>
 			@endif
 		</div>

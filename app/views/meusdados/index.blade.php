@@ -282,7 +282,7 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    @if($pacotes == null)
+                    @if(!$pacotes->isEmpty())
                         <div class="row">
                             <div class="col-md-3">Pacote</div>
                             <div class="col-md-9">
@@ -308,7 +308,7 @@
                 <div class="modal-footer">
                     <input type="hidden" name="id" value="{{$id}}" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                    @if($pacotes == null)
+                    @if(!$pacotes->isEmpty())
                         <button type="submit" class="btn btn-primary">Alterar Pacote</button>
                     @endif
                 </div>

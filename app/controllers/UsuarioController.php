@@ -73,12 +73,15 @@ class UsuarioController extends BaseController {
 		$usuario = User::find($id);
 		$menu = 2;
 		$centro = Centros::find($usuario->centro_id);
-		$categorias = Categories::where('centro_id','=',$usuario->centro_id)->whereNull('deleted_at')->orderBy('nome')->get();
+		$categorias = Categories::select('categories.id','categories.nome','user_categorias.categories_id')
+		->leftJoin('user_categorias', function($join) use($id)
+        {
+            $join->on('categories.id','=','user_categorias.categories_id')->where('user_categorias.user_id','=',$id);
+        })
+		->where('categories.centro_id','=',$usuario->centro_id)->whereNull('categories.deleted_at')
+		->orderBy('categories.nome')->get();
+		//UserCategorias::where('user_id','=',$usuario->id)->get();
 
-		//$queries = DB::getQueryLog();
-		//$last_query = end($queries);
-		//echo '<pre>';print_r($last_query) ;exit;
-		
 		return View::make('adm.usuario.associate_category', compact('categorias', 'usuario', 'menu', 'centro'));
 	}
 
@@ -89,9 +92,7 @@ class UsuarioController extends BaseController {
 		UserCategorias::where('user_id', '=', $id_user)->delete();
 		if(isset($categorias)){
 			foreach ($categorias as $id_categoria) {
-				UserCategorias::insert(
-				    array('user_id' => $id_user, 'categories_id' => $id_categoria)
-				);
+				UserCategorias::insert(array('user_id' => $id_user, 'categories_id' => $id_categoria));
 			}
 		}
 
