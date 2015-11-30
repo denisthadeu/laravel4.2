@@ -59,18 +59,10 @@
                     @foreach($usuarios AS $usuario)
                         <tr>
                             <td>
-                                @if($usuario->status == 0)
-                                    <span class="text-danger fa fa-circle"></span>
-                                @elseif(!empty($usuario->data_vencimento))
-                                    @if($usuario->data_vencimento < date('Y-m-d H:i:s'))
-                                        <span class="text-default fa fa-circle"></span>
-                                    @elseif($usuario->data_vencimento <= date( "Y-m-d H:i:s", strtotime( "+3 day" )) && $usuario->data_vencimento > date("Y-m-d H:i:s"))
-                                        <span class="text-warning fa fa-circle"></span>
-                                    @elseif($usuario->data_vencimento > date( "Y-m-d H:i:s", strtotime( "+3 day" )))
-                                        <span class="text-success fa fa-circle"></span>
-                                    @endif
+                                @if($usuario->data_vencimento > date( "Y-m-d H:i:s" ) && $usuario->status == 1)
+                                    <span class="text-success fa fa-circle"></span>
                                 @else
-                                    <span class="text-default fa fa-circle"></span>
+                                    <span class="text-danger fa fa-circle"></span>
                                 @endif
                             </td>
                             <td>{{$usuario->nome}}</td>

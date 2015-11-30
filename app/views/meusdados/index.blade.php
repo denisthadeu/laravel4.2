@@ -136,6 +136,21 @@
                                     </div>
                                 </div>
                             </p>
+                            @if(Auth::user()->perfil == 1)
+                            <p>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        Status
+                                    </div>
+                                    <div class="col-md-9">
+                                        <select name="status" id="status" class="form-control" >
+                                            <option value="1" @if($user->status == 1) SELECTED @endif >ATIVO</option>
+                                            <option value="2" @if($user->status == 2) SELECTED @endif >INATIVO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </p>
+                            @endif
                         </div> 
                     </div>
                 </div>

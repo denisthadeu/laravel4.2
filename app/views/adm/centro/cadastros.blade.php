@@ -45,8 +45,8 @@
                         @foreach($pacotes as $pacote)
                         <tr>
                             <td>{{$pacote->nome}}</td>
-                            <td>{{$pacote->valor}}</td>
                             <td>{{$pacote->vezes}}x</td>
+                            <td>{{$pacote->valor}}</td>
                             <td>{{$pacote->valido_por}} dias</td>
                         </tr>
                         @endforeach
@@ -128,12 +128,12 @@
                         <div class="col-md-9"><input type="text" class="form-control" id="nome" name="nome" placeholder="nome" REQUIRED></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">Valor</div>
-                        <div class="col-md-9"><input type="text" class="form-control money" data-thousands="." data-decimal="," data-prefix="R$ " id="nome" name="valor" placeholder="Valor do pacote" REQUIRED></div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-3">Vezes</div>
                         <div class="col-md-9"><input type="text" class="form-control numbersOnly" id="nome" name="vezes" placeholder="Número de vezes" REQUIRED></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">Valor</div>
+                        <div class="col-md-9"><input type="text" class="form-control money" data-thousands="." data-decimal="," data-prefix="R$ " id="nome" name="valor" placeholder="Valor do pacote" REQUIRED></div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">Válido por</div>

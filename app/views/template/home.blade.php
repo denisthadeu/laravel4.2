@@ -39,33 +39,9 @@
                     <!-- navigation -->
                     <ul class="navigation">
                         <li>
-                            <a href="{{URL::to("home/home")}}">
-                                <span style="color:white;" class="visible-lg">Página Inicial</span>
-                                <span class="visible-md visible-sm visible-xs">Página Inicial</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{URL::to("id/sign-up")}}" >
-                                <span style="color:white;" class="visible-lg">Anuncie seu estabelecimento</span>
-                                <span class="visible-md visible-sm visible-xs">Anuncie seu estabelecimento</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{URL::to("home/quem-somos")}}" >
-                                <span style="color:white;" class="visible-lg">Quem Somos</span>
-                                <span class="visible-md visible-sm visible-xs">Quem Somos</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{URL::to("home/termos-uso")}}" >
-                                <span style="color:white;" class="visible-lg">Termos de uso</span>
-                                <span class="visible-md visible-sm visible-xs">Termos de uso</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{URL::to("home/fale-conosco")}}">
-                                <span style="color:white;" class="visible-lg">Fale Conosco</span>
-                                <span class="visible-md visible-sm visible-xs">Fale Conosco</span>
+                            <a href="{{URL::to("id/sign-up")}}">
+                                <span style="color:white;" class="visible-lg text-info">sou lojista Quero me cadastrar</span>
+                                <span class="visible-md visible-sm visible-xs">sou lojista Quero me cadastrar</span>
                             </a>
                         </li>
                         <li>
@@ -136,19 +112,24 @@
                 <div class="page-footer-wrap bg-darken-gray">
                     <!-- page footer holder -->
                     <div class="page-footer-holder">
+                        <div class="social-links" style="width: 100%!important;">
+                            <a style="width: auto!important; padding: 0 10px 0 10px;" href="{{URL::to("home/quem-somos")}}">Quem Somos</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px;" href="{{URL::to("home/termos-uso")}}">Termos de uso</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px;" href="{{URL::to("home/fale-conosco")}}">Fale Conosco</a>
+                        </div>
                         
                         <!-- copyright -->
-                        <div class="copyright">
+                        <!-- <div class="copyright">
                             &copy; 2015 Ponto da Informação - All Rights Reserved
-                        </div>
+                        </div> -->
                         <!-- ./copyright -->
                         
                         <!-- social links -->
-                        <div class="social-links">
+                        <!-- <div class="social-links">
                             <a href="#"><span class="fa fa-facebook"></span></a>
                             <a href="#"><span class="fa fa-twitter"></span></a>
                             <a href="#"><span class="fa fa-google-plus"></span></a>
-                        </div>                        
+                        </div> -->                        
                         <!-- ./social links -->
                         
                     </div>

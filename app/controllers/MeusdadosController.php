@@ -5,11 +5,13 @@ class MeusdadosController extends BaseController {
 	public function getIndex($id = null)
 	{
 		$menu = 3;
-		if(empty($id))
+		if(empty($id)){
 			$menu = 1;
 			$id = Auth::User()->id;
+		}
 
 		$user = User::find($id);
+		$centro =Centros::find($user->centro_id);
 		$centros = Centros::OrderBy('nome')->get();
 		$ruas = '';
 		if(!empty($user->centro_id)){
@@ -18,7 +20,7 @@ class MeusdadosController extends BaseController {
 		$pacotes = Pacotes::where('centro_id','=',$user->centro_id)->OrderBy('nome')->get();
 		$hoje = date('d/m/Y');
 		$hojeDB = date('Y-m-d');
-		return View::make('meusdados.index', compact('user','centros','ruas','id','pacotes','hoje','hojeDB','menu'));
+		return View::make('meusdados.index', compact('user','centros','centro','ruas','id','pacotes','hoje','hojeDB','menu'));
 	}
 
 	public function postSave()
@@ -38,6 +40,7 @@ class MeusdadosController extends BaseController {
 		$user->company_name = $nome_company;
 		$user->centro_id = $centro;
 		$user->rua_id = $rua;
+		$user->status = $status;
 		$user->company_numero = $numero_company;
 		$user->company_loja = $loja_company;
 		$user->company_andar = $andar_company;

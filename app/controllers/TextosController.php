@@ -4,14 +4,16 @@ class TextosController extends BaseController {
 
 	public function getIndex()
 	{
+		$menu = 1;
 		$textos = Texto::orderBy('titulo')->get();
-		return View::make('adm.parametros.index', compact('textos'));
+		return View::make('adm.parametros.index', compact('textos', 'menu'));
 	}
 
 	public function getEdit($id)
 	{
+		$menu = 1;
 		$texto = Texto::find($id);
-		return View::make('adm.parametros.edit', compact('texto'));
+		return View::make('adm.parametros.edit', compact('texto', 'menu'));
 	}
 
 	public function postSave()

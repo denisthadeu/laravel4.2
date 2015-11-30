@@ -97,6 +97,11 @@
                     </ul>
                 </div>
                 @endif
+                <div class="row" style="margin-bottom: 20px!important;">
+                    <a href="{{URL::to("home/home")}}">
+                        <div class="col-md-12" style="font-size: 1px; color: #FFF; background: url('../img/logo.png') left top no-repeat; width: 220px; height: 50px; float: left; display: block;"></div>
+                    </a>
+                </div>
                 @section('content')
 
                 @show
