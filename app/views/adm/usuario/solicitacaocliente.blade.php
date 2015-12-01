@@ -49,10 +49,10 @@
                                         <div class="col-md-2">
                                             <input type="checkbox" name="solicitacoes[]" value="{{ $solicitacao->id }}" />
                                         </div>
-                                        <div class="col-md-10">{{$solicitacao->user->nome}}</div>
+                                        <div class="col-md-10"><a href="{{ URL::to('meusdados/'.$solicitacao->user_id) }}">{{$solicitacao->user->nome}}</a></div>
                                     </div>
                                 </td>
-                                <td>{{$solicitacao->user->company_name}}</td>
+                                <td><a href="{{ URL::to('meusdados/'.$solicitacao->user_id) }}">{{$solicitacao->user->company_name}}</a></td>
                                 <td>{{$solicitacao->mensagem}}</td>
                                 <td>
                                 @if($solicitacao->status == 1)
