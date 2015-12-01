@@ -86,9 +86,19 @@ class HomeController extends BaseController {
 					$imagem = CategoriasImagem::where('categoria_id', '=', $category->id)->first();
 				}
 			}
+
+			$parametroLimite = null;
+			$parametro = Texto::where('titulo','=','limiteTopEstabelecimentos')->first();
+			if($parametro != null){
+				$parametroLimite = $parametro->descricao;
+			} else {
+				$parametroLimite = 5;
+			}
+
+
 			$topEstabelecimentos = $estabelecimentos->with(array('pacote' => function($query){
                 $query->orderBy('valor','desc');
-            }))->take(5);
+            }))->take($parametroLimite);
 
             $topEstabelecimentos = $topEstabelecimentos->get();
 			$estabelecimentos = $estabelecimentos->get();
