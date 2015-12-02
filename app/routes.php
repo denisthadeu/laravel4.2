@@ -10,7 +10,20 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
+// Session::forget('arrAlerta');
+if (Auth::check() && !Session::has('arrAlerta')){
+	// Session::put('key', 'value');
+	$arrAlerta = array();
+	$solicitacoes = Solicitarplano::with('user','user.centro')->where('status','=','0')->get();
+	$contador = 0;
+	foreach($solicitacoes as $solicitacao){
+		$arrAlerta[$solicitacao->user->centro_id]['contador'] = (isset($arrAlerta[$solicitacao->user->centro_id]['contador'])) ? $arrAlerta[$solicitacao->user->centro_id]['contador'] + 1 : 1;
+		$arrAlerta[$solicitacao->user->centro_id]['centro_nome'] = $solicitacao->user->centro->nome;
+		$contador++;
+	}
+	$arrAlerta['total'] = $contador;
+	Session::put('arrAlerta', $arrAlerta);
+}
 Route::get('/', function()
 {
 	// return View::make('hello');

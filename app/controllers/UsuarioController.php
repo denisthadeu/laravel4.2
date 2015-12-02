@@ -54,6 +54,9 @@ class UsuarioController extends BaseController {
 	public function postSolicitacaoCliente()
 	{
 		extract(Input::all());
+		
+		if(Session::has('arrAlerta'))
+			Session::forget('arrAlerta');
 
 		if(isset($solicitacoes) && !empty($solicitacoes)){
 			foreach ($solicitacoes as $id) {
