@@ -4,22 +4,33 @@ class MeusdadosController extends BaseController {
 
 	public function getIndex($id = null)
 	{
+
 		$menu = 3;
+
 		if(empty($id)){
 			$menu = 1;
 			$id = Auth::User()->id;
 		}
-
-		$user = User::find($id);
-		$centro =Centros::find($user->centro_id);
-		$centros = Centros::OrderBy('nome')->get();
-		$ruas = '';
-		if(!empty($user->centro_id)){
-			$ruas = Ruas::where('centro_id','=',$user->centro_id)->OrderBy('nome')->get();
+		//echo $id;exit;
+		if($id != 'novo') {
+			$user = User::find($id);
+			$centro =Centros::find($user->centro_id);
+			$centros = Centros::OrderBy('nome')->get();
+			$ruas = '';
+			if(!empty($user->centro_id)){
+				$ruas = Ruas::where('centro_id','=',$user->centro_id)->OrderBy('nome')->get();
+			}
+			$pacotes = Pacotes::where('centro_id','=',$user->centro_id)->OrderBy('nome')->get();
+		} else {
+			$menu = 1;
+			$centros = Centros::OrderBy('nome')->get();
+			$ruas = Ruas::OrderBy('nome')->get();
+			return View::make('meusdados.cadastro', compact('menu', 'centros', 'ruas'));
 		}
-		$pacotes = Pacotes::where('centro_id','=',$user->centro_id)->OrderBy('nome')->get();
+
 		$hoje = date('d/m/Y');
 		$hojeDB = date('Y-m-d');
+
 		return View::make('meusdados.index', compact('user','centros','centro','ruas','id','pacotes','hoje','hojeDB','menu'));
 	}
 
@@ -27,7 +38,14 @@ class MeusdadosController extends BaseController {
 	{
 		extract(Input::all());
 
-		$user = User::find($id);
+		if(!empty($id)) { 
+			$user = User::find($id);
+		} else {
+			$user = new User;
+			$status = 1;
+			$user->perfil = 2;
+		}
+
 		$user->nome = $nome;
 		$user->sobrenome = $sobrenome;
 		$user->email = $email;
@@ -48,7 +66,10 @@ class MeusdadosController extends BaseController {
 		$user->company_site = $site_company;
 		$user->company_telefone = $telefone_company;
 		$user->company_tags = $tags_company;
+		
 		$user->save();
+
+		$id = (!empty($id)) ? $id : $user->id;
 
 		return Redirect::to('meusdados/'.$id)->with('success', array(1 => 'Dados Atualizados!'));
 	}
