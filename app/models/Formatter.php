@@ -78,7 +78,7 @@
 	  }
 	  public static function getStatusSimNao($status)
 	  {
-	    if($status){
+	    if($status == 1){
 	    	return "Sim";
 	    } else {
 			return "Não";

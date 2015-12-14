@@ -71,14 +71,22 @@ class HomeController extends BaseController {
 							->where('user.status','=',1)
 							->where('user.perfil','=',2)
 							->where('user.centro_id','=',$id)
-							->where('user.data_vencimento','>=',"'$hoje'")
-							->groupBy('user.id')
-							->orderBy('ruas.nome', 'user.company_numero', 'user.company_name');
+							->where('user.data_vencimento','>=',"'$hoje'");
 			if(!empty(Input::get('search'))){
 				$estabelecimentos = $estabelecimentos->where('user.company_tags','like','%'.Input::get('search').'%');
 			}
 			if($category){
 				$estabelecimentos = $estabelecimentos->where('user_categorias.categories_id','=',$category);
+			}
+			if(!empty(Input::get('search'))){
+				$estabelecimentos = $estabelecimentos->orwhere('user.company_name','like','%'.Input::get('search').'%')
+							->where('user.status','=',1)
+							->where('user.perfil','=',2)
+							->where('user.centro_id','=',$id)
+							->where('user.data_vencimento','>=',"'$hoje'");
+							if($category){
+								$estabelecimentos = $estabelecimentos->where('user_categorias.categories_id','=',$category);
+							}
 			}
 			if(empty($imagem)){
 				$category = Categories::where('nome','like','%'.Input::get('search').'%' )->first();
@@ -96,12 +104,13 @@ class HomeController extends BaseController {
 			}
 
 
+			$estabelecimentos = $estabelecimentos->groupBy('user.id');
 			$topEstabelecimentos = $estabelecimentos->with(array('pacote' => function($query){
                 $query->orderBy('valor','desc');
             }))->take($parametroLimite);
 
             $topEstabelecimentos = $topEstabelecimentos->get();
-			$estabelecimentos = $estabelecimentos->get();
+			$estabelecimentos = $estabelecimentos->orderBy('ruas.nome', 'user.company_numero', 'user.company_name')->get();
 			// $queries = DB::getQueryLog();
 			// $last_query = end($queries);
 			// echo '<pre>';print_r($last_query) ;exit;

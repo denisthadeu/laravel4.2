@@ -56,7 +56,7 @@ $auxRua='';
                                                 <font color="black"><strong>{{ $topEstabelecimento->rua }}
                                                 {{ isset($topEstabelecimento->company_numero) ? ', nº ' . $topEstabelecimento->company_numero : '' }}
                                                 {{ isset($topEstabelecimento->company_loja) ? ', lj ' . $topEstabelecimento->company_loja : '' }}
-                                                {{ isset($topEstabelecimento->company_andar) ? ', ' . $topEstabelecimento->company_andar. 'º Andar' : '' }}</strong></font>  <br/>
+                                                {{ isset($topEstabelecimento->company_andar) && !empty($topEstabelecimento->company_andar) ? ', ' . $topEstabelecimento->company_andar. 'º Andar' : '' }}</strong></font>  <br/>
                                             @endforeach
                                         </div>
                                         <div class="col-md-8 col-xs-12 visible-print-block">
@@ -65,7 +65,7 @@ $auxRua='';
                                                 <font color="black"><strong>{{ $topEstabelecimento->rua }}
                                                 {{ isset($topEstabelecimento->company_numero) ? ', nº ' . $topEstabelecimento->company_numero : '' }}
                                                 {{ isset($topEstabelecimento->company_loja) ? ', lj ' . $topEstabelecimento->company_loja : '' }}
-                                                {{ isset($topEstabelecimento->company_andar) ? ', ' . $topEstabelecimento->company_andar. 'º Andar' : '' }}</strong></font>  <br/>
+                                                {{ isset($topEstabelecimento->company_andar) && !empty($topEstabelecimento->company_andar) ? ', ' . $topEstabelecimento->company_andar. 'º Andar' : '' }}</strong></font>  <br/>
                                             @endforeach
                                         </div>
                                     @endif
@@ -81,7 +81,7 @@ $auxRua='';
                                                     {{ $estabelecimento->rua }}
                                                     {{ isset($estabelecimento->company_numero) ? ', nº ' . $estabelecimento->company_numero : '' }}
                                                     {{ isset($estabelecimento->company_loja) ? ', lj ' . $estabelecimento->company_loja : '' }}
-                                                    {{ isset($estabelecimento->company_andar) ? ', ' . $estabelecimento->company_andar. 'º Andar' : '' }}
+                                                    {{ isset($estabelecimento->company_andar) && !empty($estabelecimento->company_andar) ? ', ' . $estabelecimento->company_andar. 'º Andar' : '' }}
                                                 </strong></p>
                                                 <hr style="margin: 0;">
                                             </div>

@@ -51,7 +51,7 @@ class UsuarioController extends BaseController {
 		return View::make('adm.usuario.solicitacaocliente', compact('solicitacoes','menu','centro'));
 	}
 
-	public function postSolicitacaoCliente()
+	public function postSolicitacaoCliente($id_centro)
 	{
 		extract(Input::all());
 		
@@ -65,9 +65,9 @@ class UsuarioController extends BaseController {
 				$Solicitarplano->updated_at = date('Y-m-d H:i:s');
 				$Solicitarplano->save();
 			}
-			return Redirect::to('usuario/solicitacao-cliente')->with('success', array(1 => 'Solicitações atualizadas!'));
+			return Redirect::to('usuario/solicitacao-cliente/'.$id_centro)->with('success', array(1 => 'Solicitações atualizadas!'));
 		} else {
-			return Redirect::to('usuario/solicitacao-cliente')->with('danger', array(1 => 'Você deve selecionar ao menos uma solicitação para atualizar!'));
+			return Redirect::to('usuario/solicitacao-cliente/'.$id_centro)->with('danger', array(1 => 'Você deve selecionar ao menos uma solicitação para atualizar!'));
 		}
 	}
 
