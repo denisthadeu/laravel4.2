@@ -73,12 +73,9 @@
                                     <strong><h1  style="color:white;">Ponto da Informação</h1></strong>
                                 </div>
                                 <form action="" method="get" id="form-search">
-                                    <div class="col-md-4" style="padding-top:1.4%;">
-                                        <input type="text" name="search" id="search" class="form-control" value="{{Input::get('search')}}" placeholder="O que você está procurando?" />
-                                    </div>
-                                    <div class="col-md-4" style="padding-top:1.4%;">
+                                    <div class="col-md-9" style="padding-top:1.4%;">
                                         <div class="input-group">
-                                            <input type="text" name="company" id="company" class="form-control" value="{{Input::get('company')}}" placeholder="Qual empresa você está procurando?" />
+                                            <input type="text" name="search" id="search" class="form-control" value="{{Input::get('search')}}" placeholder="O que você está procurando?" />
                                             <span class="input-group-addon" style="cursor:pointer" id="span-search"><span class="fa fa-search"></span></span>
                                         </div>
                                     </div>
