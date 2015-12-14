@@ -62,7 +62,7 @@ class IdController extends \BaseController
 	       $user = new User;
 
 	       $user->nome 			= $nome;
-	       $user->sobrenome		= $sobrenome;
+	       $user->celular		= $telefone;
 	       $user->email 		= $email;
 	       $user->password 		= Hash::make($password);
 	       $user->perfil 		= 2;

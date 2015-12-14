@@ -78,15 +78,8 @@ class HomeController extends BaseController {
 			if($category){
 				$estabelecimentos = $estabelecimentos->where('user_categorias.categories_id','=',$category);
 			}
-			if(!empty(Input::get('search'))){
-				$estabelecimentos = $estabelecimentos->orwhere('user.company_name','like','%'.Input::get('search').'%')
-							->where('user.status','=',1)
-							->where('user.perfil','=',2)
-							->where('user.centro_id','=',$id)
-							->where('user.data_vencimento','>=',"'$hoje'");
-							if($category){
-								$estabelecimentos = $estabelecimentos->where('user_categorias.categories_id','=',$category);
-							}
+			if(!empty(Input::get('company'))){
+				$estabelecimentos = $estabelecimentos->where('user.company_name','like','%'.Input::get('company').'%');
 			}
 			if(empty($imagem)){
 				$category = Categories::where('nome','like','%'.Input::get('search').'%' )->first();
@@ -111,9 +104,6 @@ class HomeController extends BaseController {
 
             $topEstabelecimentos = $topEstabelecimentos->get();
 			$estabelecimentos = $estabelecimentos->orderBy('ruas.nome', 'user.company_numero', 'user.company_name')->get();
-			// $queries = DB::getQueryLog();
-			// $last_query = end($queries);
-			// echo '<pre>';print_r($last_query) ;exit;
 			
 		}
 		

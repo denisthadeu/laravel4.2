@@ -14,12 +14,12 @@
         </div>
         <div class="form-group">
             <div class="col-md-12">
-                <input type="text" name="sobrenome" class="form-control" placeholder="Sobrenome"/>
+                <input type="text" name="email" class="form-control" placeholder="E-mail"/>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-12">
-                <input type="text" name="email" class="form-control" placeholder="E-mail"/>
+                <input type="text" name="telefone" class="form-control telefone" placeholder="Telefone"/>
             </div>
         </div>
         <div class="form-group">

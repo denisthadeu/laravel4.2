@@ -59,35 +59,32 @@
                     @foreach($usuarios AS $usuario)
                         <tr>
                             <td>
-                                @if($usuario->data_vencimento > date( "Y-m-d H:i:s" ) && $usuario->status == 1)
-                                    <span class="text-success fa fa-circle"></span>
-                                @else
-                                    <span class="text-danger fa fa-circle"></span>
-                                @endif
+                                <a href="{{URL::to("meusdados/$usuario->id")}}">
+                                    @if($usuario->data_vencimento > date( "Y-m-d H:i:s" ) && $usuario->status == 1)
+                                        <span class="text-success fa fa-circle"></span>
+                                    @else
+                                        <span class="text-danger fa fa-circle"></span>
+                                    @endif
+                                </a>
                             </td>
-                            <td>{{$usuario->nome}}</td>
-                            <td>{{$usuario->sobrenome}}</td>
-                            <td>{{$usuario->company_name}}</td>
-                            <td>{{$usuario->rua}}</td>
-                            <td>{{Formatter::getDataHoraFormatada($usuario->created_at)}}</td>
+                            <td><a href="{{URL::to("meusdados/$usuario->id")}}">{{$usuario->nome}}</a></td>
+                            <td><a href="{{URL::to("meusdados/$usuario->id")}}">{{$usuario->sobrenome}}</a></td>
+                            <td><a href="{{URL::to("meusdados/$usuario->id")}}">{{$usuario->company_name}}</a></td>
+                            <td><a href="{{URL::to("meusdados/$usuario->id")}}">{{$usuario->rua}}</a></td>
+                            <td><a href="{{URL::to("meusdados/$usuario->id")}}">{{Formatter::getDataHoraFormatada($usuario->created_at)}}</a></td>
                             <td>
-                                @if(!empty($usuario->pacote_id))
-                                    {{$usuario->pacote->nome}}
-                                @endif
+                                <a href="{{URL::to("meusdados/$usuario->id")}}">
+                                    @if(!empty($usuario->pacote_id))
+                                        {{$usuario->pacote->nome}}
+                                    @endif
+                                </a>
                             </td>
-                            <td>{{Formatter::dateDbToString($usuario->data_vencimento)}}</td>
-                            <td>{{Formatter::getStatusSimNao($usuario->status)}}</td>
+                            <td><a href="{{URL::to("meusdados/$usuario->id")}}">{{Formatter::dateDbToString($usuario->data_vencimento)}}</a></td>
+                            <td><a href="{{URL::to("meusdados/$usuario->id")}}">{{Formatter::getStatusSimNao($usuario->status)}}</a></td>
                             <td>
                                 <a href="{{URL::to("meusdados/$usuario->id")}}">
                                     <button type="button" id="create-category" class="btn btn-warning btn-lg active"><span class="fa fa-pencil"></span></button>
                                 </a>
-                                @if($usuario->perfil == 2)
-                                <!--
-                                    <a href="{{URL::to("usuario/categories-user/$usuario->id")}}">
-                                        <button type="button" id="associate-category" class="btn btn-info btn-lg active"><span class="fa fa-list"></span></button>
-                                    </a>
-                                -->
-                                @endif
                             </td>
                         </tr>
                     @endforeach

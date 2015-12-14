@@ -62,29 +62,33 @@
             
             <!-- page content -->
             <div class="page-content">
-                
-                <!-- page content wrapper -->
-                <div class="page-content-wrap bg-light" style="background-color:#FFB90F; border:0px;">
-                    <!-- page content holder -->
-                    <div class="page-content-holder no-padding">
-                        <!-- page title -->
-                        <div class="page-title">
-                            <div class="col-md-3">
-                                <strong><h1  style="color:white;">Ponto da Informação</h1></strong>
-                            </div>
-                            <form action="" method="get" id="form-search">
-                                <div class="col-md-9" style="padding-top:1.4%;">
-                                    <div class="input-group">
-                                        <input type="text" name="search" id="search" class="form-control" value="{{Input::get('search')}}" placeholder="O que você está procurando?" />
-                                        <span class="input-group-addon" style="cursor:pointer" id="span-search"><span class="fa fa-search"></span></span>
-                                    </div>
+                @if(isset($id))
+                    <!-- page content wrapper -->
+                    <div class="page-content-wrap bg-light" style="background-color:#FFB90F; border:0px;">
+                        <!-- page content holder -->
+                        <div class="page-content-holder no-padding">
+                            <!-- page title -->
+                            <div class="page-title">
+                                <div class="col-md-3">
+                                    <strong><h1  style="color:white;">Ponto da Informação</h1></strong>
                                 </div>
-                            </form>
+                                <form action="" method="get" id="form-search">
+                                    <div class="col-md-4" style="padding-top:1.4%;">
+                                        <input type="text" name="search" id="search" class="form-control" value="{{Input::get('search')}}" placeholder="O que você está procurando?" />
+                                    </div>
+                                    <div class="col-md-4" style="padding-top:1.4%;">
+                                        <div class="input-group">
+                                            <input type="text" name="company" id="company" class="form-control" value="{{Input::get('company')}}" placeholder="Qual empresa você está procurando?" />
+                                            <span class="input-group-addon" style="cursor:pointer" id="span-search"><span class="fa fa-search"></span></span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- ./page title -->
                         </div>
-                        <!-- ./page title -->
+                        <!-- ./page content holder -->
                     </div>
-                    <!-- ./page content holder -->
-                </div>
+                @endif
                 <!-- ./page content wrapper -->
                 <!-- page content wrapper -->
                 <div class="page-content-wrap" style="background-color:#FFB90F; border: 0px;">                    

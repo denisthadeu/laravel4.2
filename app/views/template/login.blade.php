@@ -120,3 +120,12 @@
         
     </body>
 </html>
+<script type="text/javascript" src="/js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/js/plugins/bootstrap/bootstrap.min.js"></script> 
+<script type="text/javascript" src="/js/maskedinput.min.js"></script> 
+<script type="text/javascript">
+$(document).ready(function() {
+    $(".telefone").mask("(99) 9999-9999?9");
+});
+</script>
