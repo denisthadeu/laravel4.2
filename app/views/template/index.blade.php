@@ -33,12 +33,14 @@
                             <li><a href="{{URL::to("meusdados/novo")}}" style="color:white;border:0px;"><span class="fa fa-plus-circle"></span> Cadastrar Loja</a></li>
                         @elseif($menu == 2)
                         <li class="xn-title"></li>
+                        @if(count($centro) > 0)
                         <li><a class="active" href="javascript:void(0)" style="border:0px; background-color: #333;"> <span class="xn-text">{{$centro->nome}}</span></a></li>
-                        <li><a href="{{URL::to("/")}}" style="border:0px;"><span class="fa fa-desktop"></span> <span class="xn-text">Página Inicial</span></a></li>
-                        <li><a href="{{URL::to("centro")}}" style="color:white;border:0px;"><span class="fa fa-road"></span> Centros</a></li>
                         <li><a href="{{URL::to("usuario/solicitacao-cliente")}}/{{{$centro->id}}}" style="color:white;border:0px;"><span class="fa fa-user"></span> Solicitação de clientes</a></li>
                         <li><a href="{{URL::to("usuario/index")}}/{{{$centro->id}}}" style="color:white;border:0px;"><span class="fa fa-group"></span> Clientes</a></li>
                         <li><a href="{{URL::to("centro/cadastro-geral")}}/{{{$centro->id}}}" style="color:white;border:0px;"><span class="fa fa-bars"></span> Cadastro Geral</a></li>
+                        @endif
+                        <li><a href="{{URL::to("/")}}" style="border:0px;"><span class="fa fa-desktop"></span> <span class="xn-text">Página Inicial</span></a></li>
+                        <li><a href="{{URL::to("centro")}}" style="color:white;border:0px;"><span class="fa fa-road"></span> Centros</a></li>
                         <li><a href="{{URL::to("parametros")}}" style="color:white;border:0px;"><span class="fa fa-gears"></span> Parametros</a></li>
                         <li><a href="{{URL::to("meusdados/novo")}}" style="color:white;border:0px;"><span class="fa fa-plus-circle"></span> Cadastrar Loja</a></li>
                         @elseif($menu == 3)
@@ -75,6 +77,7 @@
                     <li class="xn-icon-button pull-left">
                         <a href="#"><span class="fa fa-comments"></span></a>
                         <?php $arrAlerts = Session::get('arrAlerta'); ?>
+                        <?php //echo '<pre>'; print_r($arrAlerts); echo '</pre>'; exit; ?>
                         <div class="informer informer-danger">{{ $arrAlerts['total'] }}</div>
                         <div class="panel panel-primary animated zoomIn xn-drop-right xn-panel-dragging">
                             <div class="panel-heading">
@@ -85,11 +88,18 @@
                             </div>
                             <?php unset($arrAlerts['total']); ?>
                             <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
-                                @foreach($arrAlerts as $key => $alerta)
+                                @foreach($arrAlerts['s'] as $key => $alerta)
                                     <a href="{{URL::to("usuario/solicitacao-cliente/$key")}}" class="list-group-item">
                                         <div class="list-group-status status-online"></div>
                                         <span class="contacts-title">{{$alerta['centro_nome']}}</span>
                                         <p>Você tem {{$alerta['contador']}} solicitação(ões) nova(s) </p>
+                                    </a>
+                                @endforeach
+                                @foreach($arrAlerts['c'] as $key => $alerta)
+                                    <a href="{{URL::to("meusdados/$key")}}" class="list-group-item">
+                                        <div class="list-group-status status-online"></div>
+                                        <span class="contacts-title">{{$alerta['nome']}}</span>
+                                        <p>Você tem {{$alerta['contador']}} cliente(s) novo(s) </p>
                                     </a>
                                 @endforeach
                             </div>     

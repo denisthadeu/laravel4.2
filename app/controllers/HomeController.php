@@ -160,4 +160,20 @@ class HomeController extends BaseController {
 
 	    return Redirect::to('home/fale-conosco?success=1');
 	}
+
+	public function postAutocomplete()
+	{
+		extract(Input::All());
+		$array = array();
+		$tags = User::select('company_name', 'company_tags')->where('company_name', 'LIKE', "%$search%")->orWhere('company_tags', 'LIKE', "%$search%")->get();
+		foreach ($tags as $key => $value) {
+			if(!in_array($value['company_name'], $array))
+				$array[] = $value['company_name'];
+			if(!in_array($value['company_tags'], $array)){
+				$array[] = $value['company_tags'];
+			}
+				
+		}
+		return json_encode($array);
+	}
 }

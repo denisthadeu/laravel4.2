@@ -10,18 +10,28 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-// Session::forget('arrAlerta');
+
 if (Auth::check() && !Session::has('arrAlerta')){
 	// Session::put('key', 'value');
-	$arrAlerta = array();
+	
+	$arrAlerta = array('s' => array(),'c' => array());
 	$solicitacoes = Solicitarplano::with('user','user.centro')->where('status','=','0')->get();
 	$contador = 0;
 	foreach($solicitacoes as $solicitacao){
-		$arrAlerta[$solicitacao->user->centro_id]['contador'] = (isset($arrAlerta[$solicitacao->user->centro_id]['contador'])) ? $arrAlerta[$solicitacao->user->centro_id]['contador'] + 1 : 1;
-		$arrAlerta[$solicitacao->user->centro_id]['centro_nome'] = $solicitacao->user->centro->nome;
+		$arrAlerta['s'][$solicitacao->user->centro_id]['contador'] = (isset($arrAlerta['s'][$solicitacao->user->centro_id]['contador'])) ? $arrAlerta['s'][$solicitacao->user->centro_id]['contador'] + 1 : 1;
+		$arrAlerta['s'][$solicitacao->user->centro_id]['centro_nome'] = $solicitacao->user->centro->nome;
 		$contador++;
 	}
+	$clientes = User::whereNull('centro_id')->where('status','=','1')->get();
+	// var_dump($clientes);
+	foreach($clientes as $cliente){
+		$arrAlerta['c'][$cliente->id]['contador'] = (isset($arrAlerta['c'][$cliente->id]['contador'])) ? $arrAlerta['c'][$cliente->id]['contador'] + 1 : 1;
+		$arrAlerta['c'][$cliente->id]['nome'] = $cliente->company_name;
+		$contador++;
+	}
+
 	$arrAlerta['total'] = $contador;
+	// var_dump($arrAlerta);exit;
 	Session::put('arrAlerta', $arrAlerta);
 }
 Route::get('/', function()

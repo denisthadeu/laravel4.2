@@ -9,6 +9,7 @@
         <!-- END META SECTION -->
         
         <link rel="stylesheet" type="text/css" href="/front-end/css/styles.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="/front-end/css/jquery-ui.css" media="all" />
         <link rel="stylesheet" type="text/css" href="/front-end/css/jcarousel.basic.css" media="all" />
         <style>
         * { margin:0; padding:0; }
@@ -145,6 +146,7 @@
         
         <!-- page scripts -->
         <script type="text/javascript" src="/front-end/js/plugins/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="/front-end/js/plugins/jquery/jquery-ui.js"></script>
         <script type="text/javascript" src="/front-end/js/plugins/bootstrap/bootstrap.min.js"></script>
         
         <script type="text/javascript" src="/front-end/js/plugins/mixitup/jquery.mixitup.js"></script>
@@ -163,6 +165,15 @@
                 $("body").on('click', '#btn-print', function(){
                     console.log("$this");
                     $("#div-print").printElement();
+                });
+
+                $('body').on('keyup', "#search", function () {
+                    var $this = $(this);
+                    $.post('{{URL::to("home/autocomplete")}}', {search: $this.val()}, function (data) {
+                        $this.autocomplete({
+                            source: data
+                        })
+                    }, 'json');
                 });
             });
         </script>

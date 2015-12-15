@@ -106,6 +106,7 @@ class IdController extends \BaseController
 	public function getSignOut()
 	{
 		Auth::logout();
+		Session::forget('arrAlerta');
 		return Redirect::to('id/sign-in')->with('success', array(1 => 'Você se deslogou do sistema.'));
 	}
 

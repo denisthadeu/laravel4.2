@@ -70,7 +70,7 @@ class MeusdadosController extends BaseController {
 		$user->save();
 
 		$id = (!empty($id)) ? $id : $user->id;
-
+		Session::forget('arrAlerta');
 		return Redirect::to('meusdados/'.$id)->with('success', array(1 => 'Dados Atualizados!'));
 	}
 
