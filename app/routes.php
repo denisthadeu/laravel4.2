@@ -22,7 +22,7 @@ if (Auth::check() && !Session::has('arrAlerta')){
 		$arrAlerta['s'][$solicitacao->user->centro_id]['centro_nome'] = $solicitacao->user->centro->nome;
 		$contador++;
 	}
-	$clientes = User::whereNull('centro_id')->where('status','=','1')->get();
+	$clientes = User::whereNull('centro_id')->where('status','=','1')->where('created_at','like', '%'.date('Y-m-d').'%')->get();
 	// var_dump($clientes);
 	foreach($clientes as $cliente){
 		$arrAlerta['c'][$cliente->id]['contador'] = (isset($arrAlerta['c'][$cliente->id]['contador'])) ? $arrAlerta['c'][$cliente->id]['contador'] + 1 : 1;

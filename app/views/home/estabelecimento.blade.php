@@ -41,7 +41,7 @@ $auxRua='';
                                     <img style="width: 150px; height: 150px;" src="/{{ (!empty($imagem)) ? $imagem->caminho_completo : 'uploads/categorias/sem_foto.gif' }}">
                                 </div>
                                 <div class="col-xs-12 text-center visible-print-block">
-                                    <legend>www.PONTOdaINFORNACAO.com.br</legend><br><br>
+                                    <legend>www.pontodainfornacao.com.br</legend><br><br>
                                 </div>
                                 <div class="col-md-8 col-xs-12">
                                     @if(INPUT::has('search'))

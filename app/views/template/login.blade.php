@@ -16,8 +16,8 @@
         <link rel="stylesheet" type="text/css" id="theme" href="/front-end/css/styles.css"/>
         <!-- EOF CSS INCLUDE -->                                    
     </head>
-    <body>
-        <div class="login-container">
+    <body style="background-color:#FFB90F; ">
+        <div class="login-container page-container">
             <div class="login-container-box">
                 @if (Session::get('success'))
                 <?php
@@ -109,15 +109,30 @@
                      <div class="pull-left btn" style="padding-left: 0; cursor: default;">
                         &copy; 2015 Ponto da Informação - All Rights Reserved
                     </div>
-                    <div class="pull-right">
+                    <!-- <div class="pull-right">
                         <a class="btn btn-link" href="{{URL::to("home/quem-somos")}}">Sobre a empresa</a> |
                         <a class="btn btn-link" href="{{URL::to("home/termos-uso")}}">Termos de uso</a> |
                         <a class="btn btn-link" href="{{URL::to("home/fale-conosco")}}">Contato</a>
+                    </div> -->
+                </div>
+            </div>
+            <div class="page-footer" style="border:0px">
+                 <!-- page footer wrap -->
+                <div class="page-footer-wrap bg-darken-gray">
+                    <!-- page footer holder -->
+                    <div class="page-footer-holder">
+                        <div class="social-links" style="width: 100%!important;">
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("home/home")}}">Página Inicial</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("home/quem-somos")}}">Quem Somos</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("home/termos-uso")}}">Termos de uso</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("id/sign-in")}}">Anuncie sua empresa</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("home/fale-conosco")}}">Fale Conosco</a>
+                        </div>
                     </div>
+                    <!-- ./page footer holder -->
                 </div>
             </div>
         </div>
-        
     </body>
 </html>
 <script type="text/javascript" src="/js/plugins/jquery/jquery.min.js"></script>

@@ -26,9 +26,9 @@
                 <div class="page-header-holder" >
                     
                     <!-- page logo -->
-                    <div class="logo">
-                        <a href="{{URL::to("home/home")}}">Ponto da Informação</a>
-                    </div>
+                    <!-- <div class="logo">
+                        <a href="{-- URL::to("home/home") --}">Ponto da Informação</a>
+                    </div> -->
                     <!-- ./page logo -->
 
                     <!-- nav mobile bars -->
@@ -41,14 +41,10 @@
                     <ul class="navigation">
                         <li>
                             <a href="{{URL::to("id/sign-up")}}">
-                                <span style="color:white;" class="visible-lg text-info">sou lojista Quero me cadastrar</span>
+                                <span style="color:white;" class="visible-lg text-info">
+                                    <span style="background-color: black;color: white;">&nbsp;&nbsp;<span style="color: #FFB90F">sou lojista,</span> Quero me cadastrar&nbsp;&nbsp;</span>
+                                </span>
                                 <span class="visible-md visible-sm visible-xs">sou lojista Quero me cadastrar</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{URL::to("id/sign-in")}}">
-                                <span style="color:white;" class="visible-lg">Login</span>
-                                <span class="visible-md visible-sm visible-xs">Login</span>
                             </a>
                         </li>
                     </ul>
@@ -70,11 +66,9 @@
                         <div class="page-content-holder no-padding">
                             <!-- page title -->
                             <div class="page-title">
-                                <div class="col-md-3">
-                                    <strong><h1  style="color:white;">Ponto da Informação</h1></strong>
-                                </div>
+                                <div class="col-md-2"></div>
                                 <form action="" method="get" id="form-search">
-                                    <div class="col-md-9" style="padding-top:1.4%;">
+                                    <div class="col-md-10" style="padding-top:1.4%;">
                                         <div class="input-group">
                                             <input type="text" autocomplete="off" name="search" id="search" class="form-control" value="{{Input::get('search')}}" placeholder="O que você está procurando?" />
                                             <span class="input-group-addon" style="cursor:pointer" id="span-search"><span class="fa fa-search"></span></span>
@@ -115,9 +109,11 @@
                     <!-- page footer holder -->
                     <div class="page-footer-holder">
                         <div class="social-links" style="width: 100%!important;">
-                            <a style="width: auto!important; padding: 0 10px 0 10px;" href="{{URL::to("home/quem-somos")}}">Quem Somos</a>
-                            <a style="width: auto!important; padding: 0 10px 0 10px;" href="{{URL::to("home/termos-uso")}}">Termos de uso</a>
-                            <a style="width: auto!important; padding: 0 10px 0 10px;" href="{{URL::to("home/fale-conosco")}}">Fale Conosco</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("home/home")}}">Página Inicial</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("home/quem-somos")}}">Quem Somos</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("home/termos-uso")}}">Termos de uso</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("id/sign-in")}}">Anuncie sua empresa</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("home/fale-conosco")}}">Fale Conosco</a>
                         </div>
                         
                         <!-- copyright -->
