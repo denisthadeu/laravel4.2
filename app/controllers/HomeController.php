@@ -58,6 +58,7 @@ class HomeController extends BaseController {
 	{
 		$hoje = date('Y-m-d');
 		$categorias = Categories::where('centro_id','=',$id)/*->where('status','=',1)*/->whereNull('deleted_at')->orderBy('nome')->get();
+		$centro = Centros::find($id);
 
 		$imagem = null;
 		$categorySel = $topEstabelecimentos = $estabelecimentos = null;
@@ -114,7 +115,7 @@ class HomeController extends BaseController {
 			
 		}
 		
-		return View::make('home.estabelecimento',compact('id','categorias','estabelecimentos','categorySel', 'imagem','topEstabelecimentos'));
+		return View::make('home.estabelecimento',compact('id','categorias','estabelecimentos','categorySel', 'imagem','topEstabelecimentos','centro'));
 	}
 
 	public function getProduto($id)

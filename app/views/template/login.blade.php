@@ -14,7 +14,12 @@
         <link rel="stylesheet" type="text/css" id="theme" href="/css/theme-default.css"/>
         <link rel="stylesheet" type="text/css" id="theme" href="/css/bootstrap/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" id="theme" href="/front-end/css/styles.css"/>
-        <!-- EOF CSS INCLUDE -->                                    
+        <!-- EOF CSS INCLUDE -->
+        <style type="text/css">
+        .logo {
+            height: 61px;
+        }
+        </style>                            
     </head>
     <body style="background-color:#FFB90F; ">
         <div class="login-container page-container">
@@ -99,7 +104,7 @@
                 @endif
                 <div class="row" style="margin-bottom: 20px!important;">
                     <a href="{{URL::to("home/home")}}">
-                        <div class="col-md-12" style="font-size: 1px; color: #FFF; background: url('../img/logo.png') left top no-repeat; width: 220px; height: 50px; float: left; display: block;"></div>
+                        <div class="col-md-12" style="font-size: 1px; color: #FFF; background: url('../img/logo.png') left top no-repeat; width: 220px; height: 61px; float: left; display: block;"></div>
                     </a>
                 </div>
                 @section('content')

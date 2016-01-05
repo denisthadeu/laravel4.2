@@ -15,7 +15,7 @@ $ruaSelecionada = Input::get('rua');
     text-indent: 99999px;
     background: url("../img/logo.png") left top no-repeat;
     width: 220px;
-    height: 50px;
+    height: 61px;
     float: left;
     display: block;
     /*background-size: 100% 100%;

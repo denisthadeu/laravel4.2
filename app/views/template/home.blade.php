@@ -15,6 +15,33 @@
         * { margin:0; padding:0; }
         html, body {height:100%;}
         </style>
+        <style type="text/css">
+        .logo {
+            float: left;
+            padding: 15px 0px;
+            font-size: 1px;
+            color: #FFF;
+            text-indent: 99999px;
+            background: url("../../img/logo.png") left top no-repeat;
+            width: 220px;
+            height: 61px;
+            float: left;
+            display: block;
+            /*background-size: 100% 100%;
+            background-repeat: no-repeat;*/
+        }
+        .fontDetalhada {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 19px;
+            font-style: oblique;
+            font-variant: normal;
+            font-weight: 400;
+            line-height: 20px;
+            float: right;
+            color: black;
+            padding-right: 20%
+        }
+        </style>
     </head>
     <body style="background-color:#FFB90F; height:100%; min-height: 100%;">
         <!-- page container -->
@@ -63,7 +90,16 @@
                     <!-- page content wrapper -->
                     <div class="page-content-wrap bg-light" style="background-color:#FFB90F; border:0px;">
                         <!-- page content holder -->
-                        <div class="page-content-holder no-padding">
+                            <div class="page-content-holder no-padding">
+                            <div class="col-xs-12 push-down-10">
+                                <div class="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6">
+                                    <a href="{{ URL::to("home/home") }}">
+                                        <div class="logo col-md-offset-3 col-lg-offset-3"></div>
+                                    </a>
+                                    <br/><br/><br/><br/>    
+                                    <span class="fontDetalhada" >{{$centro->nome}}</span>
+                                </div>
+                            </div>
                             <!-- page title -->
                             <div class="page-title">
                                 <div class="col-md-2"></div>

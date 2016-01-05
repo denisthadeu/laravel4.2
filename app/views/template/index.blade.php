@@ -23,7 +23,7 @@
             <div class="page-sidebar">
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation" style="background-color:#FFB90F;">
-                    <li class="xn-logo" style="background-color:#e34724;"><a href="{{URL::to("/")}}" style="background-color:#FFB90F;">Ponto da Informação</a></li>
+                    <li class="xn-logo" style="background-color:#e34724;"><a href="{{URL::to("/")}}" style="background-color:#FFB90F;height:61px;">Ponto da Informação</a></li>
                     <li class="xn-title" style="color:white;border-color:#FFB90F;">Menu</li>
                     @if(Auth::User()->perfil == 1)
                         @if($menu == 1)
