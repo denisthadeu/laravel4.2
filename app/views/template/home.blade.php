@@ -141,7 +141,7 @@
                 <!-- ./page footer wrap -->
                 
                 <!-- page footer wrap -->
-                <div class="page-footer-wrap bg-darken-gray">
+                <div class="page-footer-wrap bg-darken-gray" style="background-color:#ff9900">
                     <!-- page footer holder -->
                     <div class="page-footer-holder">
                         <div class="social-links" style="width: 100%!important;">
@@ -150,6 +150,7 @@
                             <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("home/termos-uso")}}">Termos de uso</a>
                             <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("id/sign-in")}}">Anuncie sua empresa</a>
                             <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("home/fale-conosco")}}">Fale Conosco</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;font-size:11px;" href="http://www.americamktdesign.com/">Copyright &copy; 2016 por America Marketing e Design</a>
                         </div>
                         
                         <!-- copyright -->

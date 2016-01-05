@@ -112,7 +112,7 @@
                 @show
                 <div class="login-container-box-footer">
                      <div class="pull-left btn" style="padding-left: 0; cursor: default;">
-                        &copy; 2015 Ponto da Informação - All Rights Reserved
+                        Copyright &copy; 2016 por <a href="http://www.americamktdesign.com/">America Marketing e Design</a>
                     </div>
                     <!-- <div class="pull-right">
                         <a class="btn btn-link" href="{{URL::to("home/quem-somos")}}">Sobre a empresa</a> |
@@ -123,7 +123,7 @@
             </div>
             <div class="page-footer" style="border:0px">
                  <!-- page footer wrap -->
-                <div class="page-footer-wrap bg-darken-gray">
+                <div class="page-footer-wrap bg-darken-gray" style="background-color:#ff9900">
                     <!-- page footer holder -->
                     <div class="page-footer-holder">
                         <div class="social-links" style="width: 100%!important;">
