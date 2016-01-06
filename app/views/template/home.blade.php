@@ -104,10 +104,13 @@
                             <div class="page-title">
                                 <div class="col-md-2"></div>
                                 <form action="" method="get" id="form-search">
-                                    <div class="col-md-10" style="padding-top:1.4%;">
+                                    <div class="col-md-8" style="padding-top:1.4%;">
                                         <div class="input-group">
                                             <input type="text" autocomplete="off" name="search" id="search" class="form-control" value="{{Input::get('search')}}" placeholder="O que você está procurando?" />
-                                            <span class="input-group-addon" style="cursor:pointer" id="span-search"><span class="fa fa-search"></span></span>
+                                            <span class="input-group-addon" style="cursor:pointer; border: none; background-color: #FFB90F;" id="span-search">
+                                                <!-- <span class="fa fa-search"></span> -->
+                                                <img src="../../img/ok.png" style="margin-top: -15px; margin-left: -20px; position: relative; width: 50px; z-index: 10;">
+                                            </span>
                                         </div>
                                     </div>
                                 </form>
