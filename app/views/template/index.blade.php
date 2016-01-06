@@ -277,6 +277,16 @@
                     );
                     $('#deletar-imagem').prop('href','{{URL::to("categorias/delete-upload")}}'+'/'+$(this).data('id'));
                 });
+                $("body").on('click','.deleteAttribute',function(){
+                    if (confirm("Você tem certeza que quer deletar "+$(this).data("string")+"?")) {
+                        var url = $(this).data("action");
+                        var id = $(this).data("id");
+                        var centro = $(this).data("centro");
+                        // alert(url+"/"+id);
+                        window.location.href = url+"/"+id+"/"+centro;
+                    }
+                    return false;
+                });
             });
         </script>
         <!-- END TEMPLATE -->

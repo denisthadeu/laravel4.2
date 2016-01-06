@@ -1,6 +1,7 @@
 @extends('template.index')
 
 @section('content')
+
 <!-- START BREADCRUMB -->
 <ul class="breadcrumb">
     <li><a href="#">Painel De Controle</a></li>
@@ -26,7 +27,7 @@
                     <table class="table table-hover">
                         @foreach($ruas as $rua)
                         <tr>
-                            <td>{{$rua->nome}}</td>
+                            <td><span class="glyphicon glyphicon-remove text-danger deleteAttribute" data-id="{{$rua->id}}" data-centro="{{$centro->id}}" data-string="{{$rua->nome}}" data-action="{{ URL::to("delete/rua") }}" style="cursor:pointer"></span> {{$rua->nome}}</td>
                         </tr>
                         @endforeach
                     </table>
@@ -44,7 +45,7 @@
                     <table class="table table-hover">
                         @foreach($pacotes as $pacote)
                         <tr>
-                            <td>{{$pacote->nome}}</td>
+                            <td><span class="glyphicon glyphicon-remove text-danger deleteAttribute" data-id="{{$pacote->id}}" data-centro="{{$centro->id}}" data-string="{{$pacote->nome}}" data-action="{{ URL::to("delete/pacote") }}" style="cursor:pointer"></span> {{$pacote->nome}}</td>
                             <td>{{$pacote->vezes}}x</td>
                             <td>{{$pacote->valor}}</td>
                             <td>{{$pacote->valido_por}} dias</td>
@@ -65,7 +66,7 @@
                     <table class="table table-hover">
                         @foreach($categorias as $categoria)
                         <tr>
-                            <td>{{$categoria->nome}}</td>
+                            <td><span class="glyphicon glyphicon-remove text-danger deleteAttribute" data-id="{{$categoria->id}}" data-centro="{{$centro->id}}" data-string="{{$categoria->nome}}" data-action="{{ URL::to("delete/categoria") }}" style="cursor:pointer"></span> {{$categoria->nome}}</td>
                             <td>
                                 @if(!empty($categoria->caminho_completo))
                                 <button type="button" class="btn btn-info btn-xs active ver-imagem" data-id="{{$categoria->id_imagem}}" data-caminho="{{$categoria->caminho_completo}}" data-toggle="modal" data-target="#myModalCategoriaImgVer">Ver Imagem</button>

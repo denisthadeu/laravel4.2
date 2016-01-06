@@ -48,6 +48,7 @@ Route::get('/', function()
 Route::controller('home','HomeController');
 
 Route::controller('id', 'IdController');
+Route::controller('delete', 'DeleteController');
 Route::controller('usuario', 'UsuarioController');
 Route::controller('categorias', 'CategoriasController');
 Route::controller('centro', 'CentroController');
