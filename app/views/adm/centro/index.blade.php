@@ -60,6 +60,7 @@
              @if(isset($centros) && !$centros->isEmpty())
                 @foreach($centros AS $centro)
                     <div class="col-sm-3">
+                        <span class="glyphicon glyphicon-remove text-danger deleteAttribute" data-id="{{$centro->id}}" data-centro="{{$centro->id}}" data-string="{{$centro->nome}}" data-action="{{ URL::to("delete/centro") }}" style="cursor:pointer"></span>
                         <a href="{{URL::to("usuario/index/$centro->id")}}">
                             <button type="button" class="col-sm-12 btn btn-default btn-lg active" style="height: 80px;">{{$centro->nome}}</button>
                         </a>
