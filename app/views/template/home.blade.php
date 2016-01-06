@@ -39,7 +39,7 @@
             line-height: 20px;
             float: right;
             color: black;
-            padding-right: 10%
+            padding-right: 1%
         }
         </style>
     </head>
@@ -110,8 +110,7 @@
                             <div class="page-title">
                                 <div class="col-md-2"></div>
                                 <form action="" method="get" id="form-search">
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-5" style="padding-top:2.4%;">
+                                    <div class="col-lg-offset-1 col-lg-6 col-md-offset-3 col-md-6" style="padding-top:2.4%;">
                                         <div class="input-group">
                                             <input type="text" autocomplete="off" name="search" id="search" class="form-control" value="{{Input::get('search')}}" placeholder="O que você está procurando?" />
                                             <span class="input-group-addon" style="cursor:pointer; border: none; background-color: #FFB90F;" id="span-search">

@@ -97,7 +97,7 @@ $auxRua='';
                     </div>
                 </div>
             @else
-            <div class="alert alert-warning teste-center">Nenhum estabelecimento encontrado para esses filtros!</div>
+            <!-- <div class="alert alert-warning teste-center">Nenhum estabelecimento encontrado para esses filtros!</div> -->
             @endif
         </div>
     @else
