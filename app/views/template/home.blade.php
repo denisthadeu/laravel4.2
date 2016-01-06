@@ -32,14 +32,14 @@
         }
         .fontDetalhada {
             font-family: 'Brush Script MT', cursive;
-            font-size: 19px;
+            font-size: 38px;
             font-style: oblique;
             font-variant: normal;
             font-weight: 400;
             line-height: 20px;
             float: right;
             color: black;
-            padding-right: 20%
+            padding-right: 10%
         }
         </style>
     </head>
@@ -66,6 +66,12 @@
                     
                     <!-- navigation -->
                     <ul class="navigation">
+                        <li>
+                            <a href="{{URL::to("id/sign-in")}}">
+                                <span style="color:white;" class="visible-lg text-info">Login</span>
+                                <span class="visible-md visible-sm visible-xs">login</span>
+                            </a>
+                        </li>
                         <li>
                             <a href="{{URL::to("id/sign-up")}}">
                                 <span style="color:white;" class="visible-lg text-info">
@@ -104,12 +110,13 @@
                             <div class="page-title">
                                 <div class="col-md-2"></div>
                                 <form action="" method="get" id="form-search">
-                                    <div class="col-md-8" style="padding-top:1.4%;">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-5" style="padding-top:2.4%;">
                                         <div class="input-group">
                                             <input type="text" autocomplete="off" name="search" id="search" class="form-control" value="{{Input::get('search')}}" placeholder="O que você está procurando?" />
                                             <span class="input-group-addon" style="cursor:pointer; border: none; background-color: #FFB90F;" id="span-search">
                                                 <!-- <span class="fa fa-search"></span> -->
-                                                <img src="../../img/ok.png" style="margin-top: -15px; margin-left: -20px; position: relative; width: 50px; z-index: 10;">
+                                                <img src="../../img/ok.png" style="margin-top: -25px; margin-left: -20px; position: relative; width: 68px; z-index: 10;">
                                             </span>
                                         </div>
                                     </div>
