@@ -10,11 +10,11 @@ $auxRua='';
         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 padding-v-5">
             <div class="panel panel-warning">
                 <div class="panel-heading"><strong>Categorias:</strong></div>
-                <div class="panel-body" style="background: rgba(255,185,15, 0.5);">
+                <div class="panel-body" style="background: rgba(149,183,93, 0.5);">
                     @if(isset($categorias) && !$categorias->isEmpty())
                         @foreach($categorias as $categoria)
                             <div class="col-xs-12 padding-v-5">
-                                <a class="col-xs-12 btn btn-sm btn-{{{ count($categorySel) > 0 && $categoria->id == $categorySel->id ? 'default' : 'success' }}}" href="{{URL::to("home/estabelecimento")}}/{{$id}}/{{$categoria->id}}"><strong>{{$categoria->nome}}</strong></a>
+                                <a class="col-xs-12 btn btn-sm btn-{{{ count($categorySel) > 0 && $categoria->id == $categorySel->id ? 'success' : 'default' }}}" href="{{URL::to("home/estabelecimento")}}/{{$id}}/{{$categoria->id}}"><strong>{{$categoria->nome}}</strong></a>
                             </div>
                         @endforeach
                     @endif
