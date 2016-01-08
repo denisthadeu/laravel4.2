@@ -101,4 +101,9 @@ class UsuarioController extends BaseController {
 
 		return Redirect::to('meusdados/'.$id_user);
 	}
+
+	public function getDadosCompany($id){
+		$usuario = User::find($id);
+		return View::make('adm.usuario.dados_company', compact('usuario'));
+	}
 }

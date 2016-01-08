@@ -52,7 +52,7 @@ $auxRua='';
                                     @if(isset($topEstabelecimentos) && !$topEstabelecimentos->isEmpty())
                                         <div class="col-md-8 col-xs-12 hidden-print" style="border: 1px; border: #FFB90F 5px solid;border-radius: 10px; padding:10px;">
                                             @foreach($topEstabelecimentos as $topEstabelecimento)
-                                                {{ $topEstabelecimento->company_name }} <br/>
+                                                <a href="{{URL::to("usuario/dados-company/$topEstabelecimento->id")}}"  onclick="window.open('{{URL::to("usuario/dados-company/$topEstabelecimento->id")}}', 'newwindow', 'width=500, height=500'); return false;"> {{$topEstabelecimento->company_name}}</a> <br/>
                                                 <font color="black"><strong>{{ $topEstabelecimento->rua }}
                                                 {{ isset($topEstabelecimento->company_numero) ? ', nº ' . $topEstabelecimento->company_numero : '' }}
                                                 {{ isset($topEstabelecimento->company_loja) ? ', lj ' . $topEstabelecimento->company_loja : '' }}
@@ -61,7 +61,7 @@ $auxRua='';
                                         </div>
                                         <div class="col-md-8 col-xs-12 visible-print-block">
                                             @foreach($topEstabelecimentos as $topEstabelecimento)
-                                                {{ $topEstabelecimento->company_name }} <br/>
+                                                <a href="{{URL::to("usuario/dados-company/$topEstabelecimento->id")}}"  onclick="window.open('{{URL::to("usuario/dados-company/$topEstabelecimento->id")}}', 'newwindow', 'width=500, height=500'); return false;"> {{$topEstabelecimento->company_name}}</a> <br/>
                                                 <font color="black"><strong>{{ $topEstabelecimento->rua }}
                                                 {{ isset($topEstabelecimento->company_numero) ? ', nº ' . $topEstabelecimento->company_numero : '' }}
                                                 {{ isset($topEstabelecimento->company_loja) ? ', lj ' . $topEstabelecimento->company_loja : '' }}
@@ -76,7 +76,7 @@ $auxRua='';
                                                 <?php $auxRua = $estabelecimento->rua ?>
                                             @endif
                                             <div class="col-xs-12 push-up-10 {{($count % 2 == 0) ? 'bg-warning' : ''}}">
-                                                <p><strong>{{$estabelecimento->company_name}}</strong></p>
+                                                <p><strong><a href="{{URL::to("usuario/dados-company/$estabelecimento->id")}}"  onclick="window.open('{{URL::to("usuario/dados-company/$estabelecimento->id")}}', 'newwindow', 'width=500, height=500'); return false;"> {{$estabelecimento->company_name}}</a></strong></p>
                                                 <p style="color: #000;"><strong>
                                                     {{ $estabelecimento->rua }}
                                                     {{ isset($estabelecimento->company_numero) ? ', nº ' . $estabelecimento->company_numero : '' }}
