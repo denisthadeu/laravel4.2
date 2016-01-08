@@ -22,7 +22,11 @@
             font-size: 1px;
             color: #FFF;
             text-indent: 99999px;
-            background: url("../../img/logo.png") left top no-repeat;
+            @if(file_exists("../../img/logo.png"))
+                background: url("../../img/logo.png") left top no-repeat;
+            @else
+                background: url("../../../img/logo.png") left top no-repeat;
+            @endif
             width: 220px;
             height: 61px;
             float: left;
@@ -115,7 +119,7 @@
                                             <input type="text" autocomplete="off" name="search" id="search" class="form-control" value="{{Input::get('search')}}" placeholder="O que você está procurando?" />
                                             <span class="input-group-addon" style="cursor:pointer; border: none; background-color: #FFB90F;" id="span-search">
                                                 <!-- <span class="fa fa-search"></span> -->
-                                                <img src="../../img/ok.png" style="margin-top: -25px; margin-left: -20px; position: relative; width: 68px; z-index: 10;">
+                                                <img @if(file_exists("../../img/ok.png"))  src="../../img/ok.png" @else src="../../../img/ok.png" @endif style="margin-top: -25px; margin-left: -20px; position: relative; width: 68px; z-index: 10;">
                                             </span>
                                         </div>
                                     </div>
