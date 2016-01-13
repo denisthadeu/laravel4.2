@@ -60,8 +60,10 @@
                         <tr>
                             <td>
                                 <a href="{{URL::to("meusdados/$usuario->id")}}">
-                                    @if($usuario->data_vencimento > date( "Y-m-d H:i:s" ) && $usuario->status == 1)
+                                    @if(date('Y-m-d', strtotime("-5 days",strtotime($usuario->data_vencimento))) >= date( "Y-m-d" ) && $usuario->status == 1)
                                         <span class="text-success fa fa-circle"></span>
+                                    @elseif($usuario->data_vencimento > date( "Y-m-d H:i:s" ) && $usuario->status == 1)
+                                        <span class="text-warning fa fa-circle"></span>
                                     @else
                                         <span class="text-danger fa fa-circle"></span>
                                     @endif
