@@ -166,15 +166,24 @@ class HomeController extends BaseController {
 	{
 		extract(Input::All());
 		$array = array();
-		$tags = User::select('company_name', 'company_tags')->where('company_name', 'LIKE', "%$search%")->orWhere('company_tags', 'LIKE', "%$search%")->get();
+		$tags = User::select('company_name', 'company_tags')->get();
+		// $tags = User::select('company_name', 'company_tags')->where('company_name', 'LIKE', "%$search%")->orWhere('company_tags', 'LIKE', "%$search%")->get();
 		foreach ($tags as $key => $value) {
 			if(!in_array($value['company_name'], $array))
-				$array[] = $value['company_name'];
-			if(!in_array($value['company_tags'], $array)){
-				$array[] = $value['company_tags'];
+				$arrayT[] = $value['company_name'];
+
+			$ex = explode(',', $value['company_tags']);
+			foreach ($ex as $k => $v) {
+				if(!in_array($v, $array))
+					$arrayT[] = trim($v);
 			}
-				
 		}
+
+		foreach ($arrayT as $value) {
+			if(stripos($value, $search) !== false)
+				$array[] = $value;
+		}
+		// print_r($array);
 		return json_encode($array);
 	}
 }
