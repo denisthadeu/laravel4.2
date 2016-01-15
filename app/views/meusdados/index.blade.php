@@ -140,6 +140,16 @@
                             <p>
                                 <div class="row">
                                     <div class="col-md-3">
+                                        Favorito
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="checkbox" name="favorito" id="favorito" @if($user->favorito == 1) CHECKED @endif />
+                                    </div>
+                                </div>
+                            </p>
+                            <p>
+                                <div class="row">
+                                    <div class="col-md-3">
                                         Status
                                     </div>
                                     <div class="col-md-9">

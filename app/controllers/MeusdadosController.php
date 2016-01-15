@@ -52,6 +52,13 @@ class MeusdadosController extends BaseController {
 		if(isset($senha) && !empty($senha) && isset($senha_confirma) && $senha_confirma == $senha){
 			$user->password = Hash::make($senha);
 		} 
+		if(isset($favorito) && !empty($favorito)){
+			if($favorito == 'on'){
+				$user->favorito = 1;
+			} else {
+				$user->favorito = 0;
+			}
+		}
 		$user->cpf = $cpf;
 		$user->telefone = $telefone;
 		$user->celular = $celular;
@@ -66,7 +73,6 @@ class MeusdadosController extends BaseController {
 		$user->company_site = $site_company;
 		$user->company_telefone = $telefone_company;
 		$user->company_tags = $tags_company;
-		
 		$user->save();
 
 		$id = (!empty($id)) ? $id : $user->id;

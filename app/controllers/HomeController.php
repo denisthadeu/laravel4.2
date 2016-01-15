@@ -89,6 +89,34 @@ class HomeController extends BaseController {
 					$estabelecimentos = $estabelecimentos->where('user_categorias.categories_id','=',$category);
 				}
 			}
+
+			$topEstabelecimentos = User::select('user.id', 'user.company_name', 'user.company_numero', 'user.company_loja', 'user.company_andar', 'ruas.nome as rua')
+							->join('ruas', 'user.rua_id', '=', 'ruas.id')
+							->join('user_categorias', 'user.id', '=', 'user_categorias.user_id')
+							->where('user.status','=',1)
+							->where('user.perfil','=',2)
+							->where('user.centro_id','=',$id)
+							->where('user.data_vencimento','>=',"'$hoje'")
+							->where('user.favorito','=',1);
+			if(!empty(Input::get('search'))){
+				$topEstabelecimentos = $topEstabelecimentos->where('user.company_tags','like','%'.Input::get('search').'%');
+			}
+			if($category){
+				$topEstabelecimentos = $topEstabelecimentos->where('user_categorias.categories_id','=',$category);
+			}
+			if(!empty(Input::get('search'))){
+				$topEstabelecimentos = $topEstabelecimentos->orwhere('user.company_name','like','%'.Input::get('search').'%')
+							->where('user.status','=',1)
+							->where('user.favorito','=',1)
+							->where('user.perfil','=',2)
+							->where('user.centro_id','=',$id)
+							->where('user.data_vencimento','>=',"'$hoje'");
+				if($category){
+					$topEstabelecimentos = $topEstabelecimentos->where('user_categorias.categories_id','=',$category);
+				}
+			}
+			$topEstabelecimentos = $topEstabelecimentos->groupBy('user.id');
+
 			if(empty($imagem)){
 				$category = Categories::where('nome','like','%'.Input::get('search').'%' )->first();
 				if(!empty($category)){
@@ -106,11 +134,8 @@ class HomeController extends BaseController {
 
 
 			$estabelecimentos = $estabelecimentos->groupBy('user.id');
-			$topEstabelecimentos = $estabelecimentos->with(array('pacote' => function($query){
-                $query->orderBy('valor','desc');
-            }))->take($parametroLimite);
 
-            $topEstabelecimentos = $topEstabelecimentos->get();
+            $topEstabelecimentos = $topEstabelecimentos->groupBy('user.id')->take($parametroLimite)->get();
 			$estabelecimentos = $estabelecimentos->orderBy('ruas.nome', 'user.company_numero', 'user.company_name')->get();
 			
 		}
