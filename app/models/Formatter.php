@@ -125,4 +125,12 @@
 		    return $data;
 	  	}
 	  }
+	  public static function dataAtualDBPlusDays($days)
+	  {
+		return date("d/m/Y", strtotime("+".$days." days"));
+	  }
+	  public static function dataAtual()
+	  {
+	    return date('d/m/Y');
+	  }
 	}

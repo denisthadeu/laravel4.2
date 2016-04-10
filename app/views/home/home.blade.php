@@ -11,11 +11,10 @@ $ruaSelecionada = Input::get('rua');
     float: left;
     padding: 15px 0px;
     font-size: 1px;
-    color: #FFF;
     text-indent: 99999px;
-    background: url("../img/logo.png") left top no-repeat;
-    width: 220px;
-    height: 61px;
+    background: url("../img/logo.png") center center no-repeat;
+    max-width: 100%;
+    height: auto;
     float: left;
     display: block;
     /*background-size: 100% 100%;
@@ -29,9 +28,8 @@ $ruaSelecionada = Input::get('rua');
                 <div class="text-column this-animate" data-animate="fadeInRight">                                    
                     <div class="list-links">
                         <div class="col-xs-12 push-down-10">
-                            <div class="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6">
-                                <a href="{{ URL::to("home/home") }}">
-                                    <div class="logo col-md-offset-3 col-lg-offset-3"></div>
+                            <div class="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6" style"left:50px">
+                                <div class="logo" style="width: 440px; height: 130px"></div>
                                 </a>
                             </div>
                             <div class="col-lg-3 col-md-3"></div>
@@ -40,7 +38,7 @@ $ruaSelecionada = Input::get('rua');
                             @foreach($centros as $centro)
                                 <div class="col-xs-12 push-down-10">
                                     <div class="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6">
-                                        <a class="col-xs-12 btn btn-success" style="color:white;" href="{{URL::to("home/estabelecimento")}}/{{$centro->id}}">{{$centro->nome}}</a>
+                                        <a class="col-xs-12 btn btn-success" style="color:white; width:120px; left:35%; background-image: linear-gradient(to bottom, #b4d35c, #445516 130%); box-shadow: 1px 1px 1px #000000" href="{{URL::to("home/estabelecimento")}}/{{$centro->id}}">{{$centro->nome}}</a>
                                     </div>
                                     <div class="col-lg-3 col-md-3"></div>
                                 </div>

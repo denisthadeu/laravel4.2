@@ -287,6 +287,10 @@
                     }
                     return false;
                 });
+                $("#pacote").change(function(){
+                    var data = $(this).find(':selected').data("formatter");
+                    $("#data_vencimento").val(data);
+                })
             });
         </script>
         <!-- END TEMPLATE -->

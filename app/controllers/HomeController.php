@@ -68,9 +68,10 @@ class HomeController extends BaseController {
 			$imagem = CategoriasImagem::where('categoria_id', '=', $category)->first();
 			$estabelecimentos = User::select('user.id', 'user.company_name', 'user.company_numero', 'user.company_loja', 'user.company_andar', 'ruas.nome as rua')
 							->join('ruas', 'user.rua_id', '=', 'ruas.id')
-							->join('user_categorias', 'user.id', '=', 'user_categorias.user_id')
+							->leftJoin('user_categorias', 'user.id', '=', 'user_categorias.user_id')
 							->where('user.status','=',1)
 							->where('user.perfil','=',2)
+							->where('user.favorito','=',0)
 							->where('user.centro_id','=',$id)
 							->where('user.data_vencimento','>=',"'$hoje'");
 			if(!empty(Input::get('search'))){
@@ -92,7 +93,7 @@ class HomeController extends BaseController {
 
 			$topEstabelecimentos = User::select('user.id', 'user.company_name', 'user.company_numero', 'user.company_loja', 'user.company_andar', 'ruas.nome as rua')
 							->join('ruas', 'user.rua_id', '=', 'ruas.id')
-							->join('user_categorias', 'user.id', '=', 'user_categorias.user_id')
+							->leftJoin('user_categorias', 'user.id', '=', 'user_categorias.user_id')
 							->where('user.status','=',1)
 							->where('user.perfil','=',2)
 							->where('user.centro_id','=',$id)
@@ -136,11 +137,15 @@ class HomeController extends BaseController {
 			$estabelecimentos = $estabelecimentos->groupBy('user.id');
 
             $topEstabelecimentos = $topEstabelecimentos->groupBy('user.id')->take($parametroLimite)->get();
-			$estabelecimentos = $estabelecimentos->orderBy('ruas.nome', 'user.company_numero', 'user.company_name')->get();
+			$estabelecimentos = $estabelecimentos->where('user.favorito','=',0)->orderBy('ruas.nome', 'user.company_numero', 'user.company_name')->get();
 			
 		}
+		if($estabelecimentos == null){
+			return View::make('home.estabelecimento2',compact('id','categorias','estabelecimentos','categorySel', 'imagem','topEstabelecimentos','centro'));
+		} else {
+			return View::make('home.estabelecimento',compact('id','categorias','estabelecimentos','categorySel', 'imagem','topEstabelecimentos','centro'));
+		}
 		
-		return View::make('home.estabelecimento',compact('id','categorias','estabelecimentos','categorySel', 'imagem','topEstabelecimentos','centro'));
 	}
 
 	public function getProduto($id)
@@ -190,23 +195,27 @@ class HomeController extends BaseController {
 	public function postAutocomplete()
 	{
 		extract(Input::All());
-		$array = array();
+		$array = $arrayT = array();
 		$tags = User::select('company_name', 'company_tags')->get();
 		// $tags = User::select('company_name', 'company_tags')->where('company_name', 'LIKE', "%$search%")->orWhere('company_tags', 'LIKE', "%$search%")->get();
 		foreach ($tags as $key => $value) {
-			if(!in_array($value['company_name'], $array))
-				$arrayT[] = $value['company_name'];
+			if(!in_array($value['company_name'], $arrayT)){
+					$arrayT[] = $value['company_name'];
+			}
 
 			$ex = explode(',', $value['company_tags']);
 			foreach ($ex as $k => $v) {
-				if(!in_array($v, $array))
-					$arrayT[] = trim($v);
+				if(!in_array($v, $arrayT))
+						$arrayT[] = trim($v);
 			}
 		}
 
 		foreach ($arrayT as $value) {
-			if(stripos($value, $search) !== false)
-				$array[] = $value;
+			if(stripos($value, $search) !== false){
+				if(!in_array($value, $array)){
+					$array[] = $value;
+				}
+			}
 		}
 		// print_r($array);
 		return json_encode($array);

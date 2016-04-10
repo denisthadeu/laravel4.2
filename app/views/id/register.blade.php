@@ -8,18 +8,16 @@
 
         <form class="form-horizontal" method="post">
         <div class="form-group">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <input type="text" name="nome" class="form-control" placeholder="Nome"/>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="telefone" class="form-control telefone" placeholder="Telefone"/>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-12">
                 <input type="text" name="email" class="form-control" placeholder="E-mail"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-12">
-                <input type="text" name="telefone" class="form-control telefone" placeholder="Telefone"/>
             </div>
         </div>
         <div class="form-group">

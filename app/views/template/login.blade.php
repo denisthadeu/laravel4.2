@@ -104,7 +104,7 @@
                 @endif
                 <div class="row" style="margin-bottom: 20px!important;">
                     <a href="{{URL::to("home/home")}}">
-                        <div class="col-md-12" style="font-size: 1px; color: #FFF; background: url('../img/logo.png') left top no-repeat; width: 220px; height: 61px; float: left; display: block;"></div>
+                        <div class="col-md-12 logo-header" style="font-size: 1px; color: #FFF; background: url('../img/logo.png') left center no-repeat; left: 15%; width: 100%; height: 130px; text-align:center; float: left; display: block;"></div>
                     </a>
                 </div>
                 @section('content')
@@ -112,8 +112,7 @@
                 @show
                 <div class="login-container-box-footer">
                      <div class="pull-left btn" style="padding-left: 0; cursor: default;">
-                        Copyright &copy; 2016 por <a href="http://www.americamktdesign.com/">America Marketing e Design</a>
-                    </div>
+                        </div>
                     <!-- <div class="pull-right">
                         <a class="btn btn-link" href="{{URL::to("home/quem-somos")}}">Sobre a empresa</a> |
                         <a class="btn btn-link" href="{{URL::to("home/termos-uso")}}">Termos de uso</a> |
@@ -121,19 +120,28 @@
                     </div> -->
                 </div>
             </div>
-            <div class="page-footer" style="border:0px">
-                 <!-- page footer wrap -->
+            <div class="page-footer" style="border:0px; bottom: 0;">
+                
+                <!-- page footer wrap -->
+                <div class="page-footer-wrap bg-dark-gray">
+                    <!-- page footer holder -->
+                    <!--  -->
+                    <!-- ./page footer holder -->
+                </div>
+                <!-- ./page footer wrap -->
+                
+                <!-- page footer wrap -->
                 <div class="page-footer-wrap bg-darken-gray" style="background-color:#ff9900">
                     <!-- page footer holder -->
                     <div class="page-footer-holder">
                         <div class="social-links" style="width: 100%!important;">
-                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("home/home")}}">Página Inicial</a>
-                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("home/quem-somos")}}">Quem Somos</a>
-                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("home/termos-uso")}}">Termos de uso</a>
-                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("id/sign-in")}}">Anuncie sua empresa</a>
-                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;" href="{{URL::to("home/fale-conosco")}}">Fale Conosco</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;font-size:12px;" href="{{URL::to("home/home")}}">Página Inicial</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;font-size:12px;" href="{{URL::to("id/sign-in")}}">Anuncie seu estabelecimento</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;font-size:12px;" href="{{URL::to("home/quem-somos")}}">Quem Somos</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;font-size:12px;" href="{{URL::to("home/termos-uso")}}">Termos de Uso e Política de Privacidade</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;font-size:12px;" href="{{URL::to("home/fale-conosco")}}">Fale Conosco</a>
+                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;font-size:10px;" href="http://www.americamktdesign.com/">Copyright &copy; 2016 por America Marketing e Design</a>
                         </div>
-                    </div>
                     <!-- ./page footer holder -->
                 </div>
             </div>

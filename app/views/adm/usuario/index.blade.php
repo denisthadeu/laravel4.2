@@ -14,7 +14,7 @@
     </div>
     <div class="panel-body">
         <form method="get">
-            <div class="dataTables_length" id="DataTables_Table_0_length">
+            <!-- <div class="dataTables_length" id="DataTables_Table_0_length">
                 <label>Exibir 
                     <select name="pagination" aria-controls="DataTables_Table_0" class="form-control">
                         <option value="10" @if(Input::has('pagination') && Input::get('pagination') == 10) selected="selected" @endif >10</option>
@@ -37,6 +37,39 @@
                     <input type="search" name="nome" class="form-control" style="width: 250px;" placeholder="Nome ou sobrenome ou email ou rua" aria-controls="DataTables_Table_0" value="{{Input::get('nome')}}">&nbsp;&nbsp;
                     <button type="submit" class="btn btn-primary">Pesquisar</button>
                 </label>
+            </div> -->
+            <div class="row" style="padding-bottom: 7px;">
+                <div class="col-md-1">
+                    Exibir
+                </div>
+                <div class="col-md-1">
+                    <select name="pagination" aria-controls="DataTables_Table_0" class="form-control">
+                        <option value="10" @if(Input::has('pagination') && Input::get('pagination') == 10) selected="selected" @endif >10</option>
+                        <option value="25" @if(Input::has('pagination') && Input::get('pagination') == 25) selected="selected" @endif>25</option>
+                        <option value="50" @if(Input::has('pagination') && Input::get('pagination') == 50) selected="selected" @endif>50</option>
+                        <option value="100" @if(Input::has('pagination') && Input::get('pagination') == 100) selected="selected" @endif>100</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    Pacote
+                </div>
+                <div class="col-md-2">
+                    <select name="pacote" aria-controls="DataTables_Table_0" class="form-control" style="width: 100px; display: inline; height: 30px;">
+                        <option value="">selecione</option>
+                        @foreach($pacotes as $pacote)
+                            <option value="{{$pacote->id}}" @if(Input::has('pacote') && Input::get('pacote') == $pacote->id) selected="selected" @endif >{{$pacote->nome}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    Pesquisar
+                </div>
+                <div class="col-md-4">
+                    <input type="search" name="nome" class="form-control"  placeholder="Nome ou sobrenome ou email ou rua" aria-controls="DataTables_Table_0" value="{{Input::get('nome')}}">
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary">Pesquisar</button>
+                </div>
             </div>
         </form>
         <table class="table table-hover">

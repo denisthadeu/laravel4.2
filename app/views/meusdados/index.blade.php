@@ -9,7 +9,7 @@
 <!-- END BREADCRUMB -->        
 
 <script type="text/javascript">
-    $(function() {
+    $( document ).ready(function() {
         $('#myModal').modal();
     });
 </script>       
@@ -312,8 +312,9 @@
                             <div class="col-md-3">Pacote</div>
                             <div class="col-md-9">
                                 <select class="form-control" id="pacote" name="pacote" REQUIRED>
+                                    <option value="0" data-formatter="{{ Formatter::dataAtual() }}" >Selecione pacote</option>
                                     @foreach($pacotes as $pacote)
-                                        <option value="{{$pacote->id}}" @if($pacote->id == $user->pacote_id) SELECTED @endif >{{$pacote->nome}}</option>
+                                        <option data-formatter="{{ Formatter::dataAtualDBPlusDays($pacote->valido_por) }}" value="{{$pacote->id}}">{{$pacote->nome}}</option>
                                     @endforeach
                                 </select>
                             </div>

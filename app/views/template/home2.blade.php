@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <!-- META SECTION -->
-        <title>Ponto da Informação - Página Inicial</title>
+        <title>Ponto da Informação - Resultado da Pesquisa</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,9 +23,9 @@
             color: #FFF;
             text-indent: 99999px;
             @if(file_exists("../../img/logo.png"))
-                background: url("../../img/logo.png") center center no-repeat;
+                background: url("../../img/logo2.png") top center no-repeat;
             @else
-                background: url("../../../img/logo.png") center center no-repeat;
+                background: url("../../../img/logo2.png") top center no-repeat;
             @endif
             max-width: 100%;
             height: auto;
@@ -35,23 +35,23 @@
             background-repeat: no-repeat;*/
         }
         .fontDetalhada {
-            font-family: 'Papyrus', cursive;
+            font-family: 'Brush Script MT', cursive;
             font-size: 25px;
             font-style: normal;
             font-variant: normal;
             font-weight: bold;
             line-height: 20px;
             float: right;
-            color: black;
+            color: #d9950e;
             padding-right: 1%
         }
         </style>
-    </head>
-    <body style="background-color:#FFB90F; width:100%;">
+        </head>
+    <body style="background-color:#FFB90F; width:100%">
         <!-- page container -->
         <div class="page-container" style="background-color:#FFB90F; min-height: 100%; position:relative;">
             <!-- page header -->
-            <div class="page-header" style="background-color:#FFB90F; position:relative; left:100px">
+            <div class="page-header" style="background-color:#FFB90F">
                 
                 <!-- page header holder -->
                 <div class="page-header-holder" >
@@ -69,23 +69,6 @@
                     <!-- ./nav mobile bars -->
                     
                     <!-- navigation -->
-                    <ul class="navigation">
-                       <li>
-                            <a href="{{URL::to("id/sign-up")}}">
-                                <span style="color:white" class="visible-lg text-info">
-                                    <span style="background-color: black;color: white">&nbsp;&nbsp; <span style="color: #FFB90F">Sou lojista,</span> QUERO me cadastrar&nbsp;&nbsp;</span>
-                                </span>
-                                <span class="visible-md visible-sm visible-xs">Sou lojista QUERO me cadastrar!</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{URL::to("id/sign-in")}}">
-                                <span style="color:white;" class="visible-lg text-info">
-                                <span style="background-color: black;color: white;">&nbsp;&nbsp;<span style="color: #FFB90F">Login&nbsp;&nbsp;</span>
-                                <span class="visible-md visible-sm visible-xs">login</span>
-                            </a>
-                        </li>
-                    </ul>
                     <!-- ./navigation -->                        
 
                     
@@ -103,8 +86,9 @@
                         <!-- page content holder -->
                             <div class="page-content-holder no-padding">
                             <div class="col-xs-12 push-down-10">
-                                <div class="col-lg-offset-4 col-lg-6 col-md-offset-3 col-md-6">
-                                    <div class="logo" style="width: 440px; height: 130px"></div>
+                                <div class="col-lg-offset-1 col-lg-6 col-md-offset-3 col-md-6" style="Top:20px; right:350px">
+                                    <a href="{{ URL::to("home/home") }}">
+                                        <div class="logo" style="width: 440px; height: 130px; text-center"></div>
                                     </a>
                                     <br/><br/><br/><br/>  
                                 </div>
@@ -113,15 +97,13 @@
                             <div class="page-title">
                                 <div class="col-md-2"></div>
                                 <form action="" method="get" id="form-search">
-                                    <div class="col-lg-offset-1 col-lg-6 col-md-offset-3 col-md-8" style="padding-top:3%;">
+                                    <div class="col-lg-offset-1 col-lg-6 col-md-offset-6 col-md-8" style="Top:-100px;">
                                         <div class="input-group">
                                             <input type="text" autocomplete="off" name="search" id="search" class="form-control" value="{{Input::get('search')}}" placeholder="O que você está procurando?" />
                                             <span class="input-group-addon" style="cursor:pointer; border: none; background-color: #FFB90F;" id="span-search">
                                                 <!-- <span class="fa fa-search"></span> -->
-                                                <img @if(file_exists("../../img/ok.png"))  src="../../img/ok.png" @else src="../../../img/ok.png" @endif style="margin-top: -25px; margin-left: -20px; position: relative; width: 68px; z-index: 10;">
+                                                <img @if(file_exists("../../img/ok2.png"))  src="../../img/ok2.png" @else src="../../../img/ok2.png" @endif style="margin-top: -18px; margin-left: -20px; position: relative; width: 53px; z-index: 10;">
                                             </span>
-                                            <br/><br/><br/><br/>
-                                            <span class="fontDetalhada" style="font-size: 35px; position:relative; top: 30px">{{$centro->nome}}</span>
                                         </div>
                                     </div>
                                 </form>
@@ -157,16 +139,7 @@
                 <!-- page footer wrap -->
                 <div class="page-footer-wrap bg-darken-gray" style="background-color:#ff9900">
                     <!-- page footer holder -->
-                    <div class="page-footer-holder">
-                        <div class="social-links" style="width: 100%!important;">
-                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;font-size:12px;" href="{{URL::to("home/home")}}">Página Inicial</a>
-                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;font-size:12px;" href="{{URL::to("id/sign-in")}}">Anuncie seu estabelecimento</a>
-                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;font-size:12px;" href="{{URL::to("home/quem-somos")}}">Quem Somos</a>
-                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;font-size:12px;" href="{{URL::to("home/termos-uso")}}">Termos de Uso e Política de Privacidade</a>
-                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;font-size:12px;" href="{{URL::to("home/fale-conosco")}}">Fale Conosco</a>
-                            <a style="width: auto!important; padding: 0 10px 0 10px; color: white;font-size:10px;" href="http://www.americamktdesign.com/">Copyright &copy; 2016 por America Marketing e Design</a>
-                        </div>
-                        
+                                           
                         <!-- copyright -->
                         <!-- <div class="copyright">
                             &copy; 2015 Ponto da Informação - All Rights Reserved

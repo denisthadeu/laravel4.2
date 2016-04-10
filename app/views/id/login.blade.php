@@ -11,7 +11,7 @@
 </div>
 <div class="login-box login-box-right animated fadeInDown row">
     <div class="login-body">
-        <div class="login-title text-center">Já sou Cliente</div>
+        <div class="login-title text-center">Já sou Cliente!</div>
         <form class="form-horizontal" method="post">
         <div class="form-group">
             <div class="col-md-12">
